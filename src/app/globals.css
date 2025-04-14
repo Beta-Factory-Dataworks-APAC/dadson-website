@@ -1,0 +1,124 @@
+@import "tailwindcss";
+@import "./fonts.css";
+
+:root {
+  /* Base colors */
+  --background: #ffffff;
+  --foreground: #101B21;
+  
+  /* Primary brand colors */
+  --primary-blue: #00B4E1;
+  --primary-navy: #03033D;
+  --primary-dark: #101B21;
+  --primary-white: #FFFFFF;
+  
+  /* Secondary colors */
+  --secondary-light-gray: #8B8991;
+  --secondary-medium-gray: #B3B0BE;
+  --secondary-dark-gray: #707C83;
+  --secondary-very-light-gray: #E3E3E3;
+  
+  /* Background colors */
+  --bg-dark: #030709;
+  --bg-transparent-white: rgba(255, 255, 255, 0.1);
+  --bg-transparent-black: rgba(0, 0, 0, 0.05);
+
+  /* Button colors */
+  --btn-primary-bg: rgba(0, 180, 225, 0.9);
+  --btn-primary-shadow: rgba(0, 180, 225, 0.15);
+  --btn-secondary-border: rgba(247, 247, 247, 0.1);
+  --btn-outline-border: rgba(0, 0, 0, 0.1);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-primary: 'Clash Display', sans-serif;
+  --font-body: 'Satoshi', sans-serif;
+}
+
+/* We're not using dark mode in this project */
+/*
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+*/
+
+html, body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-body);
+  font-weight: 500;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Heading styles */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-primary);
+  line-height: 1.2;
+}
+
+h1 {
+  font-weight: 500;
+  font-size: 80px;
+  line-height: 1.125;
+  text-transform: uppercase;
+}
+
+h2 {
+  font-weight: 500;
+  font-size: 42px;
+  line-height: 1.19;
+  text-transform: uppercase;
+}
+
+/* Button styles */
+button, .button {
+  font-family: var(--font-primary);
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 1.78;
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Animation classes */
+.animate-fade-in {
+  opacity: 1 !important;
+}
+
+/* Marquee animation for scrolling text */
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee {
+  animation: marquee 20s linear infinite;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  h1 {
+    font-size: 50px;
+    line-height: 1.1;
+  }
+}
