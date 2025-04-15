@@ -1,27 +1,19 @@
-import { defineConfig } from 'sanity';
-import { deskTool } from 'sanity/desk';
-import { visionTool } from '@sanity/vision';
-import { codeInput } from '@sanity/code-input';
-import { schemaTypes } from './schemas';
-import { deskStructure, getDefaultDocumentNode } from './desk-structure';
+// This file is kept as a placeholder to prevent build errors
+// We're now using Payload CMS instead of Sanity
 
-export default defineConfig({
-  name: 'dadson-blog',
-  title: 'Dadson Logistics Blog',
+// Dummy implementation
+const defineConfig = (config: any) => config;
 
-  projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID || '',
-  dataset: process.env.NEXT_PUBLIC_SANITY_DATASET || 'production',
-
-  plugins: [
-    deskTool({
-      structure: deskStructure,
-      defaultDocumentNode: getDefaultDocumentNode,
-    }),
-    visionTool(),
-    codeInput(),
-  ],
-
+// Export a dummy config object that doesn't require actual Sanity imports
+const dummyConfig = defineConfig({
+  name: 'disabled',
+  title: 'Sanity Studio Disabled',
+  projectId: '',
+  dataset: '',
+  plugins: [],
   schema: {
-    types: schemaTypes,
+    types: [],
   },
-}); 
+});
+
+export default dummyConfig; 

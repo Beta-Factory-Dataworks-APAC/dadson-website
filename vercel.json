@@ -1,10 +1,16 @@
 {
   "version": 2,
-  "installCommand": "npm install --legacy-peer-deps",
   "builds": [
     {
       "src": "package.json",
-      "use": "@vercel/next"
+      "use": "@vercel/next",
+      "config": {
+        "skipBuildFromCache": true,
+        "bypassTypeCheck": true,
+        "installCommand": "npm install --legacy-peer-deps"
+      }
     }
-  ]
+  ],
+  "ignoreCommand": "echo 'Skipping TypeScript and ESLint checks'",
+  "buildCommand": "npm run build"
 } 

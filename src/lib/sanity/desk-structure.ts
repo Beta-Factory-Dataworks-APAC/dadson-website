@@ -1,62 +1,22 @@
-import { definePlugin } from 'sanity';
-import { deskTool } from 'sanity/desk';
-import { StructureBuilder } from 'sanity/desk';
+// This file is kept as a placeholder to prevent build errors
+// We're now using Payload CMS instead of Sanity
 
-// Define the structure
-export const deskStructure = (S: StructureBuilder) =>
-  S.list()
-    .title('Content')
-    .items([
-      S.listItem()
-        .title('Articles')
-        .child(
-          S.documentTypeList('article')
-            .title('All Articles')
-            .child((documentId) =>
-              S.document()
-                .documentId(documentId)
-                .schemaType('article')
-            )
-        ),
-      S.divider(),
-      S.listItem()
-        .title('Categories')
-        .child(
-          S.documentTypeList('category')
-            .title('Categories')
-            .child((documentId) =>
-              S.document()
-                .documentId(documentId)
-                .schemaType('category')
-            )
-        ),
-      S.listItem()
-        .title('Authors')
-        .child(
-          S.documentTypeList('author')
-            .title('Authors')
-            .child((documentId) =>
-              S.document()
-                .documentId(documentId)
-                .schemaType('author')
-            )
-        ),
-    ]);
+// Type definition for StructureBuilder to avoid Sanity import
+interface StructureBuilder {
+  list: () => any;
+  document: () => any;
+  view: {
+    form: () => any;
+  };
+}
 
-// Simpler implementation without React component to avoid TypeScript issues
-export const getDefaultDocumentNode = (S: StructureBuilder) => {
-  return S.document().views([
-    S.view.form(),
-  ]);
-};
+// Dummy implementation without requiring Sanity
+const definePlugin = (config: any) => config;
 
-// Create a custom desk tool
+// Dummy exports to satisfy import requirements
+export const deskStructure = (S: StructureBuilder) => ({});
+export const getDefaultDocumentNode = (S: StructureBuilder) => ({});
 export const customDeskTool = definePlugin({
   name: 'desk-tool',
-  plugins: [
-    deskTool({
-      structure: deskStructure,
-      defaultDocumentNode: getDefaultDocumentNode,
-    })
-  ]
+  plugins: []
 }); 
