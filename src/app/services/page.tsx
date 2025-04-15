@@ -403,8 +403,6 @@ export default function ServicesPage() {
           
           <div className={styles.socialLinks}>
             <div className={styles.socialLink}>Linkedin</div>
-            <div className={styles.socialLink}>Twitter</div>
-            <div className={styles.socialLink}>Facebook</div>
           </div>
         </div>
       </div>

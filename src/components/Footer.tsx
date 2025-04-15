@@ -225,14 +225,8 @@ const Footer = () => {
             
             {/* Social media links */}
             <div className="flex gap-6 md:gap-8">
-              <a href="#" className="text-sm md:text-base text-gray-400 hover:text-white transition-colors duration-300">
+              <a href="https://www.linkedin.com/company/dadson-logistics" className="text-sm md:text-base text-gray-400 hover:text-white transition-colors duration-300">
                 LinkedIn
-              </a>
-              <a href="#" className="text-sm md:text-base text-gray-400 hover:text-white transition-colors duration-300">
-                Twitter
-              </a>
-              <a href="#" className="text-sm md:text-base text-gray-400 hover:text-white transition-colors duration-300">
-                Facebook
               </a>
             </div>
           </div>
