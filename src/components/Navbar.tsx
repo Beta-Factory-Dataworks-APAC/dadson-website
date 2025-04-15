@@ -37,6 +37,18 @@ const Navbar = () => {
   useEffect(() => {
     setMobileMenuOpen(false);
   }, [pathname]);
+
+  // Add body overflow control for mobile menu
+  useEffect(() => {
+    if (mobileMenuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [mobileMenuOpen]);
   
   // Function to determine if a navigation item should be highlighted
   const isActive = (path: string): boolean => {
@@ -62,15 +74,15 @@ const Navbar = () => {
 
   return (
     <nav 
-      className={`fixed top-0 left-0 right-0 z-[100] bg-transparent py-4 transition-transform duration-300 ${
+      className={`fixed top-0 left-0 right-0 z-[100] bg-transparent py-2 md:py-4 transition-transform duration-300 ${
         scrollingDown ? '-translate-y-full' : 'translate-y-0'
-      } ${pathname === '/' ? 'pt-[60px]' : ''}`}
+      } ${pathname === '/' ? 'pt-[20px] md:pt-[60px]' : ''}`}
     >
-      <div className="container mx-auto px-6">
+      <div className="container mx-auto px-4 md:px-6">
         <div className="flex justify-between items-center">
           {/* Logo */}
           <Link href="/" className="flex items-center">
-            <svg width="104" height="92" viewBox="0 0 104 92" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" aria-label="Dadson Logo">
+            <svg width="80" height="70" viewBox="0 0 104 92" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" aria-label="Dadson Logo" className="w-[80px] h-[70px] md:w-[104px] md:h-[92px]">
               <title>Dadson Logo</title>
               <desc>Dadson company logo in blue color</desc>
               <path d="M69.0182 48.8306L26.2195 91.6293H0V0.364258H51.565L18.0888 33.867C12.1828 39.773 10.3819 44.6726 10.4348 49.4662C10.5143 54.2334 12.3417 58.9741 15.8906 62.4965C19.4925 66.1249 24.0743 67.9523 28.8679 68.0053C33.6351 68.0847 38.6407 66.2573 44.5467 60.3248L62.556 42.342C64.251 40.6205 65.4163 40.0908 66.6876 40.1702C67.8529 40.1702 69.0447 40.6734 69.9452 41.6004C70.7662 42.3949 71.1899 43.3484 71.2694 44.3548C71.4018 45.679 70.8456 46.9767 69.0182 48.8306Z" fill="#00B4E1"/>
@@ -119,7 +131,7 @@ const Navbar = () => {
           <div className="md:hidden">
             <button
               type="button"
-              className="p-2 text-white"
+              className="p-2 rounded-full hover:bg-white/10 text-white transition-colors duration-200"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               aria-label={mobileMenuOpen ? 'Close menu' : 'Open menu'}
               aria-expanded={mobileMenuOpen}
@@ -143,18 +155,18 @@ const Navbar = () => {
       {mobileMenuOpen && (
         <div 
           id="mobile-menu"
-          className="md:hidden absolute top-full left-0 right-0 bg-gray-900/95 pt-2 pb-4 z-[100] border-t border-gray-700/50"
+          className="md:hidden fixed top-[70px] left-0 right-0 bg-[#0F1923]/95 backdrop-blur-md pt-4 pb-6 z-[100] border-t border-white/10 shadow-lg h-[calc(100vh-70px)] overflow-y-auto"
         >
-          <div className="container mx-auto px-6">
-            <div className="flex flex-col space-y-2">
+          <div className="container mx-auto px-4">
+            <div className="flex flex-col space-y-3">
               {navItems.map((item) => (
                 <Link 
                   key={item.href}
                   href={item.href} 
-                  className={`${linkBaseClasses} text-center ${
+                  className={`font-satoshi font-medium text-[16px] tracking-wide py-3 px-4 uppercase transition-all border-b ${
                     isActive(item.href) 
-                      ? activeLinkClasses 
-                      : inactiveLinkClasses
+                      ? "text-white font-semibold border-[#00B4E1]" 
+                      : "text-white/80 hover:text-white border-white/10 hover:border-white/30"
                   }`}
                   onClick={() => setMobileMenuOpen(false)}
                   aria-current={isActive(item.href) ? "page" : undefined}
@@ -162,14 +174,16 @@ const Navbar = () => {
                   {item.label}
                 </Link>
               ))}
-              <Link 
-                href="/contact" 
-                className="font-clash font-semibold text-[16px] py-3 px-6 mt-2 text-center text-[#101B21] bg-white/90 rounded-[4px]"
-                onClick={() => setMobileMenuOpen(false)}
-                aria-current={pathname === '/contact' ? "page" : undefined}
-              >
-                CONTACT US
-              </Link>
+              <div className="pt-4 mt-2 border-t border-white/10">
+                <Link 
+                  href="/contact" 
+                  className="flex justify-center items-center font-clash font-semibold text-[16px] py-3 px-4 text-center text-[#101B21] bg-white hover:bg-white/90 rounded-[4px] shadow-lg transition-all duration-300"
+                  onClick={() => setMobileMenuOpen(false)}
+                  aria-current={pathname === '/contact' ? "page" : undefined}
+                >
+                  CONTACT US
+                </Link>
+              </div>
             </div>
           </div>
         </div>

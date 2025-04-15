@@ -1,5 +1,8 @@
+import React from 'react';
+import Link from 'next/link';
+
 const FreightIcon = () => (
-  <svg width="88" height="88" viewBox="0 0 88 88" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <svg width="88" height="88" viewBox="0 0 88 88" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-16 h-16 md:w-20 md:h-20 lg:w-[88px] lg:h-[88px]">
     <g clipPath="url(#clip0_2601_2)">
       <path d="M44 88C68.3005 88 88 68.3005 88 44C88 19.6995 68.3005 0 44 0C19.6995 0 0 19.6995 0 44C0 68.3005 19.6995 88 44 88Z" fill="#F4F7FB"/>
       <path d="M48.5605 56.6567V54.3317C48.5605 52.8187 49.6655 51.5667 51.1305 51.3897L60.5505 50.0467C61.8425 49.8917 62.9455 51.1097 62.9455 52.4137V56.0817C62.9455 57.3167 61.9685 58.2937 60.7335 58.2937H50.0225C49.1995 58.2937 48.5605 57.4797 48.5605 56.6567Z" stroke="#01133E" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
@@ -28,7 +31,7 @@ const FreightIcon = () => (
 );
 
 const CrossDockIcon = () => (
-  <svg width="88" height="88" viewBox="0 0 88 88" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <svg width="88" height="88" viewBox="0 0 88 88" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-16 h-16 md:w-20 md:h-20 lg:w-[88px] lg:h-[88px]">
     <g clipPath="url(#clip0_2601_23)">
       <path d="M44 88C68.3005 88 88 68.3005 88 44C88 19.6995 68.3005 0 44 0C19.6995 0 0 19.6995 0 44C0 68.3005 19.6995 88 44 88Z" fill="#F4F7FB"/>
       <path d="M26.8115 41.4355H22.6475C19.1485 41.4355 17.3295 39.9684 17.3295 35.5342C17.3295 31.1 19.1485 29.6328 22.6475 29.6328H26.8115" stroke="#01133E" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
@@ -55,7 +58,7 @@ const CrossDockIcon = () => (
 );
 
 const WarehouseIcon = () => (
-  <svg width="88" height="88" viewBox="0 0 88 88" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <svg width="88" height="88" viewBox="0 0 88 88" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-16 h-16 md:w-20 md:h-20 lg:w-[88px] lg:h-[88px]">
     <g clipPath="url(#clip0_2601_48)">
       <path d="M44 88C68.3005 88 88 68.3005 88 44C88 19.6995 68.3005 0 44 0C19.6995 0 0 19.6995 0 44C0 68.3005 19.6995 88 44 88Z" fill="#F4F7FB"/>
       <path d="M23.9766 47.3633H63.1006" stroke="#01133E" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
@@ -79,4 +82,112 @@ const WarehouseIcon = () => (
       </clipPath>
     </defs>
   </svg>
-); 
+);
+
+export const metadata = {
+  title: 'Our Services - Dadson Logistics',
+  description: 'Discover our comprehensive logistics services, including freight brokerage, cross-docking, and warehousing solutions.',
+};
+
+export default function ServicesPage() {
+  return (
+    <main className="flex flex-col min-h-screen">
+      {/* Hero Section */}
+      <section className="relative w-full bg-white pt-[100px] md:pt-32 lg:pt-36 pb-8 md:pb-16">
+        <div className="container mx-auto px-4 md:px-6">
+          <div className="flex flex-col gap-3 md:gap-4">
+            <Link 
+              href="/" 
+              className="flex items-center gap-2 text-[#00B4E1] font-satoshi font-medium text-sm md:text-base"
+            >
+              <span>←</span>
+              <span>Home</span>
+            </Link>
+            
+            <div className="font-clash font-semibold text-[32px] sm:text-[42px] md:text-[60px] lg:text-[80px] leading-[1.125] uppercase max-w-4xl">
+              <div className="text-[#101B21]">END-TO-END</div>
+              <div className="text-[#A9A9A9]">LOGISTICS SERVICES</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Services List Section */}
+      <section className="py-10 md:py-16 bg-white">
+        <div className="container mx-auto px-4 md:px-6">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
+            {/* Service Card 1 */}
+            <div className="bg-white rounded-lg p-6 md:p-8 shadow-sm border border-gray-100 flex flex-col items-center text-center hover:shadow-md transition-shadow duration-300">
+              <div className="mb-4 md:mb-6">
+                <FreightIcon />
+              </div>
+              <h3 className="text-xl md:text-2xl font-clash font-semibold mb-3 text-[#101B21]">Freight Brokerage</h3>
+              <p className="text-[#707C83] text-sm md:text-base font-satoshi">
+                We strategically match your shipments with reliable carriers using our 5-point carrier vetting process that ensures only the most reliable carriers handle your freight.
+              </p>
+              <div className="mt-6">
+                <Link href="/contact" className="text-[#00B4E1] font-medium text-sm md:text-base hover:underline">
+                  Learn More →
+                </Link>
+              </div>
+            </div>
+            
+            {/* Service Card 2 */}
+            <div className="bg-white rounded-lg p-6 md:p-8 shadow-sm border border-gray-100 flex flex-col items-center text-center hover:shadow-md transition-shadow duration-300">
+              <div className="mb-4 md:mb-6">
+                <CrossDockIcon />
+              </div>
+              <h3 className="text-xl md:text-2xl font-clash font-semibold mb-3 text-[#101B21]">Cross-Docking</h3>
+              <p className="text-[#707C83] text-sm md:text-base font-satoshi">
+                Our cross-docking services minimize handling, storage costs, and transit times. We'll coordinate the efficient transfer of goods directly between inbound and outbound carriers.
+              </p>
+              <div className="mt-6">
+                <Link href="/contact" className="text-[#00B4E1] font-medium text-sm md:text-base hover:underline">
+                  Learn More →
+                </Link>
+              </div>
+            </div>
+            
+            {/* Service Card 3 */}
+            <div className="bg-white rounded-lg p-6 md:p-8 shadow-sm border border-gray-100 flex flex-col items-center text-center hover:shadow-md transition-shadow duration-300">
+              <div className="mb-4 md:mb-6">
+                <WarehouseIcon />
+              </div>
+              <h3 className="text-xl md:text-2xl font-clash font-semibold mb-3 text-[#101B21]">Warehousing</h3>
+              <p className="text-[#707C83] text-sm md:text-base font-satoshi">
+                Through our network of third-party warehouses, we offer flexible storage solutions that scale with your needs. Get space exactly when and where you need it without long-term leases.
+              </p>
+              <div className="mt-6">
+                <Link href="/contact" className="text-[#00B4E1] font-medium text-sm md:text-base hover:underline">
+                  Learn More →
+                </Link>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      
+      {/* CTA Section */}
+      <section className="bg-[#101B21] text-white py-12 md:py-16">
+        <div className="container mx-auto px-4 md:px-6">
+          <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
+            <div className="md:max-w-xl">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl font-clash font-semibold mb-3 md:mb-4">READY TO SIMPLIFY YOUR LOGISTICS?</h2>
+              <p className="text-sm md:text-base font-satoshi text-gray-300">
+                Get a quote, schedule a call, or ask us anything. Our logistics experts are ready to help.
+              </p>
+            </div>
+            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
+              <Link href="/contact" className="px-4 md:px-6 py-3 bg-[#00B4E1] text-white font-medium rounded-[4px] transition-colors duration-300 text-center text-sm md:text-base">
+                Schedule A 15 Min Call
+              </Link>
+              <Link href="/quote" className="px-4 md:px-6 py-3 bg-[#2a2a2a] text-white font-medium rounded-[4px] border border-gray-700 transition-colors duration-300 text-center text-sm md:text-base">
+                Request A Quote
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+  );
+}

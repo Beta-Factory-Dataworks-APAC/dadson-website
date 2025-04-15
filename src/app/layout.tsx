@@ -3,6 +3,7 @@ import "./globals.css";
 import "./fonts.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import ClientLayout from "@/components/ClientLayout";
 
 export const metadata: Metadata = {
   title: "Dadson Logistics - Reliable Logistics Solutions",
@@ -18,9 +19,9 @@ export default function RootLayout({
     <html lang="en">
       <body className="font-satoshi antialiased min-h-screen flex flex-col overflow-x-hidden">
         <Navbar />
-        <div className="flex-grow pt-[92px]">
+        <ClientLayout>
           {children}
-        </div>
+        </ClientLayout>
         <Footer />
       </body>
     </html>

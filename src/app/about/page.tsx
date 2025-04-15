@@ -51,18 +51,18 @@ const AboutPage = () => {
   return (
     <main className="flex flex-col min-h-screen">
       {/* Hero Section */}
-      <section className="relative w-full bg-white pt-32 pb-16 md:pt-36">
-        <div className="container mx-auto px-6">
-          <div className="flex flex-col gap-4">
+      <section className="relative w-full bg-white pt-[100px] md:pt-32 lg:pt-36 pb-8 md:pb-16">
+        <div className="container mx-auto px-4 md:px-6">
+          <div className="flex flex-col gap-3 md:gap-4">
             <Link 
               href="/" 
-              className="flex items-center gap-2 text-[#00B4E1] font-satoshi font-medium text-base"
+              className="flex items-center gap-2 text-[#00B4E1] font-satoshi font-medium text-sm md:text-base"
             >
               <span>←</span>
               <span>About us</span>
             </Link>
             
-            <div className="font-clash font-semibold text-[42px] md:text-[80px] leading-[1.125] uppercase max-w-4xl">
+            <div className="font-clash font-semibold text-[32px] sm:text-[42px] md:text-[60px] lg:text-[80px] leading-[1.125] uppercase max-w-4xl">
               <div className="text-[#101B21]">WE&apos;RE NOT JUST MOVING FREIGHT.</div>
               <div className="text-[#A9A9A9]">WE&apos;RE BUILDING TRUST.</div>
             </div>
@@ -74,21 +74,21 @@ const AboutPage = () => {
       <CarouselSection />
 
       {/* Mission & Responsibility Section */}
-      <section className="w-full py-20 bg-white">
-        <div className="container mx-auto px-6">
-          <div className="flex flex-col md:flex-row gap-8 md:gap-16 max-w-4xl">
+      <section className="w-full py-12 md:py-20 bg-white">
+        <div className="container mx-auto px-4 md:px-6">
+          <div className="flex flex-col md:flex-row gap-6 md:gap-8 lg:gap-16 max-w-4xl">
             {/* Mission */}
-            <div className="flex-1 flex flex-col gap-4 p-6 md:p-8 bg-white rounded-lg border border-gray-100">
-              <h2 className="font-clash font-semibold text-[32px] uppercase text-[#101B21]">MISSION</h2>
-              <p className="font-satoshi font-medium text-[18px] leading-[1.5] text-[#707C83]">
+            <div className="flex-1 flex flex-col gap-3 md:gap-4 p-5 md:p-6 lg:p-8 bg-white rounded-lg border border-gray-100">
+              <h2 className="font-clash font-semibold text-[24px] md:text-[32px] uppercase text-[#101B21]">MISSION</h2>
+              <p className="font-satoshi font-medium text-[16px] md:text-[18px] leading-[1.5] text-[#707C83]">
                 To become a trusted partner in freight by delivering consistent results, proactive communication, and long-term reliability for both shippers and carriers.
               </p>
             </div>
             
             {/* Responsibility */}
-            <div className="flex-1 flex flex-col gap-4 p-6 md:p-8 bg-white rounded-lg border border-gray-100">
-              <h2 className="font-clash font-semibold text-[32px] uppercase text-[#101B21]">RESPONSIBILITY</h2>
-              <p className="font-satoshi font-medium text-[18px] leading-[1.5] text-[#707C83]">
+            <div className="flex-1 flex flex-col gap-3 md:gap-4 p-5 md:p-6 lg:p-8 bg-white rounded-lg border border-gray-100">
+              <h2 className="font-clash font-semibold text-[24px] md:text-[32px] uppercase text-[#101B21]">RESPONSIBILITY</h2>
+              <p className="font-satoshi font-medium text-[16px] md:text-[18px] leading-[1.5] text-[#707C83]">
                 In an industry where silence, excuses, and short-term thinking win the norm, we stand for radical accountability, relationship-driven execution, and a carrier-first culture.
               </p>
             </div>
@@ -97,47 +97,47 @@ const AboutPage = () => {
       </section>
 
       {/* Operating Model Section */}
-      <section className="w-full py-20 bg-gray-50">
-        <div className="container mx-auto px-6">
-          <h2 className="font-clash font-semibold text-[42px] uppercase text-[#101B21] mb-16 text-center">
+      <section className="w-full py-12 md:py-20 bg-gray-50">
+        <div className="container mx-auto px-4 md:px-6">
+          <h2 className="font-clash font-semibold text-[28px] sm:text-[36px] md:text-[42px] uppercase text-[#101B21] mb-8 md:mb-16 text-center">
             OPERATING MODEL
           </h2>
           
-          <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 md:gap-6">
             {/* Model Pillars */}
-            <div className="flex flex-col items-center p-8 bg-white rounded-lg shadow-sm h-full hover:shadow-md transition-shadow duration-300">
-              <div className="w-16 h-16 flex items-center justify-center mb-6 text-[#101B21]">
+            <div className="flex flex-col items-center p-4 md:p-8 bg-white rounded-lg shadow-sm h-full hover:shadow-md transition-shadow duration-300">
+              <div className="w-12 md:w-16 h-12 md:h-16 flex items-center justify-center mb-4 md:mb-6 text-[#101B21]">
                 <RadicalOwnershipIcon />
               </div>
-              <h3 className="font-clash font-semibold text-center text-[18px] mb-2">Radical Ownership</h3>
+              <h3 className="font-clash font-semibold text-center text-[16px] md:text-[18px] mb-2">Radical Ownership</h3>
             </div>
             
-            <div className="flex flex-col items-center p-8 bg-white rounded-lg shadow-sm h-full hover:shadow-md transition-shadow duration-300">
-              <div className="w-16 h-16 flex items-center justify-center mb-6 text-[#101B21]">
+            <div className="flex flex-col items-center p-4 md:p-8 bg-white rounded-lg shadow-sm h-full hover:shadow-md transition-shadow duration-300">
+              <div className="w-12 md:w-16 h-12 md:h-16 flex items-center justify-center mb-4 md:mb-6 text-[#101B21]">
                 <HumanSupportIcon />
               </div>
-              <h3 className="font-clash font-semibold text-center text-[18px] mb-2">24/7 Human Support</h3>
+              <h3 className="font-clash font-semibold text-center text-[16px] md:text-[18px] mb-2">24/7 Human Support</h3>
             </div>
             
-            <div className="flex flex-col items-center p-8 bg-white rounded-lg shadow-sm h-full hover:shadow-md transition-shadow duration-300">
-              <div className="w-16 h-16 flex items-center justify-center mb-6 text-[#101B21]">
+            <div className="flex flex-col items-center p-4 md:p-8 bg-white rounded-lg shadow-sm h-full hover:shadow-md transition-shadow duration-300">
+              <div className="w-12 md:w-16 h-12 md:h-16 flex items-center justify-center mb-4 md:mb-6 text-[#101B21]">
                 <CarrierFirstIcon />
               </div>
-              <h3 className="font-clash font-semibold text-center text-[18px] mb-2">Carrier-First Culture</h3>
+              <h3 className="font-clash font-semibold text-center text-[16px] md:text-[18px] mb-2">Carrier-First Culture</h3>
             </div>
             
-            <div className="flex flex-col items-center p-8 bg-white rounded-lg shadow-sm h-full hover:shadow-md transition-shadow duration-300">
-              <div className="w-16 h-16 flex items-center justify-center mb-6 text-[#101B21]">
+            <div className="flex flex-col items-center p-4 md:p-8 bg-white rounded-lg shadow-sm h-full hover:shadow-md transition-shadow duration-300">
+              <div className="w-12 md:w-16 h-12 md:h-16 flex items-center justify-center mb-4 md:mb-6 text-[#101B21]">
                 <ZeroGhostingIcon />
               </div>
-              <h3 className="font-clash font-semibold text-center text-[18px] mb-2">Zero Ghosting Policy</h3>
+              <h3 className="font-clash font-semibold text-center text-[16px] md:text-[18px] mb-2">Zero Ghosting Policy</h3>
             </div>
             
-            <div className="flex flex-col items-center p-8 bg-white rounded-lg shadow-sm h-full hover:shadow-md transition-shadow duration-300">
-              <div className="w-16 h-16 flex items-center justify-center mb-6 text-[#101B21]">
+            <div className="flex flex-col items-center p-4 md:p-8 bg-white rounded-lg shadow-sm h-full hover:shadow-md transition-shadow duration-300">
+              <div className="w-12 md:w-16 h-12 md:h-16 flex items-center justify-center mb-4 md:mb-6 text-[#101B21]">
                 <ProblemSolverIcon />
               </div>
-              <h3 className="font-clash font-semibold text-center text-[18px] mb-2">Problem Solvers, Not Order Takers</h3>
+              <h3 className="font-clash font-semibold text-center text-[16px] md:text-[18px] mb-2">Problem Solvers, Not Order Takers</h3>
             </div>
           </div>
         </div>

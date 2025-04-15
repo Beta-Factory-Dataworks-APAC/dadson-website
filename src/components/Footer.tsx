@@ -121,40 +121,40 @@ const Footer = () => {
   return (
     <footer 
       ref={footerRef}
-      className={`relative w-full bg-transparent text-white py-16 rounded-t-[40px] overflow-hidden transition-opacity duration-1000 ${isInView ? 'opacity-100' : 'opacity-0'}`}
+      className={`relative w-full bg-transparent text-white py-8 md:py-16 rounded-t-[20px] md:rounded-t-[40px] overflow-hidden transition-opacity duration-1000 ${isInView ? 'opacity-100' : 'opacity-0'}`}
     >
       {/* Background Component */}
       {isInView && <FooterBackground />}
       
       {/* Footer content container */}
-      <div className="container mx-auto px-6 lg:px-8 relative z-10">
+      <div className="container mx-auto px-4 md:px-6 lg:px-8 relative z-10">
         {/* Section 3: Tagline and CTA */}
-        <div className="mb-20">
+        <div className="mb-10 md:mb-20">
           <div className="flex flex-col md:flex-row justify-between items-start">
-            <div className="max-w-2xl">
+            <div className="max-w-full md:max-w-2xl">
               {/* Contact us label */}
-              <div className="flex items-center mb-6">
+              <div className="flex items-center mb-4 md:mb-6">
                 <span className="inline-block w-2 h-2 bg-[#00B4E1] rotate-45 mr-2"></span>
                 <span className="text-sm text-[#00B4E1]">Contact us</span>
               </div>
               
               {/* Tagline - main part */}
-              <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-3">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-6xl font-bold leading-tight mb-2 md:mb-3">
                 Your next shipment deserves a partner.
               </h2>
               
               {/* Tagline - secondary part with different color */}
-              <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight text-gray-400">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-6xl font-bold leading-tight text-gray-400">
                 not a vendor.
               </h2>
             </div>
             
             {/* CTA Buttons */}
-            <div className="mt-8 md:mt-12 flex flex-col sm:flex-row gap-4">
-              <Link href="/contact" className="px-6 py-3 bg-[#00B4E1] hover:bg-[#00a0cc] text-white font-medium rounded transition-colors duration-300 text-center min-w-[180px]">
+            <div className="mt-6 md:mt-8 lg:mt-12 flex flex-col sm:flex-row gap-3 md:gap-4 w-full sm:w-auto">
+              <Link href="/contact" className="px-4 md:px-6 py-3 bg-[#00B4E1] hover:bg-[#00a0cc] text-white font-medium rounded transition-colors duration-300 text-center min-w-[180px]">
                 Schedule A 15 Min Call
               </Link>
-              <Link href="/quote" className="px-6 py-3 bg-[#2a2a2a] hover:bg-[#3a3a3a] text-white font-medium rounded border border-gray-700 transition-colors duration-300 text-center min-w-[180px]">
+              <Link href="/quote" className="px-4 md:px-6 py-3 bg-[#2a2a2a] hover:bg-[#3a3a3a] text-white font-medium rounded border border-gray-700 transition-colors duration-300 text-center min-w-[180px]">
                 Request A Quote
               </Link>
             </div>
@@ -162,42 +162,42 @@ const Footer = () => {
         </div>
         
         {/* Section 2: Quick links and email */}
-        <div className="mb-20 py-6">
+        <div className="mb-10 md:mb-20 py-4 md:py-6">
           <div className="flex flex-col md:flex-row justify-between items-start md:items-center">
             {/* Contact email */}
-            <div className="mb-8 md:mb-0">
-              <p className="text-sm mb-2">Contact us at</p>
-              <a href="mailto:support@dadson.us" className="text-white text-lg md:text-xl font-medium hover:text-[#00B4E1] transition-colors duration-300 flex items-center">
+            <div className="mb-6 md:mb-0">
+              <p className="text-sm mb-1 md:mb-2">Contact us at</p>
+              <a href="mailto:support@dadson.us" className="text-white text-base md:text-lg lg:text-xl font-medium hover:text-[#00B4E1] transition-colors duration-300 flex items-center">
                 support@dadson.us
                 <EmailArrowIcon />
               </a>
             </div>
             
             {/* Navigation links */}
-            <div>
-              <ul className="flex flex-wrap gap-8 md:gap-10">
-                <li>
-                  <Link href="/services" className="text-white hover:text-[#00B4E1] transition-colors duration-300">
+            <div className="w-full md:w-auto">
+              <ul className="flex flex-wrap gap-4 md:gap-8 lg:gap-10">
+                <li className="w-[calc(50%-8px)] md:w-auto">
+                  <Link href="/services" className="text-white hover:text-[#00B4E1] transition-colors duration-300 block py-2 md:py-0">
                     Services
                   </Link>
                 </li>
-                <li>
-                  <Link href="/shippers" className="text-white hover:text-[#00B4E1] transition-colors duration-300">
+                <li className="w-[calc(50%-8px)] md:w-auto">
+                  <Link href="/shippers" className="text-white hover:text-[#00B4E1] transition-colors duration-300 block py-2 md:py-0">
                     Shippers
                   </Link>
                 </li>
-                <li>
-                  <Link href="/carriers" className="text-white hover:text-[#00B4E1] transition-colors duration-300">
+                <li className="w-[calc(50%-8px)] md:w-auto">
+                  <Link href="/carriers" className="text-white hover:text-[#00B4E1] transition-colors duration-300 block py-2 md:py-0">
                     Carriers
                   </Link>
                 </li>
-                <li>
-                  <Link href="/contact" className="text-white hover:text-[#00B4E1] transition-colors duration-300">
+                <li className="w-[calc(50%-8px)] md:w-auto">
+                  <Link href="/contact" className="text-white hover:text-[#00B4E1] transition-colors duration-300 block py-2 md:py-0">
                     Contact
                   </Link>
                 </li>
-                <li>
-                  <Link href="/careers" className="text-white hover:text-[#00B4E1] transition-colors duration-300">
+                <li className="w-[calc(50%-8px)] md:w-auto">
+                  <Link href="/careers" className="text-white hover:text-[#00B4E1] transition-colors duration-300 block py-2 md:py-0">
                     Careers
                   </Link>
                 </li>
@@ -207,27 +207,27 @@ const Footer = () => {
         </div>
         
         {/* Section 1: Logo and copyright with social media links */}
-        <div className="pt-10">
+        <div className="pt-6 md:pt-10">
           {/* Logo - using new FooterLogo component */}
-          <div className="w-full max-w-2xl mx-auto mb-16">
+          <div className="w-full max-w-full md:max-w-2xl mx-auto mb-8 md:mb-16">
             <FooterLogo />
           </div>
           
           {/* Copyright and social media links */}
-          <div className="flex flex-col md:flex-row justify-between items-center gap-6 mt-10">
-            <p className="text-sm text-gray-400">
+          <div className="flex flex-col md:flex-row justify-between items-center gap-4 md:gap-6 mt-6 md:mt-10">
+            <p className="text-xs md:text-sm text-gray-400">
               {currentYear} Dadson Logistics. All rights reserved.
             </p>
             
             {/* Social media links */}
-            <div className="flex gap-8">
-              <a href="#" className="text-gray-400 hover:text-white transition-colors duration-300">
+            <div className="flex gap-6 md:gap-8">
+              <a href="#" className="text-sm md:text-base text-gray-400 hover:text-white transition-colors duration-300">
                 LinkedIn
               </a>
-              <a href="#" className="text-gray-400 hover:text-white transition-colors duration-300">
+              <a href="#" className="text-sm md:text-base text-gray-400 hover:text-white transition-colors duration-300">
                 Twitter
               </a>
-              <a href="#" className="text-gray-400 hover:text-white transition-colors duration-300">
+              <a href="#" className="text-sm md:text-base text-gray-400 hover:text-white transition-colors duration-300">
                 Facebook
               </a>
             </div>
