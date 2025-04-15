@@ -5,55 +5,76 @@ import Image from 'next/image';
 
 const ThreeImageSection = () => {
   return (
-    <section className="pb-16 pt-12 px-6 bg-white">
-      <div className="max-w-[1200px] mx-auto">
-        {/* Mobile scrollable container */}
-        <div className="md:hidden relative w-full overflow-x-auto pb-4 -mx-6 px-6">
-          <div className="flex w-[180%] rounded-[32px] overflow-hidden">
-            {/* First Image - Mobile */}
-            <div className="relative aspect-[4/3] w-1/3 mr-1" style={{ borderTopLeftRadius: '50%', overflow: 'hidden' }}>
-              <Image 
-                src="/images/home/home1.png" 
-                alt="Shipping containers stacked at port" 
-                fill
-                sizes="100vw"
-                className="object-cover"
-                priority
-              />
+    <section className="pb-8 sm:pb-12 md:pb-16 pt-4 sm:pt-8 md:pt-12 bg-white">
+      <div className="w-full">
+        {/* Mobile vertical layout - replaced horizontal scroll */}
+        <div className="md:hidden px-4 sm:px-6 space-y-5">
+          {/* Section Title - Mobile only */}
+          <div className="text-center mb-4">
+            <h2 className="text-xl sm:text-2xl font-medium font-clash text-gray-900">
+              FREIGHT SOLUTIONS
+            </h2>
+            <p className="text-sm text-gray-500 font-satoshi mt-1">Full-service logistics solutions</p>
+          </div>
+          
+          {/* First Image - Mobile Vertical */}
+          <div className="relative w-full h-[220px] sm:h-[240px] rounded-[24px] overflow-hidden shadow-md transform transition-transform duration-300 hover:scale-[1.02]">
+            <Image 
+              src="/images/home/home1.png" 
+              alt="Shipping containers stacked at port" 
+              fill
+              sizes="100vw"
+              className="object-cover"
+              priority
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/30 to-transparent"></div>
+            <div className="absolute bottom-0 left-0 right-0 p-4">
+              <h3 className="text-white text-base font-medium font-clash uppercase">Port Logistics</h3>
+              <p className="text-white/90 text-xs font-satoshi mt-1">Container handling & port operations</p>
             </div>
-            
-            {/* Second Image - Mobile */}
-            <div className="relative aspect-[4/3] w-1/3 mx-1">
-              <Image 
-                src="/images/home/home2.png" 
-                alt="Freight train traveling through snowy mountains" 
-                fill
-                sizes="100vw"
-                className="object-cover"
-                priority
-              />
+          </div>
+          
+          {/* Second Image - Mobile Vertical */}
+          <div className="relative w-full h-[220px] sm:h-[240px] rounded-[24px] overflow-hidden shadow-md transform transition-transform duration-300 hover:scale-[1.02]">
+            <Image 
+              src="/images/home/home2.png" 
+              alt="Freight train traveling through snowy mountains" 
+              fill
+              sizes="100vw"
+              className="object-cover"
+              priority
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/30 to-transparent"></div>
+            <div className="absolute bottom-0 left-0 right-0 p-4">
+              <h3 className="text-white text-base font-medium font-clash uppercase">Rail Transport</h3>
+              <p className="text-white/90 text-xs font-satoshi mt-1">Efficient rail freight solutions</p>
             </div>
-            
-            {/* Third Image - Mobile */}
-            <div className="relative aspect-[4/3] w-1/3 ml-1" style={{ borderTopRightRadius: '50%', overflow: 'hidden' }}>
-              <Image 
-                src="/images/home/home3.png" 
-                alt="Cargo being loaded onto aircraft" 
-                fill
-                sizes="100vw"
-                className="object-cover"
-                priority
-              />
+          </div>
+          
+          {/* Third Image - Mobile Vertical */}
+          <div className="relative w-full h-[220px] sm:h-[240px] rounded-[24px] overflow-hidden shadow-md transform transition-transform duration-300 hover:scale-[1.02]">
+            <Image 
+              src="/images/home/home3.png" 
+              alt="Cargo being loaded onto aircraft" 
+              fill
+              sizes="100vw"
+              className="object-cover"
+              priority
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/30 to-transparent"></div>
+            <div className="absolute bottom-0 left-0 right-0 p-4">
+              <h3 className="text-white text-base font-medium font-clash uppercase">Air Freight</h3>
+              <p className="text-white/90 text-xs font-satoshi mt-1">Expedited air cargo services</p>
             </div>
           </div>
         </div>
 
         {/* Desktop/tablet continuous curved container */}
-        <div className="hidden md:block relative w-full overflow-hidden rounded-[32px] transition-transform duration-300 hover:scale-[1.01]">
+        <div className="hidden md:block relative w-full overflow-hidden transition-transform duration-300 hover:scale-[1.01]">
           {/* Grid container for images with slight gap */}
-          <div className="grid grid-cols-3 gap-2">
+          <div className="grid grid-cols-3 gap-1">
             {/* First Image - Desktop */}
-            <div className="relative aspect-[4/3]" style={{ borderTopLeftRadius: '50%', overflow: 'hidden' }}>
+            <div className="relative h-[450px] lg:h-[610px]" style={{ borderTopLeftRadius: '50%', overflow: 'hidden' }}>
               <Image 
                 src="/images/home/home1.png" 
                 alt="Shipping containers stacked at port" 
@@ -65,7 +86,7 @@ const ThreeImageSection = () => {
             </div>
             
             {/* Second Image - Desktop */}
-            <div className="relative aspect-[4/3]">
+            <div className="relative h-[450px] lg:h-[610px]">
               <Image 
                 src="/images/home/home2.png" 
                 alt="Freight train traveling through snowy mountains" 
@@ -77,7 +98,7 @@ const ThreeImageSection = () => {
             </div>
             
             {/* Third Image - Desktop */}
-            <div className="relative aspect-[4/3]" style={{ borderTopRightRadius: '50%', overflow: 'hidden' }}>
+            <div className="relative h-[450px] lg:h-[610px]" style={{ borderTopRightRadius: '50%', overflow: 'hidden' }}>
               <Image 
                 src="/images/home/home3.png" 
                 alt="Cargo being loaded onto aircraft" 

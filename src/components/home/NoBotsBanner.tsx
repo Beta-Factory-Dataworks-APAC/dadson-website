@@ -39,7 +39,7 @@ const NoBotsBanner = () => {
               alt="Dadson Logistics Truck"
               width={1000}
               height={500}
-              className="absolute left-[-60%] bottom-[-30px] w-[160%] h-auto z-10"
+              className="absolute left-[-40%] bottom-[-30px] w-[150%] h-auto z-10"
               priority
               delay={0.5}
             />
@@ -52,7 +52,7 @@ const NoBotsBanner = () => {
               alt="Dadson Logistics Truck"
               width={600}
               height={300}
-              className="absolute left-[-15%] top-[0px] w-[130%]"
+              className="absolute left-[-5%] top-[0px] w-[120%]"
               priority
               delay={0.5}
             />

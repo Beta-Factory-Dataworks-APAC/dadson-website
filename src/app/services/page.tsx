@@ -1,5 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
+import styles from './Services.module.css';
 
 const FreightIcon = () => (
   <svg width="88" height="88" viewBox="0 0 88 88" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-16 h-16 md:w-20 md:h-20 lg:w-[88px] lg:h-[88px]">
@@ -91,103 +93,322 @@ export const metadata = {
 
 export default function ServicesPage() {
   return (
-    <main className="flex flex-col min-h-screen">
-      {/* Hero Section */}
-      <section className="relative w-full bg-white pt-[100px] md:pt-32 lg:pt-36 pb-8 md:pb-16">
-        <div className="container mx-auto px-4 md:px-6">
-          <div className="flex flex-col gap-3 md:gap-4">
-            <Link 
-              href="/" 
-              className="flex items-center gap-2 text-[#00B4E1] font-satoshi font-medium text-sm md:text-base"
-            >
-              <span>←</span>
-              <span>Home</span>
-            </Link>
-            
-            <div className="font-clash font-semibold text-[32px] sm:text-[42px] md:text-[60px] lg:text-[80px] leading-[1.125] uppercase max-w-4xl">
-              <div className="text-[#101B21]">END-TO-END</div>
-              <div className="text-[#A9A9A9]">LOGISTICS SERVICES</div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Services List Section */}
-      <section className="py-10 md:py-16 bg-white">
-        <div className="container mx-auto px-4 md:px-6">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
-            {/* Service Card 1 */}
-            <div className="bg-white rounded-lg p-6 md:p-8 shadow-sm border border-gray-100 flex flex-col items-center text-center hover:shadow-md transition-shadow duration-300">
-              <div className="mb-4 md:mb-6">
-                <FreightIcon />
-              </div>
-              <h3 className="text-xl md:text-2xl font-clash font-semibold mb-3 text-[#101B21]">Freight Brokerage</h3>
-              <p className="text-[#707C83] text-sm md:text-base font-satoshi">
-                We strategically match your shipments with reliable carriers using our 5-point carrier vetting process that ensures only the most reliable carriers handle your freight.
-              </p>
-              <div className="mt-6">
-                <Link href="/contact" className="text-[#00B4E1] font-medium text-sm md:text-base hover:underline">
-                  Learn More →
-                </Link>
-              </div>
-            </div>
-            
-            {/* Service Card 2 */}
-            <div className="bg-white rounded-lg p-6 md:p-8 shadow-sm border border-gray-100 flex flex-col items-center text-center hover:shadow-md transition-shadow duration-300">
-              <div className="mb-4 md:mb-6">
-                <CrossDockIcon />
-              </div>
-              <h3 className="text-xl md:text-2xl font-clash font-semibold mb-3 text-[#101B21]">Cross-Docking</h3>
-              <p className="text-[#707C83] text-sm md:text-base font-satoshi">
-                Our cross-docking services minimize handling, storage costs, and transit times. We'll coordinate the efficient transfer of goods directly between inbound and outbound carriers.
-              </p>
-              <div className="mt-6">
-                <Link href="/contact" className="text-[#00B4E1] font-medium text-sm md:text-base hover:underline">
-                  Learn More →
-                </Link>
-              </div>
-            </div>
-            
-            {/* Service Card 3 */}
-            <div className="bg-white rounded-lg p-6 md:p-8 shadow-sm border border-gray-100 flex flex-col items-center text-center hover:shadow-md transition-shadow duration-300">
-              <div className="mb-4 md:mb-6">
-                <WarehouseIcon />
-              </div>
-              <h3 className="text-xl md:text-2xl font-clash font-semibold mb-3 text-[#101B21]">Warehousing</h3>
-              <p className="text-[#707C83] text-sm md:text-base font-satoshi">
-                Through our network of third-party warehouses, we offer flexible storage solutions that scale with your needs. Get space exactly when and where you need it without long-term leases.
-              </p>
-              <div className="mt-6">
-                <Link href="/contact" className="text-[#00B4E1] font-medium text-sm md:text-base hover:underline">
-                  Learn More →
-                </Link>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+    <div className={styles.servicesPage}>
+      {/* Background Image with Overlay */}
+      <Image 
+        src="/images/hero-truck-highway.jpg" 
+        alt="Logistics background" 
+        className={styles.backgroundImage} 
+        width={1920} 
+        height={1022} 
+        priority
+      />
+      <div className={styles.overlay} />
       
-      {/* CTA Section */}
-      <section className="bg-[#101B21] text-white py-12 md:py-16">
-        <div className="container mx-auto px-4 md:px-6">
-          <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
-            <div className="md:max-w-xl">
-              <h2 className="text-2xl sm:text-3xl md:text-4xl font-clash font-semibold mb-3 md:mb-4">READY TO SIMPLIFY YOUR LOGISTICS?</h2>
-              <p className="text-sm md:text-base font-satoshi text-gray-300">
-                Get a quote, schedule a call, or ask us anything. Our logistics experts are ready to help.
-              </p>
+      {/* Logo */}
+      <div className={styles.logoContainer}>
+        <Image 
+          src="/images/dadson-logo-white.svg" 
+          alt="Dadson Logistics" 
+          width={104} 
+          height={72} 
+        />
+      </div>
+      
+      {/* Navigation */}
+      <div className={styles.navigation}>
+        <div className={styles.navItem}>
+          <div className={styles.navText}>HOME</div>
+        </div>
+        <div className={styles.navItemActive}>
+          <div className={styles.navText}>SERVICES</div>
+        </div>
+        <div className={styles.navItem}>
+          <div className={styles.navText}>ABOUT US</div>
+        </div>
+      </div>
+      
+      {/* Contact Us Button */}
+      <div className={styles.contactButton}>
+        <div className={styles.buttonText}>CONTACT US</div>
+      </div>
+      
+      {/* Hero Content */}
+      <div className={styles.heroContent}>
+        <div className={styles.heroTextContainer}>
+          <div className={styles.iconTextGroup}>
+            <Image 
+              src="/subtract.svg" 
+              alt="Icon" 
+              width={20} 
+              height={20} 
+              className={styles.subtractIcon} 
+            />
+            <div className={styles.labelText}>Our Services</div>
+          </div>
+          <div className={styles.mainHeading}>
+            <span>We keep freight moving safely, efficiently </span>
+            <span className={styles.highlightedText}>and without the usual friction.</span>
+          </div>
+          <div className={styles.subHeading}>
+            <p>From port drayage to cross-country truckload,</p>
+            <p>Dadson delivers consistent coverage and transparent communication.</p>
+          </div>
+        </div>
+        
+        <div className={styles.ctaButtons}>
+          <div className={styles.primaryButton}>
+            <div className={styles.buttonText}>GET A QUOTE</div>
+          </div>
+          <div className={styles.secondaryButton}>
+            <div className={styles.buttonText}>BECOME A CARRIER</div>
+          </div>
+        </div>
+      </div>
+      
+      {/* Hero Image */}
+      <Image 
+        src="/images/home/hero-truck-highway.jpg" 
+        alt="Logistics truck on highway" 
+        className={styles.heroImage} 
+        width={765} 
+        height={641} 
+      />
+      
+      {/* What We Offer Section */}
+      <div className={styles.offerSection}>
+        <div className={styles.sectionTitle}>What We Offer</div>
+        
+        <div className={styles.serviceGrid}>
+          <div className={styles.serviceRow}>
+            {/* Full Truckload (FTL) */}
+            <div className={styles.serviceCard}>
+              <Image 
+                src="/truck.png" 
+                alt="Full Truckload Service" 
+                className={styles.serviceImage} 
+                width={500} 
+                height={446} 
+              />
+              <div className={styles.serviceContent}>
+                <div className={styles.serviceTitle}>
+                  <p>Full Truckload</p>
+                  <p className={styles.serviceSubtitle}>(FTL)</p>
+                </div>
+                <div className={styles.serviceDescription}>
+                  Dry van, reefer, flatbed. Coast to coast or regional.
+                </div>
+              </div>
             </div>
-            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
-              <Link href="/contact" className="px-4 md:px-6 py-3 bg-[#00B4E1] text-white font-medium rounded-[4px] transition-colors duration-300 text-center text-sm md:text-base">
-                Schedule A 15 Min Call
-              </Link>
-              <Link href="/quote" className="px-4 md:px-6 py-3 bg-[#2a2a2a] text-white font-medium rounded-[4px] border border-gray-700 transition-colors duration-300 text-center text-sm md:text-base">
-                Request A Quote
-              </Link>
+            
+            {/* Intermodal & Drayage */}
+            <div className={styles.serviceCard}>
+              <Image 
+                src="/truck.png" 
+                alt="Intermodal & Drayage" 
+                className={styles.serviceImage} 
+                width={500} 
+                height={446} 
+              />
+              <div className={styles.serviceContent}>
+                <div className={styles.serviceTitle}>Intermodal & Drayage</div>
+                <div className={styles.serviceDescription}>
+                  We handle container pickups and deliveries to and from ports and rail ramps with urgency and coordination.
+                </div>
+              </div>
+            </div>
+            
+            {/* Less Than Truckload (LTL) */}
+            <div className={styles.serviceCard}>
+              <Image 
+                src="/truck.png" 
+                alt="Less Than Truckload Service" 
+                className={styles.serviceImage} 
+                width={500} 
+                height={446} 
+              />
+              <div className={styles.serviceContent}>
+                <div className={styles.serviceTitle}>
+                  <span>Less Than Truckload </span>
+                  <span className={styles.serviceSubtitle}>(LTL)</span>
+                </div>
+                <div className={styles.serviceDescription}>
+                  Dry van, reefer, flatbed. Coast to coast or regional.
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div className={styles.serviceRowSmall}>
+            {/* Warehousing */}
+            <div className={styles.serviceCard}>
+              <Image 
+                src="/truck.png" 
+                alt="Warehousing" 
+                className={styles.serviceImage} 
+                width={500} 
+                height={446} 
+              />
+              <div className={styles.serviceContent}>
+                <div className={styles.serviceTitle}>Warehousing</div>
+                <div className={styles.serviceDescription}>
+                  Short/long-term storage matched to your needs.
+                </div>
+              </div>
+            </div>
+            
+            {/* Transloading */}
+            <div className={styles.serviceCard}>
+              <Image 
+                src="/images/carrier.png" 
+                alt="Transloading" 
+                className={styles.serviceImage} 
+                width={500} 
+                height={446} 
+              />
+              <div className={styles.serviceContent}>
+                <div className={styles.serviceTitle}>Transloading</div>
+                <div className={styles.serviceDescription}>
+                  Seamless transfers from container to trailer minimizing dwell time and keeping freight on schedule.
+                </div>
+              </div>
             </div>
           </div>
         </div>
-      </section>
-    </main>
+      </div>
+      
+      {/* How We Back It Up Section */}
+      <div className={styles.backItUpSection}>
+        <div className={styles.sectionTitle}>How We Back It Up</div>
+        
+        <div className={styles.featuresGrid}>
+          <div className={styles.featureCard}>
+            <div className={styles.featureContent}>
+              <Image 
+                src="/images/service-freight.svg" 
+                alt="Flag Icon" 
+                width={34} 
+                height={34} 
+                className={styles.featureIcon} 
+              />
+              <div className={styles.featureText}>Real-time tracking & alerts.</div>
+            </div>
+          </div>
+          
+          <div className={styles.featureCard}>
+            <div className={styles.featureContent}>
+              <Image 
+                src="/images/service-supply.svg" 
+                alt="Headphones Icon" 
+                width={34} 
+                height={34} 
+                className={styles.featureIcon} 
+              />
+              <div className={styles.featureText}>24/7 access to a responsive team.</div>
+            </div>
+          </div>
+          
+          <div className={styles.featureCard}>
+            <div className={styles.featureContent}>
+              <Image 
+                src="/images/service-warehouse.svg" 
+                alt="Truck Fast Icon" 
+                width={34} 
+                height={34} 
+                className={styles.featureIcon} 
+              />
+              <div className={styles.featureText}>Vetted carriers with strict compliance checks.</div>
+            </div>
+          </div>
+          
+          <div className={styles.featureCard}>
+            <div className={styles.featureContent}>
+              <Image 
+                src="/images/service-express.svg" 
+                alt="Puzzle Icon" 
+                width={34} 
+                height={34} 
+                className={styles.featureIcon} 
+              />
+              <div className={styles.featureText}>Proud members of TIA and BBB.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      {/* Footer */}
+      <div className={styles.footer}>
+        <div className={styles.footerContent}>
+          <Image 
+            src="/images/dadson-footer.png" 
+            alt="Footer Background" 
+            width={1689} 
+            height={1185} 
+            className={styles.footerVector} 
+          />
+          
+          <div className={styles.footerOverlay} />
+          
+          <div className={styles.footerButtons}>
+            <div className={styles.primaryButton}>
+              <div className={styles.buttonText}>Schedule A 15 Min Call</div>
+            </div>
+            <div className={styles.secondaryButton}>
+              <div className={styles.buttonText}>Request A Quote</div>
+            </div>
+          </div>
+          
+          <div className={styles.footerInfoSection}>
+            <div className={styles.iconTextGroup}>
+              <Image 
+                src="/subtract.svg" 
+                alt="Icon" 
+                width={20} 
+                height={20} 
+              />
+              <div className={styles.contactText}>Contact us</div>
+            </div>
+            <div className={styles.quoteText}>
+              <span>Your next shipment deserves a partner. </span>
+              <span className={styles.quoteHighlight}>not a vendor.</span>
+            </div>
+          </div>
+          
+          <div className={styles.footerLinks}>
+            <div className={styles.contactInfo}>
+              <div className={styles.contactLabel}>Contact us at</div>
+              <div className={styles.emailContainer}>
+                <div className={styles.emailText}>support@dadson.us</div>
+                <Image 
+                  src="/subtract.svg" 
+                  alt="Email Icon" 
+                  width={24} 
+                  height={24} 
+                />
+              </div>
+            </div>
+            
+            <div className={styles.navLinks}>
+              <div className={styles.navLink}>Services</div>
+              <div className={styles.navLink}>Shippers</div>
+              <div className={styles.navLink}>Carriers</div>
+              <div className={styles.navLink}>Contact</div>
+              <div className={styles.navLink}>Careers</div>
+            </div>
+          </div>
+          
+          <div className={styles.copyright}>
+            2024 Dadson Logistics. All rights reserved.
+          </div>
+          
+          <div className={styles.socialLinks}>
+            <div className={styles.socialLink}>Linkedin</div>
+            <div className={styles.socialLink}>Twitter</div>
+            <div className={styles.socialLink}>Facebook</div>
+          </div>
+        </div>
+      </div>
+    </div>
   );
 }
+

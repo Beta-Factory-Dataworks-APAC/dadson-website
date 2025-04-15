@@ -33,6 +33,16 @@ module.exports = {
         'primary-button': '0px 4px 34px 0px rgba(0, 180, 225, 0.15)',
         'form': '0px 4px 50px rgba(0, 0, 0, 0.03)'
       },
+      animation: {
+        'marquee': 'marquee 20s linear infinite',
+        'marquee-slower': 'marquee 25s linear infinite',
+      },
+      keyframes: {
+        marquee: {
+          '0%': { transform: 'translateX(0)' },
+          '100%': { transform: 'translateX(-50%)' },
+        },
+      },
       fontSize: {
         'headline': ['80px', {
           lineHeight: '1.125',

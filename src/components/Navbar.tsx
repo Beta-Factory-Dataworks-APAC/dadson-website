@@ -151,22 +151,22 @@ const Navbar = () => {
         </div>
       </div>
       
-      {/* Mobile Menu - with improved accessibility */}
+      {/* Mobile Menu - with improved accessibility and styling */}
       {mobileMenuOpen && (
         <div 
           id="mobile-menu"
-          className="md:hidden fixed top-[70px] left-0 right-0 bg-[#0F1923]/95 backdrop-blur-md pt-4 pb-6 z-[100] border-t border-white/10 shadow-lg h-[calc(100vh-70px)] overflow-y-auto"
+          className="md:hidden fixed top-[70px] left-0 right-0 bg-[#0F1923]/95 backdrop-blur-lg pt-4 pb-6 z-[100] border-t border-white/10 shadow-lg h-[calc(100vh-70px)] overflow-y-auto"
         >
           <div className="container mx-auto px-4">
-            <div className="flex flex-col space-y-3">
+            <div className="flex flex-col space-y-2">
               {navItems.map((item) => (
                 <Link 
                   key={item.href}
                   href={item.href} 
-                  className={`font-satoshi font-medium text-[16px] tracking-wide py-3 px-4 uppercase transition-all border-b ${
+                  className={`font-satoshi font-medium text-[16px] tracking-wide py-3 px-4 rounded-md uppercase transition-all ${
                     isActive(item.href) 
-                      ? "text-white font-semibold border-[#00B4E1]" 
-                      : "text-white/80 hover:text-white border-white/10 hover:border-white/30"
+                      ? "text-white font-semibold bg-white/5 border-l-2 border-[#00B4E1] pl-5" 
+                      : "text-white/80 hover:text-white hover:bg-white/5"
                   }`}
                   onClick={() => setMobileMenuOpen(false)}
                   aria-current={isActive(item.href) ? "page" : undefined}
@@ -177,7 +177,7 @@ const Navbar = () => {
               <div className="pt-4 mt-2 border-t border-white/10">
                 <Link 
                   href="/contact" 
-                  className="flex justify-center items-center font-clash font-semibold text-[16px] py-3 px-4 text-center text-[#101B21] bg-white hover:bg-white/90 rounded-[4px] shadow-lg transition-all duration-300"
+                  className="flex justify-center items-center font-clash font-semibold text-[16px] py-3.5 px-4 text-center text-[#101B21] bg-white hover:bg-white/90 rounded-[4px] shadow-lg transition-all duration-300"
                   onClick={() => setMobileMenuOpen(false)}
                   aria-current={pathname === '/contact' ? "page" : undefined}
                 >
