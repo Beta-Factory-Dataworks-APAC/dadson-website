@@ -7,8 +7,9 @@ export default function AdminRedirect() {
   const router = useRouter();
 
   useEffect(() => {
-    // Redirect to Sanity Studio
-    router.push('/studio');
+    // Redirect to Payload CMS admin
+    const cmsUrl = process.env.NEXT_PUBLIC_PAYLOAD_CMS_URL || '/';
+    router.push(cmsUrl);
   }, [router]);
 
   return (
