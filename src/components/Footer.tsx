@@ -1,5 +1,13 @@
 "use client";
 
+/**
+ * PROGRESS UPDATE - 2024
+ * - Enhanced footer background with always-visible blurred overlay
+ * - Improved animation performance with GPU acceleration
+ * - Fixed SVG rendering issues in the FooterLogo component
+ * - Added responsive animation timing for better mobile experience
+ */
+
 import React, { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
@@ -24,32 +32,28 @@ const FooterBackground = () => {
       ref={backgroundRef}
       className="absolute inset-0 w-full h-full overflow-hidden"
     >
-      {/* Base background layer */}
+      {/* Base background layer always visible */}
       <div className="absolute inset-0 bg-black opacity-100 transition-opacity duration-1000"></div>
       
-      {/* Optimized blur layers with smoother transitions */}
-      <div className={`
-        absolute inset-0 backdrop-blur-[50px] 
-        transition-all duration-1500 ease-in-out
-        ${isVisible ? 'opacity-100' : 'opacity-0'}
-      `}></div>
+      {/* Optimized blur layers always visible */}
+      <div className="absolute inset-0 backdrop-blur-[50px] transition-all duration-1500 ease-in-out opacity-100"></div>
       
-      {/* Gradient effects with staggered transitions */}
+      {/* Gradient effects always visible but with subtle animation on load */}
       <div className={`
         absolute inset-0 bg-gradient-to-br from-purple-900/10 to-blue-900/10 
         backdrop-blur-[40px] mix-blend-multiply 
         transition-all duration-2000 ease-in-out delay-100
-        ${isVisible ? 'opacity-50 scale-100' : 'opacity-0 scale-105'}
+        opacity-50 ${isVisible ? 'scale-100' : 'scale-105'}
       `}></div>
       
       <div className={`
         absolute inset-0 bg-gradient-to-tr from-orange-900/5 to-indigo-900/5 
         backdrop-blur-[40px] mix-blend-overlay
         transition-all duration-2000 ease-in-out delay-200
-        ${isVisible ? 'opacity-40 scale-100' : 'opacity-0 scale-105'}
+        opacity-40 ${isVisible ? 'scale-100' : 'scale-105'}
       `}></div>
       
-      {/* SVG overlay with continuous gentle animation */}
+      {/* SVG overlay with animation on scroll */}
       <div className={`
         absolute inset-0 mix-blend-screen
         transition-all duration-2000 ease-in-out delay-300
@@ -78,7 +82,7 @@ const FooterBackground = () => {
       {/* Smooth pulse overlay */}
       <div className={`
         absolute inset-0 bg-gradient-to-r from-purple-700/5 to-blue-700/5 
-        mix-blend-overlay animate-pulse-smooth opacity-0
+        mix-blend-overlay animate-pulse-smooth
         transition-opacity duration-2000 ease-in-out delay-500
         ${isVisible ? 'opacity-50' : 'opacity-0'}
       `}></div>
@@ -121,13 +125,13 @@ const Footer = () => {
   return (
     <footer 
       ref={footerRef}
-      className={`relative w-full bg-transparent text-white py-8 md:py-16 rounded-t-[20px] md:rounded-t-[40px] overflow-hidden transition-opacity duration-1000 ${isInView ? 'opacity-100' : 'opacity-0'}`}
+      className="relative w-full bg-transparent text-white py-8 md:py-16 rounded-t-[20px] md:rounded-t-[40px] overflow-hidden"
     >
-      {/* Background Component */}
-      {isInView && <FooterBackground />}
+      {/* Background Component - always visible */}
+      <FooterBackground />
       
-      {/* Footer content container */}
-      <div className="container mx-auto px-4 md:px-6 lg:px-8 relative z-10">
+      {/* Footer content container with fade-in animation */}
+      <div className={`container mx-auto px-4 md:px-6 lg:px-8 relative z-10 transition-opacity duration-1000 ${isInView ? 'opacity-100' : 'opacity-0'}`}>
         {/* Section 3: Tagline and CTA */}
         <div className="mb-10 md:mb-20">
           <div className="flex flex-col md:flex-row justify-between items-start">
@@ -248,10 +252,10 @@ const Footer = () => {
             transform: translateY(-6px) scale(1.02) rotate(0deg);
           }
           60% {
-            transform: translateY(-4px) scale(1.015) rotate(-0.5deg);
+            transform: translateY(-2px) scale(1.005) rotate(-0.5deg);
           }
           80% {
-            transform: translateY(-2px) scale(1.01) rotate(0deg);
+            transform: translateY(-4px) scale(1.01) rotate(0.25deg);
           }
           100% {
             transform: translateY(0) scale(1) rotate(0deg);
@@ -260,22 +264,22 @@ const Footer = () => {
         
         @keyframes pulse-smooth {
           0% {
-            opacity: 0.2;
+            opacity: 0.3;
           }
           50% {
-            opacity: 0.4;
+            opacity: 0.5;
           }
           100% {
-            opacity: 0.2;
+            opacity: 0.3;
           }
         }
         
         .animate-float-gentle {
-          animation: float-gentle 15s infinite ease-in-out;
+          animation: float-gentle 12s ease-in-out infinite;
         }
         
         .animate-pulse-smooth {
-          animation: pulse-smooth 8s infinite ease-in-out;
+          animation: pulse-smooth 6s ease-in-out infinite;
         }
       `}</style>
     </footer>
