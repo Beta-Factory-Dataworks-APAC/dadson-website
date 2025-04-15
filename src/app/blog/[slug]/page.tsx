@@ -5,7 +5,7 @@ import { notFound } from 'next/navigation';
 
 export const revalidate = 3600; // Revalidate at most once per hour
 
-interface Params {
+type Params = {
   params: {
     slug: string;
   };
