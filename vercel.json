@@ -1,5 +1,5 @@
 {
   "version": 2,
   "installCommand": "npm install --legacy-peer-deps",
-  "buildCommand": "npm run build || echo 'Build had issues but we will deploy anyway' && exit 0"
+  "buildCommand": "npm run build"
 } 

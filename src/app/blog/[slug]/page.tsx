@@ -5,13 +5,13 @@ import { notFound } from 'next/navigation';
 
 export const revalidate = 3600; // Revalidate at most once per hour
 
-type Params = {
-  params: {
-    slug: string;
-  };
+// Define the expected props structure for the page component
+interface PageProps {
+  params: { slug: string };
+  searchParams?: { [key: string]: string | string[] | undefined };
 }
 
-export async function generateMetadata({ params }: Params): Promise<Metadata> {
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const article = await getBlogPostBySlug(params.slug);
   
   if (!article) {
@@ -47,7 +47,7 @@ export async function generateStaticParams() {
   }));
 }
 
-export default async function Article({ params }: Params) {
+export default async function Article({ params }: PageProps) {
   const article = await getBlogPostBySlug(params.slug);
   
   if (!article) {
