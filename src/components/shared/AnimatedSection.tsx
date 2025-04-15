@@ -1,3 +1,5 @@
+'use client';
+
 import React from 'react';
 import AnimationWrapper from '@/lib/react-bits/AnimationWrapper';
 

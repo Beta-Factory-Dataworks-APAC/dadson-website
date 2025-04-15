@@ -1,3 +1,5 @@
+'use client';
+
 import React from 'react';
 import AnimatedHeading from '@/components/shared/AnimatedHeading';
 import AnimatedSection from '@/components/shared/AnimatedSection';
