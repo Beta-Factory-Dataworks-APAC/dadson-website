@@ -6,6 +6,7 @@
     "dev": "next dev",
     "dev:cms": "cd payload/dadson-blog && pnpm dev",
     "dev:all": "concurrently \"npm run dev\" \"npm run dev:cms\"",
+    "dev:clean": "killall node || true && npm run dev:all",
     "build": "next build",
     "build:cms": "cd payload/dadson-blog && pnpm build",
     "build:all": "npm run build && npm run build:cms",
@@ -26,6 +27,7 @@
     "@tiptap/starter-kit": "^2.1.8",
     "framer-motion": "^12.7.1",
     "next": "15.3.0",
+    "payload": "^3.0.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "styled-components": "^6.1.17"

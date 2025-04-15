@@ -20,7 +20,22 @@ const nextConfig: NextConfig = {
         protocol: 'https',
         hostname: '**',
       },
+      {
+        protocol: 'http',
+        hostname: 'localhost',
+      }
     ],
+  },
+  async rewrites() {
+    return {
+      beforeFiles: [
+        // When deployed to Vercel, handle PayloadCMS routes through API
+        {
+          source: '/admin/:path*',
+          destination: '/api/payload/admin/:path*',
+        },
+      ],
+    };
   },
 };
 
