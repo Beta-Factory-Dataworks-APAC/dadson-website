@@ -32,14 +32,14 @@ const NoBotsBanner = () => {
       <div className="container mx-auto px-4 md:px-6 lg:px-8 relative pb-10 sm:pb-12 md:pb-16 lg:pb-36">
         <div className="flex flex-col lg:flex-row gap-3 sm:gap-4 md:gap-6 lg:gap-24 py-4 sm:py-6 md:py-8 lg:py-12 relative">
           {/* Left Column with Truck Image - Hidden on mobile, shown on larger screens */}
-          <div className="flex-1 relative min-h-[300px]">
+          <div className="flex-1 relative min-h-[300px] md:min-h-[340px] lg:min-h-[380px]">
             {/* Truck Image with specialized animation */}
             <TruckAnimation
               src="/truck.png"
               alt="Dadson Logistics Truck"
               width={1000}
               height={500}
-              className="absolute left-[-40%] bottom-[-30px] w-[150%] h-auto z-10"
+              className="absolute left-[-20%] md:left-[-30%] lg:left-[-40%] bottom-[-60px] md:bottom-[-90px] lg:bottom-[-120px] w-[120%] md:w-[130%] lg:w-[150%] h-auto z-10"
               priority
               delay={0.5}
             />
@@ -59,7 +59,7 @@ const NoBotsBanner = () => {
           </div>
 
           {/* Right Content Column */}
-          <div className="flex-1 flex flex-col">
+          <div className="flex-1 flex flex-col md:pt-4 lg:pt-8">
             {/* Title and Description - improved readability on mobile */}
             <div className="mb-4 sm:mb-6 md:mb-8 lg:mb-12 ml-0 lg:ml-0">
               <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-semibold mb-2 sm:mb-3 md:mb-4 uppercase font-clash tracking-tight leading-tight">
@@ -70,7 +70,7 @@ const NoBotsBanner = () => {
               <h3 className="text-base sm:text-lg md:text-xl lg:text-2xl font-medium mb-2 sm:mb-3 md:mb-4 font-satoshi">
                 Certified. Vetted. Verified.
               </h3>
-              <p className="text-gray-700 text-sm md:text-base font-satoshi">
+              <p className="text-gray-700 text-sm md:text-base font-satoshi max-w-[90%] md:max-w-[95%] lg:max-w-none">
                 We're proud members of the Transportation Intermediaries Association (TIA) and the Better Business Bureau (BBB)—proof of our commitment to service, safety, and integrity.
               </p>
             </div>
@@ -79,23 +79,23 @@ const NoBotsBanner = () => {
             <div className="flex flex-col gap-2.5 sm:gap-3 md:gap-4 lg:gap-6 font-satoshi">
               <div className="flex items-start">
                 <div className="min-w-[8px] h-[8px] rounded-full bg-[#00B4E1] mt-1.5 sm:mt-2 mr-3"></div>
-                <h4 className="font-medium text-sm sm:text-base md:text-lg lg:text-xl">AI-Based Carrier Vetting <span className="font-normal text-gray-600 text-xs sm:text-sm md:text-base">— Smarter safety, fewer surprises</span></h4>
+                <h4 className="font-medium text-sm sm:text-base md:text-lg lg:text-xl">Carrier Vetting That Doesn't Miss <span className="font-normal text-gray-600 text-xs sm:text-sm md:text-base">— We use smart tools and trained compliance specialists to vet every carrier before a load is moved.</span></h4>
               </div>
               <div className="flex items-start">
                 <div className="min-w-[8px] h-[8px] rounded-full bg-[#00B4E1] mt-1.5 sm:mt-2 mr-3"></div>
-                <h4 className="font-medium text-sm sm:text-base md:text-lg lg:text-xl">Live Load Visibility <span className="font-normal text-gray-600 text-xs sm:text-sm md:text-base">— GPS tracking with predictive ETA</span></h4>
+                <h4 className="font-medium text-sm sm:text-base md:text-lg lg:text-xl">Every Load, Tracked <span className="font-normal text-gray-600 text-xs sm:text-sm md:text-base">— Tracking is always active—and always shared—so customers know where things stand.</span></h4>
               </div>
               <div className="flex items-start">
                 <div className="min-w-[8px] h-[8px] rounded-full bg-[#00B4E1] mt-1.5 sm:mt-2 mr-3"></div>
-                <h4 className="font-medium text-sm sm:text-base md:text-lg lg:text-xl">Carrier First Culture <span className="font-normal text-gray-600 text-xs sm:text-sm md:text-base">— Loyal carriers mean dependable coverage</span></h4>
+                <h4 className="font-medium text-sm sm:text-base md:text-lg lg:text-xl">Carrier-First Culture <span className="font-normal text-gray-600 text-xs sm:text-sm md:text-base">— Loyal carriers mean dependable coverage. We treat them like partners, not transactions.</span></h4>
               </div>
               <div className="flex items-start">
                 <div className="min-w-[8px] h-[8px] rounded-full bg-[#00B4E1] mt-1.5 sm:mt-2 mr-3"></div>
-                <h4 className="font-medium text-sm sm:text-base md:text-lg lg:text-xl">Radical Ownership <span className="font-normal text-gray-600 text-xs sm:text-sm md:text-base">— We treat every load like it's our own</span></h4>
+                <h4 className="font-medium text-sm sm:text-base md:text-lg lg:text-xl">Radical Ownership <span className="font-normal text-gray-600 text-xs sm:text-sm md:text-base">— We treat every load like it's our own. Because your freight is our reputation.</span></h4>
               </div>
               <div className="flex items-start">
                 <div className="min-w-[8px] h-[8px] rounded-full bg-[#00B4E1] mt-1.5 sm:mt-2 mr-3"></div>
-                <h4 className="font-medium text-sm sm:text-base md:text-lg lg:text-xl">Zero Ghosting <span className="font-normal text-gray-600 text-xs sm:text-sm md:text-base">— We don't disappear when things get tough</span></h4>
+                <h4 className="font-medium text-sm sm:text-base md:text-lg lg:text-xl">Zero Ghosting <span className="font-normal text-gray-600 text-xs sm:text-sm md:text-base">— We don't disappear when things get tough. We lean in and solve it.</span></h4>
               </div>
             </div>
           </div>

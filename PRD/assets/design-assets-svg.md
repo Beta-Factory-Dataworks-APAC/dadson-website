@@ -500,7 +500,7 @@ Here's how to implement these SVGs in your HTML:
 
 <!-- Inline SVG for social icons (better for styling/interaction) -->
 <div class="social-links">
-  <a href="https://linkedin.com/company/dadson" aria-label="LinkedIn">
+  <a href="https://www.linkedin.com/search/results/all/?fetchDeterministicClustersOnly=true&heroEntityKey=urn%3Ali%3Aorganization%3A105942595&keywords=dadson%20logistics%20inc&origin=RICH_QUERY_TYPEAHEAD_HISTORY&position=0&searchId=e085d5ae-0002-4044-929b-09b112fce9d2&sid=7SB&spellCorrectionEnabled=true" aria-label="LinkedIn">
     <svg width="24" height="24" viewBox="0 0 24 24" class="social-icon">
       <path d="M16 8C17.5913 8 19.1174 8.63214 20.2426 9.75736C21.3679 10.8826 22 12.4087 22 14V21H18V14C18 13.4696 17.7893 12.9609 17.4142 12.5858C17.0391 12.2107 16.5304 12 16 12C15.4696 12 14.9609 12.2107 14.5858 12.5858C14.2107 12.9609 14 13.4696 14 14V21H10V14C10 12.4087 10.6321 10.8826 11.7574 9.75736C12.8826 8.63214 14.4087 8 16 8Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
       <path d="M6 9H2V21H6V9Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>

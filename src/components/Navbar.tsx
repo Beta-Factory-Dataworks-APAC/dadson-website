@@ -94,8 +94,8 @@ const Navbar = () => {
     <nav 
       className={`fixed top-0 left-0 right-0 z-[100] transition-transform duration-300 ${
         scrollingDown ? '-translate-y-full' : 'translate-y-0'
-      } ${pathname === '/' ? 'pt-[20px] md:pt-[60px] bg-transparent' : ''} ${
-        isAboutPage ? 'bg-white py-4 shadow-sm' : 'bg-transparent py-2 md:py-4'
+      } ${pathname === '/' ? 'pt-[10px] md:pt-[40px] bg-transparent' : ''} ${
+        isAboutPage ? 'bg-white py-3 shadow-sm' : 'bg-transparent py-2 md:py-4'
       }`}
     >
       <div className="container mx-auto px-4 md:px-6">
@@ -191,19 +191,19 @@ const Navbar = () => {
       {mobileMenuOpen && (
         <div 
           id="mobile-menu"
-          className={`md:hidden fixed top-[70px] left-0 right-0 pt-4 pb-6 z-[100] border-t shadow-lg h-[calc(100vh-70px)] overflow-y-auto ${
+          className={`md:hidden fixed top-[60px] left-0 right-0 pt-2 pb-4 z-[100] border-t shadow-lg h-[calc(100vh-60px)] overflow-y-auto ${
             isAboutPage 
               ? "bg-white border-gray-200" 
               : "bg-[#0F1923]/95 backdrop-blur-lg border-white/10"
           }`}
         >
           <div className="container mx-auto px-4">
-            <div className="flex flex-col space-y-4">
+            <div className="flex flex-col space-y-2">
               {navItems.map((item, index) => (
                 <Link 
                   key={item.href}
                   href={item.href} 
-                  className={`font-satoshi font-medium text-[18px] tracking-wide py-4 px-4 rounded-md flex justify-center items-center uppercase transition-all ${
+                  className={`font-satoshi font-medium text-[18px] tracking-wide py-3 px-4 rounded-md flex justify-center items-center uppercase transition-all ${
                     isActive(item.href) 
                       ? isAboutPage
                         ? "text-[#00B4E1] font-semibold bg-gray-50"
@@ -212,7 +212,7 @@ const Navbar = () => {
                         ? "text-[#101B21] hover:text-[#00B4E1] hover:bg-gray-50"
                         : "text-white/90 hover:text-white hover:bg-white/10"
                   } ${index === navItems.length - 1 
-                      ? `mt-4 ${
+                      ? `mt-2 ${
                          isAboutPage 
                            ? "text-white bg-[#00B4E1] hover:bg-[#00B4E1]/90 shadow-sm" 
                            : "text-[#101B21] bg-white hover:bg-white/90 shadow-sm"

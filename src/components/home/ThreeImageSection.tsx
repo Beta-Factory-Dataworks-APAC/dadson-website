@@ -73,9 +73,9 @@ const ThreeImageSection = () => {
         <div className="relative w-full overflow-hidden transition-transform duration-300 hover:scale-[1.01]">
           {/* Grid container for images with slight gap */}
           <div className="grid grid-cols-3 gap-1">
-            {/* First Image - Desktop - Using aspect ratio closer to 1:1 and percentage border radius */}
+            {/* First Image - Desktop - Using consistent aspect ratio */}
             <div 
-              className="relative w-full aspect-[613/604]" 
+              className="relative w-full aspect-[4/3]" 
               style={{ 
                 borderTopLeftRadius: '65%', 
                 borderBottomLeftRadius: '3%',
@@ -92,8 +92,13 @@ const ThreeImageSection = () => {
               />
             </div>
             
-            {/* Second Image - Desktop - Using aspect ratio closer to 1:1 */}
-            <div className="relative w-full aspect-[613/604]">
+            {/* Second Image - Desktop - Using same aspect ratio */}
+            <div 
+              className="relative w-full aspect-[4/3]"
+              style={{ 
+                overflow: 'hidden' 
+              }}
+            >
               <Image 
                 src="/images/home/home2.png" 
                 alt="Freight train traveling through snowy mountains" 
@@ -104,9 +109,9 @@ const ThreeImageSection = () => {
               />
             </div>
             
-            {/* Third Image - Desktop - Using aspect ratio closer to 1:1 and percentage border radius */}
+            {/* Third Image - Desktop - Using same aspect ratio */}
             <div 
-              className="relative w-full aspect-[613/604]" 
+              className="relative w-full aspect-[4/3]" 
               style={{ 
                 borderTopRightRadius: '65%', 
                 borderBottomRightRadius: '3%',

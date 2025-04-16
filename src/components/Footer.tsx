@@ -225,7 +225,7 @@ const Footer = () => {
             
             {/* Social media links */}
             <div className="flex gap-6 md:gap-8">
-              <a href="https://www.linkedin.com/company/dadson-logistics" className="text-sm md:text-base text-gray-400 hover:text-white transition-colors duration-300">
+              <a href="https://www.linkedin.com/search/results/all/?fetchDeterministicClustersOnly=true&heroEntityKey=urn%3Ali%3Aorganization%3A105942595&keywords=dadson%20logistics%20inc&origin=RICH_QUERY_TYPEAHEAD_HISTORY&position=0&searchId=e085d5ae-0002-4044-929b-09b112fce9d2&sid=7SB&spellCorrectionEnabled=true" className="text-sm md:text-base text-gray-400 hover:text-white transition-colors duration-300">
                 LinkedIn
               </a>
             </div>

@@ -42,83 +42,48 @@ const HomeMobileBanner = () => {
   return (
     <div className="pt-[8px]">
       {/* Three Images Section - Mobile Optimized */}
-      <section className="pb-10 pt-5 bg-white px-5 sm:px-8">
-        {/* Section Title */}
-        <div className="text-center mb-6">
-          <h2 className="text-xl sm:text-2xl font-medium font-clash text-gray-900">
-            FREIGHT SOLUTIONS
-          </h2>
-          <p className="text-sm text-gray-500 font-satoshi mt-1">Full-service logistics solutions</p>
+      <section className="bg-white py-6">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-4">
+            <h2 className="text-xl font-bold text-gray-900 mb-2">FREIGHT SOLUTIONS</h2>
+            <p className="text-sm text-gray-600">Full-service logistics solutions</p>
+          </div>
+          <div className="grid grid-cols-1 gap-6">
+            <div className="text-center">
+              <Image
+                src="/images/home/home1.png"
+                alt="Port Logistics"
+                width={300}
+                height={200}
+                className="mx-auto rounded-lg shadow-md mb-3"
+              />
+              <h3 className="text-lg font-semibold text-gray-800 mb-2">Port Logistics</h3>
+              <p className="text-sm text-gray-600 px-4">Container handling & port operations</p>
+            </div>
+            <div className="text-center">
+              <Image
+                src="/images/home/home2.png"
+                alt="Rail Transport"
+                width={300}
+                height={200}
+                className="mx-auto rounded-lg shadow-md mb-3"
+              />
+              <h3 className="text-lg font-semibold text-gray-800 mb-2">Rail Transport</h3>
+              <p className="text-sm text-gray-600 px-4">Efficient rail freight solutions</p>
+            </div>
+            <div className="text-center">
+              <Image
+                src="/images/home/home3.png"
+                alt="Air Freight"
+                width={300}
+                height={200}
+                className="mx-auto rounded-lg shadow-md mb-3"
+              />
+              <h3 className="text-lg font-semibold text-gray-800 mb-2">Air Freight</h3>
+              <p className="text-sm text-gray-600 px-4">Expedited air cargo services</p>
+            </div>
+          </div>
         </div>
-        
-        {/* Interactive image cards with animations */}
-        <motion.div 
-          className="flex flex-col space-y-6"
-          variants={container}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true, amount: 0.2 }}
-        >
-          {/* Port Logistics Card - Using aspect ratio closer to 1:1 with percentage border radius */}
-          <motion.div 
-            className="relative w-full aspect-[613/604] rounded-[8%] overflow-hidden shadow-lg transform transition-all duration-300 active:scale-[0.98]"
-            variants={cardVariants}
-          >
-            <Image 
-              src="/images/home/home1.png" 
-              alt="Shipping containers stacked at port" 
-              fill
-              sizes="100vw"
-              className="object-cover"
-              priority
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/40 to-transparent"></div>
-            <div className="absolute bottom-0 left-0 right-0 p-5">
-              <h3 className="text-white text-lg sm:text-xl font-medium font-clash uppercase">Port Logistics</h3>
-              <p className="text-white/90 text-xs sm:text-sm font-satoshi mt-1">Container handling & port operations</p>
-            </div>
-          </motion.div>
-          
-          {/* Rail Transport Card - Using aspect ratio closer to 1:1 with percentage border radius */}
-          <motion.div 
-            className="relative w-full aspect-[613/604] rounded-[8%] overflow-hidden shadow-lg transform transition-all duration-300 active:scale-[0.98]"
-            variants={cardVariants}
-          >
-            <Image 
-              src="/images/home/home2.png" 
-              alt="Freight train traveling through snowy mountains" 
-              fill
-              sizes="100vw"
-              className="object-cover"
-              priority
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/40 to-transparent"></div>
-            <div className="absolute bottom-0 left-0 right-0 p-5">
-              <h3 className="text-white text-lg sm:text-xl font-medium font-clash uppercase">Rail Transport</h3>
-              <p className="text-white/90 text-xs sm:text-sm font-satoshi mt-1">Efficient rail freight solutions</p>
-            </div>
-          </motion.div>
-          
-          {/* Air Freight Card - Using aspect ratio closer to 1:1 with percentage border radius */}
-          <motion.div 
-            className="relative w-full aspect-[613/604] rounded-[8%] overflow-hidden shadow-lg transform transition-all duration-300 active:scale-[0.98]"
-            variants={cardVariants}
-          >
-            <Image 
-              src="/images/home/home3.png" 
-              alt="Cargo being loaded onto aircraft" 
-              fill
-              sizes="100vw"
-              className="object-cover"
-              priority
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/40 to-transparent"></div>
-            <div className="absolute bottom-0 left-0 right-0 p-5">
-              <h3 className="text-white text-lg sm:text-xl font-medium font-clash uppercase">Air Freight</h3>
-              <p className="text-white/90 text-xs sm:text-sm font-satoshi mt-1">Expedited air cargo services</p>
-            </div>
-          </motion.div>
-        </motion.div>
       </section>
 
       {/* No Bots Banner - Mobile Optimized */}
