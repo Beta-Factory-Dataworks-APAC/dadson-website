@@ -1,0 +1,21 @@
+{
+  "name": "Dadson Logistics",
+  "short_name": "Dadson",
+  "description": "Dadson Logistics provides efficient freight forwarding, warehousing, supply chain management, and express delivery services for businesses worldwide.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#00B4E1",
+  "icons": [
+    {
+      "src": "/favicon/favicon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/favicon/favicon-256x256.png",
+      "sizes": "256x256",
+      "type": "image/png"
+    }
+  ]
+} 
