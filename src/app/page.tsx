@@ -5,20 +5,34 @@ import ThreeImageSection from '../components/home/ThreeImageSection';
 import NoBotsBanner from '../components/home/NoBotsBanner';
 import MetricsSection from '../components/home/MetricsSection';
 import ShippersCarriersSection from '../components/home/ShippersCarriersSection';
+import HomeMobileBanner from '../components/home/HomeMobileBanner';
 
 export default function HomePage() {
   return (
     <main className="min-h-screen">
       <HeroSection />
-      <div className="mt-[-30px] sm:mt-[-40px] md:mt-[-50px]">
+      <div className="mt-[-10px] xs:mt-[-15px] sm:mt-[-20px] md:mt-[-50px]">
         <UncompromisedSection />
       </div>
-      <div className="mt-[-10px] md:mt-[-20px] lg:mt-[-30px]">
-        <ThreeImageSection />
+      
+      {/* Desktop content - only visible on md screens and up */}
+      <div className="hidden md:block">
+        <div className="mt-[-10px] md:mt-[-20px] lg:mt-[-30px]">
+          <ThreeImageSection />
+        </div>
+        
+        <div className="mt-2 sm:mt-4 md:mt-8 lg:mt-12">
+          <NoBotsBanner />
+        </div>
       </div>
-      <div className="mt-2 sm:mt-4 md:mt-8 lg:mt-12">
-        <NoBotsBanner />
+      
+      {/* Mobile content - only visible on xs and sm screens */}
+      <div className="block md:hidden">
+        <div className="mt-[-20px]">
+          <HomeMobileBanner />
+        </div>
       </div>
+      
       <div className="mt-4 sm:mt-8 md:mt-12 lg:mt-16">
         <MetricsSection />
       </div>

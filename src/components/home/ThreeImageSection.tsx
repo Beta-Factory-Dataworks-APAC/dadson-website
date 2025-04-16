@@ -5,10 +5,10 @@ import Image from 'next/image';
 
 const ThreeImageSection = () => {
   return (
-    <section className="pb-8 sm:pb-12 md:pb-16 pt-4 sm:pt-8 md:pt-12 bg-white">
+    <section className="hidden md:block pb-8 sm:pb-12 md:pb-16 pt-4 sm:pt-8 md:pt-12 bg-white">
       <div className="w-full">
-        {/* Mobile vertical layout - replaced horizontal scroll */}
-        <div className="md:hidden px-4 sm:px-6 space-y-5">
+        {/* Mobile vertical layout - hidden now as it's handled by HomeMobileBanner */}
+        <div className="hidden">
           {/* Section Title - Mobile only */}
           <div className="text-center mb-4">
             <h2 className="text-xl sm:text-2xl font-medium font-clash text-gray-900">
@@ -70,11 +70,18 @@ const ThreeImageSection = () => {
         </div>
 
         {/* Desktop/tablet continuous curved container */}
-        <div className="hidden md:block relative w-full overflow-hidden transition-transform duration-300 hover:scale-[1.01]">
+        <div className="relative w-full overflow-hidden transition-transform duration-300 hover:scale-[1.01]">
           {/* Grid container for images with slight gap */}
           <div className="grid grid-cols-3 gap-1">
-            {/* First Image - Desktop */}
-            <div className="relative h-[450px] lg:h-[610px]" style={{ borderTopLeftRadius: '50%', overflow: 'hidden' }}>
+            {/* First Image - Desktop - Using aspect ratio closer to 1:1 and percentage border radius */}
+            <div 
+              className="relative w-full aspect-[613/604]" 
+              style={{ 
+                borderTopLeftRadius: '65%', 
+                borderBottomLeftRadius: '3%',
+                overflow: 'hidden' 
+              }}
+            >
               <Image 
                 src="/images/home/home1.png" 
                 alt="Shipping containers stacked at port" 
@@ -85,8 +92,8 @@ const ThreeImageSection = () => {
               />
             </div>
             
-            {/* Second Image - Desktop */}
-            <div className="relative h-[450px] lg:h-[610px]">
+            {/* Second Image - Desktop - Using aspect ratio closer to 1:1 */}
+            <div className="relative w-full aspect-[613/604]">
               <Image 
                 src="/images/home/home2.png" 
                 alt="Freight train traveling through snowy mountains" 
@@ -97,8 +104,15 @@ const ThreeImageSection = () => {
               />
             </div>
             
-            {/* Third Image - Desktop */}
-            <div className="relative h-[450px] lg:h-[610px]" style={{ borderTopRightRadius: '50%', overflow: 'hidden' }}>
+            {/* Third Image - Desktop - Using aspect ratio closer to 1:1 and percentage border radius */}
+            <div 
+              className="relative w-full aspect-[613/604]" 
+              style={{ 
+                borderTopRightRadius: '65%', 
+                borderBottomRightRadius: '3%',
+                overflow: 'hidden' 
+              }}
+            >
               <Image 
                 src="/images/home/home3.png" 
                 alt="Cargo being loaded onto aircraft" 

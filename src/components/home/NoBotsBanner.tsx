@@ -13,7 +13,7 @@ import TruckAnimation from '@/lib/react-bits/TruckAnimation';
 
 const NoBotsBanner = () => {
   return (
-    <div className="bg-white w-full overflow-hidden">
+    <div className="hidden md:block bg-white w-full overflow-hidden">
       {/* Scrolling Text Banner - with adjusted speed and styling for mobile */}
       <div className="relative overflow-hidden py-2 md:py-4">
         <div className="whitespace-nowrap animate-marquee-slower inline-block">
@@ -32,7 +32,7 @@ const NoBotsBanner = () => {
       <div className="container mx-auto px-4 md:px-6 lg:px-8 relative pb-10 sm:pb-12 md:pb-16 lg:pb-36">
         <div className="flex flex-col lg:flex-row gap-3 sm:gap-4 md:gap-6 lg:gap-24 py-4 sm:py-6 md:py-8 lg:py-12 relative">
           {/* Left Column with Truck Image - Hidden on mobile, shown on larger screens */}
-          <div className="hidden lg:block flex-1 relative min-h-[300px]">
+          <div className="flex-1 relative min-h-[300px]">
             {/* Truck Image with specialized animation */}
             <TruckAnimation
               src="/truck.png"
@@ -46,7 +46,7 @@ const NoBotsBanner = () => {
           </div>
 
           {/* Mobile Truck Image - Only visible on mobile, improved placement */}
-          <div className="block lg:hidden relative w-full h-[140px] sm:h-[160px] mb-3 sm:mb-4">
+          <div className="hidden relative w-full h-[140px] sm:h-[160px] mb-3 sm:mb-4">
             <TruckAnimation
               src="/truck.png"
               alt="Dadson Logistics Truck"

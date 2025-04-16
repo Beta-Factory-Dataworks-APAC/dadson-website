@@ -53,6 +53,9 @@ const Navbar = () => {
   
   // Function to determine if a navigation item should be highlighted
   const isActive = (path: string): boolean => {
+    // Check if pathname is null
+    if (!pathname) return false;
+    
     // Check if we're on the specific route
     if (pathname === path) {
       return true;
@@ -85,7 +88,7 @@ const Navbar = () => {
   const aboutPageInactiveContactButtonClasses = "bg-[#00B4E1] text-white hover:bg-[#00B4E1]/90"; // Cyan button with white text
 
   // Determine if we're on the about page
-  const isAboutPage = pathname === '/about';
+  const isAboutPage = pathname === '/about' || pathname === '/contact';
 
   return (
     <nav 
@@ -163,7 +166,7 @@ const Navbar = () => {
               className={`p-2 rounded-full transition-colors duration-200 ${
                 isAboutPage 
                   ? "hover:bg-gray-100 text-[#101B21]" 
-                  : "hover:bg-white/10 text-white"
+                  : "bg-[#00B4E1] hover:bg-[#00B4E1]/90 text-white"
               }`}
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               aria-label={mobileMenuOpen ? 'Close menu' : 'Open menu'}

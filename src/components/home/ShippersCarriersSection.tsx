@@ -28,6 +28,22 @@ const ShippersCarriersSection = () => {
     }
   };
 
+  // Bullet list items for Shippers
+  const shipperBullets = [
+    "Vetted, safety-scored carriers",
+    "Dedicated reps & live updates",
+    "Appointment scheduling & compliance",
+    "Flat, clear pricing"
+  ];
+  
+  // Bullet list items for Carriers
+  const carrierBullets = [
+    "Steady freight flow",
+    "Fast pay & zero micromanagement",
+    "Support that actually picks up the phone",
+    "Long-term partnership, not transaction"
+  ];
+
   return (
     <section className="w-full py-10 sm:py-16 md:py-24 bg-white overflow-hidden">
       {/* Section Headers - kept centered but with improved mobile spacing */}
@@ -64,10 +80,21 @@ const ShippersCarriersSection = () => {
             <div className="md:w-1/2 md:flex md:items-center">
               <div className="max-w-full sm:max-w-[90%] md:max-w-[455px] md:ml-12 px-4 md:px-0">
                 <h3 className="text-gray-900 text-2xl sm:text-2xl md:text-3xl font-medium font-satoshi mb-3 sm:mb-4 md:mb-6">Shippers</h3>
-                <p className="text-gray-500 text-base sm:text-lg font-medium font-satoshi">
-                  AI-vetted, safety-scored carriers. Dedicated reps & live updates. 
-                  Appointment scheduling & compliance. Flat, clear pricing.
-                </p>
+                <ul className="text-gray-500 text-base sm:text-lg font-medium font-satoshi space-y-2 md:space-y-3">
+                  {shipperBullets.map((bullet, index) => (
+                    <motion.li 
+                      key={index}
+                      initial={{ opacity: 0, x: -10 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      transition={{ duration: 0.3, delay: index * 0.1 }}
+                      viewport={{ once: true }}
+                      className="flex items-start"
+                    >
+                      <span className="text-primary-blue mr-2 mt-1.5">•</span>
+                      <span>{bullet}</span>
+                    </motion.li>
+                  ))}
+                </ul>
               </div>
             </div>
           </div>
@@ -80,10 +107,21 @@ const ShippersCarriersSection = () => {
             <div className="w-full md:w-1/2 md:flex md:items-center md:justify-end order-last md:order-first">
               <div className="max-w-full sm:max-w-[90%] md:max-w-[457px] md:mr-12 px-4 md:px-0 mb-6 sm:mb-8 md:mb-0">
                 <h3 className="text-gray-900 text-2xl sm:text-2xl md:text-3xl font-medium font-satoshi mb-3 sm:mb-4 md:mb-6">Carriers</h3>
-                <p className="text-gray-500 text-base sm:text-lg font-medium font-satoshi">
-                  Steady freight flow. Fast pay & zero micromanagement. 
-                  Support that actually picks up the phone. Long-term partnership, not transaction.
-                </p>
+                <ul className="text-gray-500 text-base sm:text-lg font-medium font-satoshi space-y-2 md:space-y-3">
+                  {carrierBullets.map((bullet, index) => (
+                    <motion.li 
+                      key={index}
+                      initial={{ opacity: 0, x: -10 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      transition={{ duration: 0.3, delay: index * 0.1 }}
+                      viewport={{ once: true }}
+                      className="flex items-start"
+                    >
+                      <span className="text-primary-blue mr-2 mt-1.5">•</span>
+                      <span>{bullet}</span>
+                    </motion.li>
+                  ))}
+                </ul>
               </div>
             </div>
             
