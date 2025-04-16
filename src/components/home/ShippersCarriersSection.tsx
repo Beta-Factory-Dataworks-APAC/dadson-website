@@ -88,10 +88,10 @@ const ShippersCarriersSection = () => {
                       whileInView={{ opacity: 1, x: 0 }}
                       transition={{ duration: 0.3, delay: index * 0.1 }}
                       viewport={{ once: true }}
-                      className="flex items-start"
+                      className="flex items-center"
                     >
-                      <span className="text-primary-blue mr-2 mt-1.5">•</span>
-                      <span>{bullet}</span>
+                      <span className="text-primary-blue mr-2 text-lg flex-shrink-0">•</span>
+                      <span className="leading-tight">{bullet}</span>
                     </motion.li>
                   ))}
                 </ul>
@@ -115,10 +115,10 @@ const ShippersCarriersSection = () => {
                       whileInView={{ opacity: 1, x: 0 }}
                       transition={{ duration: 0.3, delay: index * 0.1 }}
                       viewport={{ once: true }}
-                      className="flex items-start"
+                      className="flex items-center"
                     >
-                      <span className="text-primary-blue mr-2 mt-1.5">•</span>
-                      <span>{bullet}</span>
+                      <span className="text-primary-blue mr-2 text-lg flex-shrink-0">•</span>
+                      <span className="leading-tight">{bullet}</span>
                     </motion.li>
                   ))}
                 </ul>
