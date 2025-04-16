@@ -8,7 +8,8 @@
     "dev:all": "concurrently \"npm run dev\"",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "postinstall": "node -e \"try { require('tailwindcss') } catch (e) { console.log('Installing tailwindcss...'); require('child_process').execSync('npm install tailwindcss postcss autoprefixer --no-save', {stdio: 'inherit'}) }\""
   },
   "dependencies": {
     "@heroicons/react": "^2.2.0",
