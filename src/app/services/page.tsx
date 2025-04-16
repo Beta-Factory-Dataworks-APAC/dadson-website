@@ -65,8 +65,8 @@ export default function Services() {
   return (
     <div className={styles.servicesPage}>
       {/* Hero Section */}
-      <section className="relative w-full bg-zinc-950 py-16 md:py-24">
-        <div className="w-full max-w-[1440px] mx-auto px-6 md:px-12 lg:px-16 flex flex-col lg:flex-row justify-between items-start gap-12">
+      <section className="relative w-full bg-zinc-950 py-10 md:py-16 lg:py-24">
+        <div className="w-full max-w-[1920px] mx-auto px-4 sm:px-6 md:px-12 lg:px-16 flex flex-col lg:flex-row justify-between items-start gap-8 md:gap-12">
           {/* Left Content */}
           <div className="w-full lg:w-1/2 flex flex-col justify-start items-start">
             <div className="flex flex-col justify-start items-start gap-2 mb-3">
@@ -74,33 +74,33 @@ export default function Services() {
             </div>
               
             <h1 className="tracking-wide w-full mb-6">
-              <span className="text-white text-5xl md:text-6xl font-medium font-clash uppercase block leading-[1.15]">WE KEEP</span>
-              <span className="text-white text-5xl md:text-6xl font-medium font-clash uppercase block leading-[1.15]">FREIGHT</span>
-              <span className="text-white text-5xl md:text-6xl font-medium font-clash uppercase block leading-[1.15]">MOVING SAFELY,</span>
-              <span className="text-white text-5xl md:text-6xl font-medium font-clash uppercase block leading-[1.15]">EFFICIENTLY</span>
-              <span className="text-gray-500 text-5xl md:text-6xl font-medium font-clash uppercase block leading-[1.15] mt-1">AND</span>
-              <span className="text-gray-500 text-5xl md:text-6xl font-medium font-clash uppercase block leading-[1.15]">WITHOUT THE</span>
-              <span className="text-gray-500 text-5xl md:text-6xl font-medium font-clash uppercase block leading-[1.15]">USUAL</span>
-              <span className="text-gray-500 text-5xl md:text-6xl font-medium font-clash uppercase block leading-[1.15]">FRICTION.</span>
+              <span className="text-white text-4xl sm:text-5xl md:text-6xl font-medium font-clash uppercase block leading-[1.15]">WE KEEP</span>
+              <span className="text-white text-4xl sm:text-5xl md:text-6xl font-medium font-clash uppercase block leading-[1.15]">FREIGHT</span>
+              <span className="text-white text-4xl sm:text-5xl md:text-6xl font-medium font-clash uppercase block leading-[1.15]">MOVING SAFELY,</span>
+              <span className="text-white text-4xl sm:text-5xl md:text-6xl font-medium font-clash uppercase block leading-[1.15]">EFFICIENTLY</span>
+              <span className="text-gray-500 text-4xl sm:text-5xl md:text-6xl font-medium font-clash uppercase block leading-[1.15] mt-1">AND</span>
+              <span className="text-gray-500 text-4xl sm:text-5xl md:text-6xl font-medium font-clash uppercase block leading-[1.15]">WITHOUT THE</span>
+              <span className="text-gray-500 text-4xl sm:text-5xl md:text-6xl font-medium font-clash uppercase block leading-[1.15]">USUAL</span>
+              <span className="text-gray-500 text-4xl sm:text-5xl md:text-6xl font-medium font-clash uppercase block leading-[1.15]">FRICTION.</span>
             </h1>
             
-            <p className="text-gray-500 text-lg font-medium font-satoshi leading-normal mb-8">
-              From port drayage to cross-country truckload,<br />
+            <p className="text-gray-500 text-base sm:text-lg font-medium font-satoshi leading-normal mb-8">
+              From port drayage to cross-country truckload,<br className="hidden sm:block" />
               Dadson delivers consistent coverage and transparent communication.
             </p>
             
-            <div className="flex space-x-4 mb-8">
-              <a href="/contact" className="inline-block px-6 py-3 bg-primary-blue rounded-md text-white text-sm font-semibold font-clash uppercase">
+            <div className="flex flex-col sm:flex-row space-y-3 sm:space-y-0 sm:space-x-4 mb-8 w-full sm:w-auto">
+              <a href="/contact" className="inline-block w-full sm:w-auto px-6 py-3 bg-primary-blue rounded-md text-white text-sm font-semibold font-clash uppercase text-center">
                 GET A QUOTE
               </a>
-              <a href="#" className="inline-block px-6 py-3 bg-zinc-800 rounded-md text-white text-sm font-semibold font-clash uppercase">
+              <a href="#" className="inline-block w-full sm:w-auto px-6 py-3 bg-zinc-800 rounded-md text-white text-sm font-semibold font-clash uppercase text-center">
                 BECOME A CARRIER
               </a>
             </div>
           </div>
           
           {/* Right Image */}
-          <div className="w-full lg:w-5/12 h-[340px] md:h-[400px] lg:h-[500px] overflow-hidden rounded-2xl">
+          <div className="w-full lg:w-5/12 h-[250px] sm:h-[300px] md:h-[400px] lg:h-[500px] overflow-hidden rounded-2xl mt-6 lg:mt-0">
             <Image 
               src="/images/services/Rectangle 37-min.png" 
               alt="Freight Services" 
@@ -114,9 +114,9 @@ export default function Services() {
 
       {/* What We Offer Section */}
       <section className={styles.offerSection}>
-        <h2 className={`${styles.sectionTitle} font-clash uppercase text-4xl md:text-5xl font-medium text-center mb-16`}>What We Offer</h2>
+        <h2 className={`${styles.sectionTitle} font-clash uppercase text-3xl sm:text-4xl md:text-5xl font-medium text-center mb-10 sm:mb-16 px-4`}>What We Offer</h2>
         
-        <div className={styles.servicesWrapper}>
+        <div className={`${styles.servicesWrapper} px-4 sm:px-6`}>
           <div className={styles.topRowServices}>
             {/* Service Card 1 - Full Truckload */}
             <div className={`${styles.serviceCard} ${styles.animateCard1}`}>
@@ -227,112 +227,6 @@ export default function Services() {
           </div>
         </div>
       </section>
-      
-      {/* How We Back It Up Section */}
-      <section className="max-w-[1440px] mx-auto px-6 md:px-12 lg:px-16 py-20">
-        <h2 className="text-center font-clash uppercase text-4xl md:text-5xl font-medium mb-16">How We Back It Up</h2>
-        
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          <div className="bg-white rounded-lg shadow-md p-6 flex flex-col items-center text-center hover:shadow-lg transition-shadow">
-            <div className="text-primary-blue mb-4">
-              <RadicalOwnershipIcon />
-            </div>
-            <p className="text-gray-700 font-medium font-satoshi">Real-time tracking & alerts.</p>
-          </div>
-          
-          <div className="bg-white rounded-lg shadow-md p-6 flex flex-col items-center text-center hover:shadow-lg transition-shadow">
-            <div className="text-primary-blue mb-4">
-              <HumanSupportIcon />
-            </div>
-            <p className="text-gray-700 font-medium font-satoshi">24/7 access to a responsive team.</p>
-          </div>
-          
-          <div className="bg-white rounded-lg shadow-md p-6 flex flex-col items-center text-center hover:shadow-lg transition-shadow">
-            <div className="text-primary-blue mb-4">
-              <CarrierFirstIcon />
-            </div>
-            <p className="text-gray-700 font-medium font-satoshi">Vetted carriers with strict compliance checks.</p>
-          </div>
-          
-          <div className="bg-white rounded-lg shadow-md p-6 flex flex-col items-center text-center hover:shadow-lg transition-shadow">
-            <div className="text-primary-blue mb-4">
-              <ZeroGhostingIcon />
-            </div>
-            <p className="text-gray-700 font-medium font-satoshi">Proud members of TIA and BBB.</p>
-          </div>
-        </div>
-      </section>
-      
-      {/* Footer */}
-      <div className={styles.footer}>
-        <div className={styles.footerContent}>
-          <Image 
-            src="/images/dadson-footer.png" 
-            alt="Footer Background" 
-            width={1689} 
-            height={1185} 
-            className={styles.footerVector} 
-          />
-          
-          <div className={styles.footerOverlay} />
-          
-          <div className={styles.footerButtons}>
-            <div className={styles.primaryButton}>
-              <div className={styles.buttonText}>Schedule A 15 Min Call</div>
-            </div>
-            <div className={styles.secondaryButton}>
-              <div className={styles.buttonText}>Request A Quote</div>
-            </div>
-          </div>
-          
-          <div className={styles.footerInfoSection}>
-            <div className={styles.iconTextGroup}>
-              <Image 
-                src="/subtract.svg" 
-                alt="Icon" 
-                width={20} 
-                height={20} 
-              />
-              <div className={styles.contactText}>Contact us</div>
-            </div>
-            <div className={styles.quoteText}>
-              <span>Your next shipment deserves a partner. </span>
-              <span className={styles.quoteHighlight}>not a vendor.</span>
-            </div>
-          </div>
-          
-          <div className={styles.footerLinks}>
-            <div className={styles.contactInfo}>
-              <div className={styles.contactLabel}>Contact us at</div>
-              <div className={styles.emailContainer}>
-                <div className={styles.emailText}>support@dadson.us</div>
-                <Image 
-                  src="/subtract.svg" 
-                  alt="Email Icon" 
-                  width={24} 
-                  height={24} 
-                />
-              </div>
-            </div>
-            
-            <div className={styles.navLinks}>
-              <div className={styles.navLink}>Services</div>
-              <div className={styles.navLink}>Shippers</div>
-              <div className={styles.navLink}>Carriers</div>
-              <div className={styles.navLink}>Contact</div>
-              <div className={styles.navLink}>Careers</div>
-            </div>
-          </div>
-          
-          <div className={styles.copyright}>
-            2024 Dadson Logistics. All rights reserved.
-          </div>
-          
-          <div className={styles.socialLinks}>
-            <div className={styles.socialLink}>Linkedin</div>
-          </div>
-        </div>
-      </div>
     </div>
   );
 }
