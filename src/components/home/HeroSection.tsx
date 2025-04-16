@@ -14,7 +14,10 @@ const HeroSection = () => {
             fill
             priority
             quality={90}
-            className="object-cover"
+            className="object-cover object-[center_5%] xs:object-[center_8%] sm:object-[center_10%] md:object-[center_15%] lg:object-center"
+            style={{
+              objectPosition: 'center 5%'
+            }}
           />
           {/* Dark overlay for better readability */}
           <div className="absolute inset-0 bg-black opacity-30"></div>
