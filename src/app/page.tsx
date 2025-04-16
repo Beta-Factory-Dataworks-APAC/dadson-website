@@ -28,7 +28,7 @@ export default function HomePage() {
       
       {/* Mobile content - only visible on xs and sm screens */}
       <div className="block md:hidden">
-        <div className="mt-10">
+        <div className="mt-0">
           <HomeMobileBanner />
         </div>
       </div>
