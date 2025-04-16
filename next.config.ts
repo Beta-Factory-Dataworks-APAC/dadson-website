@@ -26,17 +26,17 @@ const nextConfig: NextConfig = {
       }
     ],
   },
-  async rewrites() {
-    return {
-      beforeFiles: [
-        // When deployed to Vercel, handle PayloadCMS routes through API
-        {
-          source: '/admin/:path*',
-          destination: '/api/payload/admin/:path*',
-        },
-      ],
-    };
-  },
+  // async rewrites() { // Removing Payload CMS related rewrites
+  //   return {
+  //     beforeFiles: [
+  //       // When deployed to Vercel, handle PayloadCMS routes through API
+  //       {
+  //         source: '/admin/:path*',
+  //         destination: '/api/payload/admin/:path*',
+  //       },
+  //     ],
+  //   };
+  // },
 };
 
 export default nextConfig;
