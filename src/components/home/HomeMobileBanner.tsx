@@ -40,11 +40,11 @@ const HomeMobileBanner = () => {
   };
 
   return (
-    <div className="pt-[10px]">
+    <div className="pt-[8px]">
       {/* Three Images Section - Mobile Optimized */}
-      <section className="pb-12 pt-6 bg-white px-6 sm:px-8">
+      <section className="pb-10 pt-5 bg-white px-5 sm:px-8">
         {/* Section Title */}
-        <div className="text-center mb-8">
+        <div className="text-center mb-6">
           <h2 className="text-xl sm:text-2xl font-medium font-clash text-gray-900">
             FREIGHT SOLUTIONS
           </h2>
@@ -53,7 +53,7 @@ const HomeMobileBanner = () => {
         
         {/* Interactive image cards with animations */}
         <motion.div 
-          className="flex flex-col space-y-8"
+          className="flex flex-col space-y-6"
           variants={container}
           initial="hidden"
           whileInView="show"
@@ -122,9 +122,9 @@ const HomeMobileBanner = () => {
       </section>
 
       {/* No Bots Banner - Mobile Optimized */}
-      <div className="bg-white w-full overflow-hidden mt-8 sm:mt-10">
+      <div className="bg-white w-full overflow-hidden mt-6 sm:mt-10">
         {/* Improved Scrolling Text Banner */}
-        <div className="relative overflow-hidden py-4 bg-gray-50">
+        <div className="relative overflow-hidden py-3 bg-gray-50">
           <div className="whitespace-nowrap animate-marquee-slower inline-block">
             <div className="inline-flex items-center text-[18px] sm:text-[22px] font-bold tracking-tight leading-none font-clash">
               <span className="text-[#1A1A1A]">NO BOTS.&nbsp;</span>
@@ -138,9 +138,9 @@ const HomeMobileBanner = () => {
         </div>
 
         {/* Content Section with Truck and Benefits */}
-        <div className="px-6 sm:px-8 relative pb-12 pt-5">
+        <div className="px-5 sm:px-8 relative pb-10 pt-5">
           {/* Enhanced Truck Animation for Mobile */}
-          <div className="relative w-full h-[170px] mb-6">
+          <div className="relative w-full h-[170px] mb-5">
             <TruckAnimation
               src="/truck.png"
               alt="Dadson Logistics Truck"
@@ -153,9 +153,9 @@ const HomeMobileBanner = () => {
           </div>
 
           {/* Title and Description - improved for mobile */}
-          <div className="mb-6">
+          <div className="mb-5">
             <motion.h2 
-              className="text-2xl sm:text-3xl font-semibold mb-3 uppercase font-clash tracking-tight leading-tight"
+              className="text-2xl sm:text-3xl font-semibold mb-2 uppercase font-clash tracking-tight leading-tight"
               initial={{ opacity: 0, y: 10 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
@@ -187,7 +187,7 @@ const HomeMobileBanner = () => {
 
           {/* CTA Buttons */}
           <motion.div
-            className="flex flex-col sm:flex-row gap-3 mb-8"
+            className="flex flex-col sm:flex-row gap-2 mb-7"
             initial={{ opacity: 0, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.4 }}
@@ -209,7 +209,7 @@ const HomeMobileBanner = () => {
 
           {/* Benefits - Enhanced Card-like presentation for mobile */}
           <motion.div 
-            className="flex flex-col gap-3 sm:gap-4 font-satoshi"
+            className="flex flex-col gap-2 sm:gap-4 font-satoshi"
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             transition={{ duration: 0.5, delay: 0.5 }}
