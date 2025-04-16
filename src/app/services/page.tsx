@@ -88,9 +88,9 @@ export default function Services() {
         <div className="w-full max-w-1440 mx-auto px-4 sm:px-6 md:px-12 lg:px-16">
           <div className={`${styles.servicesWrapper} px-0`}>
             {/* Service Banner Content */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
-              {/* Text Content - Takes up full width on small screens, 2 cols on md screens */}
-              <div className="col-span-1 md:col-span-2 flex flex-col justify-start items-start">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
+              {/* Text Content - Takes up full width on small screens, 1 col on md screens */}
+              <div className="col-span-1 flex flex-col justify-start items-start">
                 <div className="flex flex-col justify-start items-start gap-2 mb-3 pt-4 md:pt-6">
                   <div className="flex items-center gap-2">
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-5 h-5 md:w-6 md:h-6">
