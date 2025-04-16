@@ -213,7 +213,8 @@ const ContactForm = () => {
           
           <button
             type="submit"
-            className="w-full bg-[rgba(0,180,225,0.9)] text-white font-satoshi font-semibold text-[16px] md:text-[18px] leading-[1.78] py-3 md:py-[12px] rounded-[4px] md:rounded-[6px] transition-colors hover:opacity-90 shadow-[0px_4px_34px_0px_rgba(0,180,225,0.15)]"
+            disabled={true}
+            className="w-full bg-[rgba(0,180,225,0.5)] text-white font-satoshi font-semibold text-[16px] md:text-[18px] leading-[1.78] py-3 md:py-[12px] rounded-[4px] md:rounded-[6px] transition-colors cursor-not-allowed shadow-[0px_4px_34px_0px_rgba(0,180,225,0.10)]"
           >
             Submit
           </button>

@@ -38,13 +38,13 @@ const HeroSection = () => {
           <div className="flex flex-col sm:flex-row justify-center gap-5 sm:gap-4 mb-[25px] sm:mb-[30px] md:mb-[40px] w-full max-w-[95%] sm:max-w-[600px] mx-auto">
             <Link 
               href="/quote" 
-              className="w-full sm:w-[216px] h-[50px] sm:h-[52px] md:h-[60px] flex justify-center items-center py-3 md:py-4 px-5 md:px-7 rounded-[5px] md:rounded-[6px] bg-[rgba(0,180,225,0.9)] hover:bg-[rgba(0,180,225,1)] text-white font-clash font-semibold text-[16px] sm:text-[17px] md:text-[18px] leading-[32px] shadow-[0px_4px_34px_rgba(0,180,225,0.15)] shadow-[inset_0px_-5px_12px_0px_rgba(255,255,255,0.15)] backdrop-blur-[22px] transition-colors duration-300"
+              className="w-full sm:w-[280px] h-[50px] sm:h-[52px] md:h-[60px] flex justify-center items-center py-3 md:py-4 px-5 md:px-7 rounded-[5px] md:rounded-[6px] bg-[rgba(0,180,225,0.9)] hover:bg-[rgba(0,180,225,1)] text-white font-clash font-semibold text-[16px] sm:text-[17px] md:text-[18px] leading-[32px] shadow-[0px_4px_34px_rgba(0,180,225,0.15)] shadow-[inset_0px_-5px_12px_0px_rgba(255,255,255,0.15)] backdrop-blur-[22px] transition-colors duration-300"
             >
               GET A QUOTE
             </Link>
             <Link 
               href="/carriers" 
-              className="w-full sm:w-[216px] h-[50px] sm:h-[52px] md:h-[60px] flex justify-center items-center py-3 md:py-4 px-5 md:px-7 rounded-[5px] md:rounded-[6px] bg-white/10 hover:bg-white/15 text-white font-clash font-semibold text-[16px] sm:text-[17px] md:text-[18px] leading-[32px] outline outline-1 outline-stone-50/10 backdrop-blur-[22px] transition-colors duration-300 mt-3 sm:mt-0"
+              className="w-full sm:w-[280px] h-[50px] sm:h-[52px] md:h-[60px] flex justify-center items-center py-3 md:py-4 px-5 md:px-7 rounded-[5px] md:rounded-[6px] bg-white/10 hover:bg-white/15 text-white font-clash font-semibold text-[16px] sm:text-[17px] md:text-[18px] leading-[32px] outline outline-1 outline-stone-50/10 backdrop-blur-[22px] transition-colors duration-300 mt-3 sm:mt-0"
             >
               BECOME A CARRIER
             </Link>

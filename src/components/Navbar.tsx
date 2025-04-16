@@ -198,20 +198,27 @@ const Navbar = () => {
           }`}
         >
           <div className="container mx-auto px-4">
-            <div className="flex flex-col space-y-2">
+            <div className="flex flex-col space-y-4">
               {navItems.map((item, index) => (
                 <Link 
                   key={item.href}
                   href={item.href} 
-                  className={`font-satoshi font-medium text-[16px] tracking-wide py-3 px-4 rounded-md uppercase transition-all ${
+                  className={`font-satoshi font-medium text-[18px] tracking-wide py-4 px-4 rounded-md flex justify-center items-center uppercase transition-all ${
                     isActive(item.href) 
                       ? isAboutPage
-                        ? "text-[#00B4E1] font-semibold bg-gray-50 border-l-2 border-[#00B4E1] pl-5"
-                        : "text-white font-semibold bg-white/5 border-l-2 border-[#00B4E1] pl-5" 
+                        ? "text-[#00B4E1] font-semibold bg-gray-50"
+                        : "text-white font-semibold bg-white/10" 
                       : isAboutPage
                         ? "text-[#101B21] hover:text-[#00B4E1] hover:bg-gray-50"
-                        : "text-white/80 hover:text-white hover:bg-white/5"
-                  } ${index === navItems.length - 1 ? `mt-2 border-t pt-4 ${isAboutPage ? "border-gray-200 text-white bg-[#00B4E1] hover:bg-[#00B4E1]/90" : "border-white/10 text-[#101B21] bg-white hover:bg-white/90"}` : ""}`}
+                        : "text-white/90 hover:text-white hover:bg-white/10"
+                  } ${index === navItems.length - 1 
+                      ? `mt-4 ${
+                         isAboutPage 
+                           ? "text-white bg-[#00B4E1] hover:bg-[#00B4E1]/90 shadow-sm" 
+                           : "text-[#101B21] bg-white hover:bg-white/90 shadow-sm"
+                       }` 
+                      : ""
+                    }`}
                   onClick={() => setMobileMenuOpen(false)}
                   aria-current={isActive(item.href) ? "page" : undefined}
                 >
