@@ -20,7 +20,7 @@ const NoBotsBanner = () => {
           <div className="inline-flex items-center text-[20px] sm:text-[28px] md:text-[60px] lg:text-[80px] font-bold tracking-tight leading-none font-clash">
             <span className="text-[#1A1A1A]">NO BOTS.&nbsp;</span>
             <span className="text-[#A0A0A0]">NO GUESSWORK.&nbsp;</span>
-            <span className="text-[#1A1A1A]">JUST FREIGHT DONE RIGHT&nbsp;&nbsp;&nbsp;&nbsp;</span>
+            <span className="text-[#1A1A1A]">JUST FREIGHT DONE RIGHT.&nbsp;&nbsp;&nbsp;&nbsp;</span>
             <span className="text-[#1A1A1A]">NO BOTS.&nbsp;</span>
             <span className="text-[#A0A0A0]">NO GUESSWORK.&nbsp;</span>
             <span className="text-[#1A1A1A]">JUST FREIGHT DONE RIGHT&nbsp;&nbsp;&nbsp;&nbsp;</span>

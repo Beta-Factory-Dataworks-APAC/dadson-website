@@ -97,10 +97,10 @@ const HomeMobileBanner = () => {
             <div className="inline-flex items-center text-[18px] sm:text-[22px] font-bold tracking-tight leading-none font-clash">
               <span className="text-[#1A1A1A]">NO BOTS.&nbsp;</span>
               <span className="text-[#A0A0A0]">NO GUESSWORK.&nbsp;</span>
-              <span className="text-[#1A1A1A]">FREIGHT DONE RIGHT&nbsp;&nbsp;&nbsp;</span>
+              <span className="text-[#1A1A1A]">JUST FREIGHT DONE RIGHT&nbsp;&nbsp;&nbsp;</span>
               <span className="text-[#1A1A1A]">NO BOTS.&nbsp;</span>
               <span className="text-[#A0A0A0]">NO GUESSWORK.&nbsp;</span>
-              <span className="text-[#1A1A1A]">FREIGHT DONE RIGHT&nbsp;&nbsp;&nbsp;</span>
+              <span className="text-[#1A1A1A]">JUST FREIGHT DONE RIGHT&nbsp;&nbsp;&nbsp;</span>
             </div>
           </div>
         </div>

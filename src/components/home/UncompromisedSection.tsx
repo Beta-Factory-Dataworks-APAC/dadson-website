@@ -29,7 +29,7 @@ const UncompromisedSection = () => {
         {/* Right column - Freight Brokerage and Paragraph */}
         <div className="w-full md:w-[60%] flex flex-col justify-center mt-4 sm:mt-6 md:mt-0">
           <div className="self-stretch text-slate-800 text-[24px] sm:text-[28px] md:text-[32px] font-satoshi font-medium leading-tight sm:leading-tight md:leading-tight mb-4 sm:mb-5 md:mb-6">
-            Freight Brokerage Done Right
+            Freight Brokerage Done Right.
           </div>
           <div className="self-stretch text-gray-500 text-[15px] sm:text-[16px] md:text-lg font-satoshi font-medium leading-relaxed sm:leading-relaxed">
             We connect shippers with dependable capacity—and carriers with the loads they want to haul. From truckload and drayage to LTL and warehousing coordination, we handle logistics with the urgency and discipline it deserves.
