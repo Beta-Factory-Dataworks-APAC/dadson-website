@@ -13,7 +13,7 @@ export default function HomePage() {
   return (
     <main className="min-h-screen w-full">
       {/* Hero section with its own margin container */}
-      <section id="hero" data-index="1" className="min-h-screen">
+      <section id="hero" data-index="1" className="">
         <div className="mx-[10px] md:mx-[20px]">
           <HeroSection />
         </div>
