@@ -18,7 +18,7 @@ const ThreeImageSection = () => {
           </div>
           
           {/* First Image - Mobile Vertical */}
-          <div className="relative w-full h-[220px] sm:h-[240px] rounded-[24px] overflow-hidden shadow-md transform transition-transform duration-300 hover:scale-[1.02]">
+          <div className="relative w-full h-[220px] sm:h-[240px] rounded-[24px] overflow-hidden shadow-md">
             <Image 
               src="/images/home/home1.png" 
               alt="Shipping containers stacked at port" 
@@ -35,9 +35,9 @@ const ThreeImageSection = () => {
           </div>
           
           {/* Second Image - Mobile Vertical */}
-          <div className="relative w-full h-[220px] sm:h-[240px] rounded-[24px] overflow-hidden shadow-md transform transition-transform duration-300 hover:scale-[1.02]">
+          <div className="relative w-full h-[220px] sm:h-[240px] rounded-[24px] overflow-hidden shadow-md">
             <Image 
-              src="/images/home/home2.png" 
+              src="/images/home/zetong-li-mVqTumQH-c0-unsplash.jpg" 
               alt="Freight train traveling through snowy mountains" 
               fill
               sizes="100vw"
@@ -52,7 +52,7 @@ const ThreeImageSection = () => {
           </div>
           
           {/* Third Image - Mobile Vertical */}
-          <div className="relative w-full h-[220px] sm:h-[240px] rounded-[24px] overflow-hidden shadow-md transform transition-transform duration-300 hover:scale-[1.02]">
+          <div className="relative w-full h-[220px] sm:h-[240px] rounded-[24px] overflow-hidden shadow-md">
             <Image 
               src="/images/home/home3.png" 
               alt="Cargo being loaded onto aircraft" 
@@ -70,7 +70,7 @@ const ThreeImageSection = () => {
         </div>
 
         {/* Desktop/tablet continuous curved container */}
-        <div className="relative w-full overflow-hidden transition-transform duration-300 hover:scale-[1.01]">
+        <div className="relative w-full overflow-hidden">
           {/* Grid container for images with slight gap */}
           <div className="grid grid-cols-3 gap-1">
             {/* First Image - Desktop - Using consistent aspect ratio */}
@@ -100,7 +100,7 @@ const ThreeImageSection = () => {
               }}
             >
               <Image 
-                src="/images/home/home2.png" 
+                src="/images/home/zetong-li-mVqTumQH-c0-unsplash.jpg" 
                 alt="Freight train traveling through snowy mountains" 
                 fill
                 sizes="33vw"

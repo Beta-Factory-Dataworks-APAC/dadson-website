@@ -1,3 +1,5 @@
+'use client';
+
 import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
@@ -41,11 +43,6 @@ const ProblemSolverIcon = () => (
     <path d="M28.8333 9.91667H25.7856C25.0808 9.91667 24.5833 9.2048 24.5833 8.5C24.5833 6.15279 22.6805 4.25 20.3333 4.25C17.9861 4.25 16.0833 6.15279 16.0833 8.5C16.0833 9.2048 15.5859 9.91667 14.8811 9.91667H11.8333C11.0509 9.91667 10.4167 10.5509 10.4167 11.3333V14.3811C10.4167 15.0859 9.7048 15.5833 9 15.5833C6.65279 15.5833 4.75 17.4861 4.75 19.8333C4.75 22.1805 6.65279 24.0833 9 24.0833C9.7048 24.0833 10.4167 24.5808 10.4167 25.2856V28.3333C10.4167 29.1157 11.0509 29.75 11.8333 29.75L28.8333 29.75C29.6157 29.75 30.25 29.1157 30.25 28.3333V25.2856C30.25 24.5808 29.5381 24.0833 28.8333 24.0833C26.4861 24.0833 24.5833 22.1805 24.5833 19.8333C24.5833 17.4861 26.4861 15.5833 28.8333 15.5833C29.5381 15.5833 30.25 15.0859 30.25 14.3811L30.25 11.3333C30.25 10.5509 29.6157 9.91667 28.8333 9.91667Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
   </svg>
 );
-
-export const metadata = {
-  title: 'About Us - Dadson Logistics',
-  description: 'Learn about Dadson Logistics, our mission, values, and why we\'re the trusted partner in freight forwarding.',
-};
 
 const AboutPage = () => {
   return (

@@ -155,10 +155,7 @@ const Footer = () => {
             
             {/* CTA Buttons */}
             <div className="mt-6 md:mt-8 lg:mt-12 flex flex-col sm:flex-row gap-3 md:gap-4 w-full sm:w-auto">
-              <Link href="/contact" className="px-4 md:px-6 py-3 bg-[#00B4E1] hover:bg-[#00a0cc] text-white font-medium rounded transition-colors duration-300 text-center min-w-[180px]">
-                Schedule A 15 Min Call
-              </Link>
-              <Link href="/quote" className="px-4 md:px-6 py-3 bg-[#2a2a2a] hover:bg-[#3a3a3a] text-white font-medium rounded border border-gray-700 transition-colors duration-300 text-center min-w-[180px]">
+              <Link href="/quote" className="px-4 md:px-6 py-3 bg-[#00B4E1] hover:bg-[#00a0cc] text-white font-medium rounded transition-colors duration-300 text-center min-w-[180px]">
                 Request A Quote
               </Link>
             </div>
@@ -186,23 +183,13 @@ const Footer = () => {
                   </Link>
                 </li>
                 <li className="w-[calc(50%-8px)] md:w-auto">
-                  <Link href="/shippers" className="text-white hover:text-[#00B4E1] transition-colors duration-300 block py-2 md:py-0">
-                    Shippers
-                  </Link>
-                </li>
-                <li className="w-[calc(50%-8px)] md:w-auto">
-                  <Link href="/carriers" className="text-white hover:text-[#00B4E1] transition-colors duration-300 block py-2 md:py-0">
-                    Carriers
+                  <Link href="/about" className="text-white hover:text-[#00B4E1] transition-colors duration-300 block py-2 md:py-0">
+                    About Us
                   </Link>
                 </li>
                 <li className="w-[calc(50%-8px)] md:w-auto">
                   <Link href="/contact" className="text-white hover:text-[#00B4E1] transition-colors duration-300 block py-2 md:py-0">
                     Contact
-                  </Link>
-                </li>
-                <li className="w-[calc(50%-8px)] md:w-auto">
-                  <Link href="/careers" className="text-white hover:text-[#00B4E1] transition-colors duration-300 block py-2 md:py-0">
-                    Careers
                   </Link>
                 </li>
               </ul>

@@ -1,9 +1,12 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
+import { Inter } from 'next/font/google';
 import "./globals.css";
 import "./fonts.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import ClientLayout from "@/components/ClientLayout";
+
+const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
   title: "Dadson Logistics - Reliable Logistics Solutions",
@@ -22,22 +25,27 @@ export const metadata: Metadata = {
     shortcut: ["/favicon.png"],
   },
   manifest: "/manifest.json",
+};
+
+export const viewport: Viewport = {
   themeColor: "#00B4E1",
 };
 
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
+}) {
   return (
-    <html lang="en">
+    <html lang="en" className="scroll-smooth">
       <body className="font-satoshi antialiased min-h-screen flex flex-col overflow-x-hidden">
-        <Navbar />
         <ClientLayout>
-          {children}
+          <Navbar />
+          <main className="flex-grow">
+            {children}
+          </main>
+          <Footer />
         </ClientLayout>
-        <Footer />
       </body>
     </html>
   );

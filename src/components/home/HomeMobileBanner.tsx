@@ -40,45 +40,48 @@ const HomeMobileBanner = () => {
   };
 
   return (
-    <div className="pt-[8px]">
+    <div className="w-full">
       {/* Three Images Section - Mobile Optimized */}
       <section className="bg-white py-6">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-4">
+        <div className="max-w-[100vw] mx-auto">
+          <div className="text-center mb-4 px-4">
             <h2 className="text-xl font-bold text-gray-900 mb-2">FREIGHT SOLUTIONS</h2>
             <p className="text-sm text-gray-600">Full-service logistics solutions</p>
           </div>
-          <div className="grid grid-cols-1 gap-6">
-            <div className="text-center">
-              <Image
-                src="/images/home/home1.png"
-                alt="Port Logistics"
-                width={300}
-                height={200}
-                className="mx-auto rounded-lg shadow-md mb-3"
-              />
+          <div className="grid grid-cols-1 gap-6 px-4">
+            <div className="text-center aspect-[3/2]">
+              <div className="relative h-full rounded-lg shadow-md mb-3 overflow-hidden">
+                <Image
+                  src="/images/home/home1.png"
+                  alt="Port Logistics"
+                  fill
+                  className="object-cover"
+                />
+              </div>
               <h3 className="text-lg font-semibold text-gray-800 mb-2">Port Logistics</h3>
               <p className="text-sm text-gray-600 px-4">Container handling & port operations</p>
             </div>
-            <div className="text-center">
-              <Image
-                src="/images/home/home2.png"
-                alt="Rail Transport"
-                width={300}
-                height={200}
-                className="mx-auto rounded-lg shadow-md mb-3"
-              />
+            <div className="text-center aspect-[3/2]">
+              <div className="relative h-full rounded-lg shadow-md mb-3 overflow-hidden">
+                <Image
+                  src="/images/home/zetong-li-mVqTumQH-c0-unsplash.jpg"
+                  alt="Rail Transport"
+                  fill
+                  className="object-cover"
+                />
+              </div>
               <h3 className="text-lg font-semibold text-gray-800 mb-2">Rail Transport</h3>
               <p className="text-sm text-gray-600 px-4">Efficient rail freight solutions</p>
             </div>
-            <div className="text-center">
-              <Image
-                src="/images/home/home3.png"
-                alt="Air Freight"
-                width={300}
-                height={200}
-                className="mx-auto rounded-lg shadow-md mb-3"
-              />
+            <div className="text-center aspect-[3/2]">
+              <div className="relative h-full rounded-lg shadow-md mb-3 overflow-hidden">
+                <Image
+                  src="/images/home/home3.png"
+                  alt="Air Freight"
+                  fill
+                  className="object-cover"
+                />
+              </div>
               <h3 className="text-lg font-semibold text-gray-800 mb-2">Air Freight</h3>
               <p className="text-sm text-gray-600 px-4">Expedited air cargo services</p>
             </div>
@@ -87,7 +90,7 @@ const HomeMobileBanner = () => {
       </section>
 
       {/* No Bots Banner - Mobile Optimized */}
-      <div className="bg-white w-full overflow-hidden mt-6 sm:mt-10">
+      <div className="bg-white overflow-hidden mt-6 sm:mt-10">
         {/* Improved Scrolling Text Banner */}
         <div className="relative overflow-hidden py-3 bg-gray-50">
           <div className="whitespace-nowrap animate-marquee-slower inline-block">
@@ -103,7 +106,7 @@ const HomeMobileBanner = () => {
         </div>
 
         {/* Content Section with Truck and Benefits */}
-        <div className="px-5 sm:px-8 relative pb-10 pt-5">
+        <div className="relative pb-10 pt-5">
           {/* Enhanced Truck Animation for Mobile */}
           <div className="relative w-full h-[170px] mb-5">
             <TruckAnimation
@@ -118,13 +121,13 @@ const HomeMobileBanner = () => {
           </div>
 
           {/* Title and Description - improved for mobile */}
-          <div className="mb-5">
+          <div className="mb-5 px-4">
             <motion.h2 
               className="text-2xl sm:text-3xl font-semibold mb-2 uppercase font-clash tracking-tight leading-tight"
               initial={{ opacity: 0, y: 10 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
-              viewport={{ once: true }}
+              viewport={{ once: false }}
             >
               WE DON'T JUST<br />
               BOOK LOADS.<br />
@@ -135,7 +138,7 @@ const HomeMobileBanner = () => {
               initial={{ opacity: 0, y: 10 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.2 }}
-              viewport={{ once: true }}
+              viewport={{ once: false }}
             >
               Certified. Vetted. Verified.
             </motion.h3>
@@ -144,7 +147,7 @@ const HomeMobileBanner = () => {
               initial={{ opacity: 0, y: 10 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.3 }}
-              viewport={{ once: true }}
+              viewport={{ once: false }}
             >
               At Dadson Logistics, every load is managed like it matters—because it does.
             </motion.p>
@@ -152,11 +155,11 @@ const HomeMobileBanner = () => {
 
           {/* CTA Buttons */}
           <motion.div
-            className="flex flex-col sm:flex-row gap-2 mb-7"
+            className="flex flex-col sm:flex-row gap-2 mb-7 w-full px-4"
             initial={{ opacity: 0, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.4 }}
-            viewport={{ once: true }}
+            viewport={{ once: false }}
           >
             <Link 
               href="/quote" 
@@ -174,11 +177,11 @@ const HomeMobileBanner = () => {
 
           {/* Benefits - Enhanced Card-like presentation for mobile */}
           <motion.div 
-            className="flex flex-col gap-2 sm:gap-4 font-satoshi"
+            className="flex flex-col gap-2 sm:gap-4 font-satoshi w-full px-4"
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             transition={{ duration: 0.5, delay: 0.5 }}
-            viewport={{ once: true }}
+            viewport={{ once: false }}
           >
             {[
               { title: "AI-Based Carrier Vetting", desc: "Smarter safety, fewer surprises" },
@@ -189,13 +192,13 @@ const HomeMobileBanner = () => {
             ].map((item, index) => (
               <motion.div 
                 key={index}
-                className="flex items-start p-4 rounded-lg border-l-4 border-[#00B4E1] bg-[#F8F9FA]"
+                className="flex items-start p-4 rounded-lg border-l-4 border-[#00B4E1] bg-[#F8F9FA] w-full"
                 initial={{ opacity: 0, x: -10 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.3, delay: 0.1 * index }}
-                viewport={{ once: true }}
+                viewport={{ once: false }}
               >
-                <div>
+                <div className="w-full">
                   <h4 className="font-medium text-base sm:text-lg">{item.title}</h4>
                   <p className="font-normal text-gray-600 text-xs sm:text-sm mt-1">{item.desc}</p>
                 </div>

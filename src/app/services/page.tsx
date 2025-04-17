@@ -135,7 +135,7 @@ export default function Services() {
   return (
     <div className={styles.servicesPage}>
       {/* Hero Section - Improved mobile padding and spacing */}
-      <section className="relative w-full bg-zinc-950 py-12 sm:py-16 md:py-24 lg:py-32 overflow-x-hidden">
+      <section id="services-hero" data-index="1" className="relative w-full bg-zinc-950 py-12 sm:py-16 md:py-24 lg:py-32 overflow-x-hidden">
         <div className="w-full max-w-1440 mx-auto px-4 sm:px-6 md:px-12 lg:px-16">
           <div className={`${styles.servicesWrapper} px-3 sm:px-6 md:px-12 lg:px-16 py-10 sm:py-12 md:py-16 lg:py-20`}>
             {/* Service Banner Content */}
@@ -171,9 +171,6 @@ export default function Services() {
                   <a href="/contact" className="w-full sm:w-52 px-5 py-2 sm:py-3 bg-cyan-500/90 hover:bg-cyan-500 rounded-md shadow-[0px_4px_34px_0px_rgba(0,180,225,0.15)] text-white text-sm sm:text-lg font-semibold font-['Clash_Display'] uppercase text-center">
                     GET A QUOTE
                   </a>
-                  <a href="#" className="w-full sm:w-auto px-5 py-2 sm:py-3 bg-white/10 rounded-md outline outline-1 outline-stone-50/10 text-white text-sm sm:text-lg font-semibold font-['Clash_Display'] uppercase text-center">
-                    BECOME A CARRIER
-                  </a>
                 </div>
               </div>
               
@@ -193,7 +190,7 @@ export default function Services() {
       </section>
 
       {/* What We Offer Section - Improved mobile experience */}
-      <section className="w-full bg-[#f7f7f7] py-12 sm:py-16 md:py-24 overflow-x-hidden">
+      <section id="services-offering" data-index="2" className="w-full bg-[#f7f7f7] py-12 sm:py-16 md:py-24 overflow-x-hidden">
         <div className="w-full max-w-[1564px] mx-auto px-4 sm:px-6 md:px-12 lg:px-16 flex flex-col items-start gap-10 sm:gap-16 md:gap-[64px]">
           <h2 className="text-[#101B21] text-[32px] xs:text-[36px] sm:text-[50px] md:text-[64px] font-medium font-['Clash_Display'] uppercase w-full">
             What We Offer
@@ -217,7 +214,7 @@ export default function Services() {
               >
                 <div className="w-full h-[446px] rounded-t-[20px] overflow-hidden">
                   <Image 
-                    src="/images/services/Rectangle 40-min.png" 
+                    src="/images/services/full-truckload-min.png" 
                     alt="Full Truckload Services" 
                     width={508} 
                     height={446}
@@ -243,7 +240,7 @@ export default function Services() {
               >
                 <div className="w-full h-[446px] rounded-t-[20px] overflow-hidden">
                   <Image 
-                    src="/images/services/Rectangle 40-1-min.png" 
+                    src="/images/services/intermodal-min.png" 
                     alt="Intermodal & Drayage Services" 
                     width={508} 
                     height={446}
@@ -268,7 +265,7 @@ export default function Services() {
               >
                 <div className="w-full h-[446px] rounded-t-[20px] overflow-hidden">
                   <Image 
-                    src="/images/services/Rectangle 40-2-min.png" 
+                    src="/images/services/lessthantruckload-min.png" 
                     alt="Less Than Truckload Services" 
                     width={508} 
                     height={446}
@@ -297,7 +294,7 @@ export default function Services() {
               >
                 <div className="w-full h-[446px] rounded-t-[20px] overflow-hidden bg-[#D9D9D9]">
                   <Image 
-                    src="/images/services/Rectangle 40-3-min.png" 
+                    src="/images/services/warehousing-min.jpeg" 
                     alt="Warehousing Services" 
                     width={508} 
                     height={446}
@@ -322,7 +319,7 @@ export default function Services() {
               >
                 <div className="w-full h-[446px] rounded-t-[20px] overflow-hidden">
                   <Image 
-                    src="/images/services/image.png" 
+                    src="/images/services/transloading-min.png" 
                     alt="Transloading Services" 
                     width={508} 
                     height={446}
@@ -360,7 +357,7 @@ export default function Services() {
                   <div className="flex flex-col rounded-[15px] overflow-hidden shadow-sm h-full">
                     <div className="h-[180px] xs:h-[220px] overflow-hidden rounded-t-[15px]">
                       <Image 
-                        src="/images/services/Rectangle 40-min.png" 
+                        src="/images/services/full-truckload-min.png" 
                         alt="Full Truckload Services" 
                         width={508} 
                         height={446}
@@ -387,7 +384,7 @@ export default function Services() {
                   <div className="flex flex-col rounded-[15px] overflow-hidden shadow-sm h-full">
                     <div className="h-[180px] xs:h-[220px] overflow-hidden rounded-t-[15px]">
                       <Image 
-                        src="/images/services/Rectangle 40-1-min.png" 
+                        src="/images/services/intermodal-min.png" 
                         alt="Intermodal & Drayage Services" 
                         width={508} 
                         height={446}
@@ -413,7 +410,7 @@ export default function Services() {
                   <div className="flex flex-col rounded-[15px] overflow-hidden shadow-sm h-full">
                     <div className="h-[180px] xs:h-[220px] overflow-hidden rounded-t-[15px]">
                       <Image 
-                        src="/images/services/Rectangle 40-2-min.png" 
+                        src="/images/services/lessthantruckload-min.png" 
                         alt="Less Than Truckload Services" 
                         width={508} 
                         height={446}
@@ -440,7 +437,7 @@ export default function Services() {
                   <div className="flex flex-col rounded-[15px] overflow-hidden shadow-sm h-full">
                     <div className="h-[180px] xs:h-[220px] overflow-hidden rounded-t-[15px] bg-[#D9D9D9]">
                       <Image 
-                        src="/images/services/Rectangle 40-3-min.png" 
+                        src="/images/services/warehousing-min.jpeg" 
                         alt="Warehousing Services" 
                         width={508} 
                         height={446}
@@ -466,7 +463,7 @@ export default function Services() {
                   <div className="flex flex-col rounded-[15px] overflow-hidden shadow-sm h-full">
                     <div className="h-[180px] xs:h-[220px] overflow-hidden rounded-t-[15px]">
                       <Image 
-                        src="/images/services/image.png" 
+                        src="/images/services/transloading-min.png" 
                         alt="Transloading Services" 
                         width={508} 
                         height={446}
@@ -495,7 +492,7 @@ export default function Services() {
       </section>
 
       {/* How We Back It Up Section - Improved mobile layout */}
-      <section className="w-full bg-[#f7f7f7] py-12 sm:py-16 md:py-24 overflow-x-hidden">
+      <section id="services-backup" data-index="3" className="w-full bg-[#f7f7f7] py-12 sm:py-16 md:py-24 overflow-x-hidden">
         <div className="w-full max-w-[1564px] mx-auto px-4 sm:px-6 md:px-12 lg:px-16 flex flex-col items-start gap-10 sm:gap-16 md:gap-[64px]">
           <h2 className="text-[#101B21] text-[32px] xs:text-[36px] sm:text-[50px] md:text-[64px] font-medium font-['Clash_Display'] uppercase w-full">
             HOW WE BACK IT UP

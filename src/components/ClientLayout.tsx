@@ -9,7 +9,7 @@ export default function ClientLayout({ children }: { children: React.ReactNode }
   const isServicesPage = pathname === '/services';
   
   return (
-    <div className={`flex-grow ${isHomePage || isServicesPage ? '' : 'pt-[92px]'}`}>
+    <div className={`w-full ${isHomePage || isServicesPage ? '' : 'pt-[92px]'}`}>
       {children}
     </div>
   );
