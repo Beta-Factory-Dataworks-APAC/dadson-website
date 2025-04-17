@@ -27,6 +27,10 @@ const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string, se
 
 const Navbar = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [isVisible, setIsVisible] = useState(true);
+  const [lastScrollY, setLastScrollY] = useState(0);
+  const [lastActivityTime, setLastActivityTime] = useState(Date.now());
   const pathname = usePathname();
   
   // Close mobile menu when route changes
@@ -45,6 +49,58 @@ const Navbar = () => {
       document.body.style.overflow = '';
     };
   }, [mobileMenuOpen]);
+
+  // Handle scroll and activity tracking
+  useEffect(() => {
+    let timeoutId: NodeJS.Timeout;
+    
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+      const bannerHeight = pathname === '/' ? 580 : 400; // Adjust based on banner heights
+      
+      // Update scroll direction and visibility
+      if (currentScrollY > lastScrollY) {
+        setIsVisible(false); // Scrolling down
+      } else {
+        setIsVisible(true); // Scrolling up
+      }
+      
+      // Update scrolled state based on banner height
+      setIsScrolled(currentScrollY > bannerHeight);
+      setLastScrollY(currentScrollY);
+      
+      // Reset activity timer
+      setLastActivityTime(Date.now());
+    };
+
+    const handleActivity = () => {
+      setIsVisible(true);
+      setLastActivityTime(Date.now());
+    };
+
+    const checkInactivity = () => {
+      const inactiveTime = Date.now() - lastActivityTime;
+      if (inactiveTime > 3000) { // 3 seconds of inactivity
+        setIsVisible(false);
+      }
+      timeoutId = setTimeout(checkInactivity, 1000);
+    };
+
+    // Add event listeners
+    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('mousemove', handleActivity);
+    window.addEventListener('click', handleActivity);
+    window.addEventListener('keypress', handleActivity);
+    timeoutId = setTimeout(checkInactivity, 1000);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('mousemove', handleActivity);
+      window.removeEventListener('click', handleActivity);
+      window.removeEventListener('keypress', handleActivity);
+      clearTimeout(timeoutId);
+    };
+  }, [lastScrollY, lastActivityTime, pathname]);
   
   // Function to determine if a navigation item should be highlighted
   const isActive = (path: string): boolean => {
@@ -82,21 +138,22 @@ const Navbar = () => {
   const aboutPageActiveContactButtonClasses = "bg-[#00B4E1] text-white"; // Cyan button with white text
   const aboutPageInactiveContactButtonClasses = "bg-[#00B4E1] text-white hover:bg-[#00B4E1]/90"; // Cyan button with white text
 
-  // Determine if we're on the about page
-  const isAboutPage = pathname === '/about' || pathname === '/contact';
+  // Determine if we're on the about page or if we've scrolled past banner
+  const shouldUseAboutStyles = isScrolled || pathname === '/about' || pathname === '/contact';
 
   return (
     <nav 
-      className={`fixed top-0 left-0 right-0 z-[100] ${
-        pathname === '/' ? 'pt-[10px] md:pt-[40px] bg-transparent' : ''} ${
-        isAboutPage ? 'bg-white py-3 shadow-sm' : 'bg-transparent py-2 md:py-4'
+      className={`fixed top-0 left-0 right-0 z-[100] transition-all duration-300 ${
+        !isVisible ? '-translate-y-full' : 'translate-y-0'} ${
+        pathname === '/' ? 'pt-[10px] md:pt-[40px]' : ''} ${
+        shouldUseAboutStyles ? 'bg-white py-3 shadow-sm' : 'bg-transparent py-2 md:py-4'
       }`}
     >
       <div className="container mx-auto px-4 md:px-6">
         <div className="flex justify-between items-center">
           {/* Logo */}
           <Link href="/" className="flex items-center">
-            {isAboutPage ? (
+            {shouldUseAboutStyles ? (
               <svg width="80" height="70" viewBox="0 0 104 92" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" aria-label="Dadson Logo" className="w-[80px] h-[70px] md:w-[104px] md:h-[92px]">
                 <title>Dadson Logo</title>
                 <desc>Dadson company logo in blue color</desc>
@@ -122,10 +179,10 @@ const Navbar = () => {
                 <Link 
                   key={item.href}
                   href={item.href} 
-                  className={`${isAboutPage ? aboutPageLinkClasses : linkBaseClasses} ${
+                  className={`${shouldUseAboutStyles ? aboutPageLinkClasses : linkBaseClasses} ${
                     isActive(item.href) 
-                      ? isAboutPage ? aboutPageActiveLinkClasses : activeLinkClasses
-                      : isAboutPage ? aboutPageInactiveLinkClasses : inactiveLinkClasses
+                      ? shouldUseAboutStyles ? aboutPageActiveLinkClasses : activeLinkClasses
+                      : shouldUseAboutStyles ? aboutPageInactiveLinkClasses : inactiveLinkClasses
                   }`}
                   aria-current={isActive(item.href) ? "page" : undefined}
                   onClick={(e) => handleNavClick(e, item.href, item.sectionId)}
@@ -140,10 +197,10 @@ const Navbar = () => {
           <div className="hidden md:block">
             <Link 
               href={navItems[navItems.length - 1].href}
-              className={`${isAboutPage ? aboutPageContactButtonClasses : contactButtonBaseClasses} ${
+              className={`${shouldUseAboutStyles ? aboutPageContactButtonClasses : contactButtonBaseClasses} ${
                 isActive(navItems[navItems.length - 1].href)
-                  ? isAboutPage ? aboutPageActiveContactButtonClasses : activeContactButtonClasses
-                  : isAboutPage ? aboutPageInactiveContactButtonClasses : inactiveContactButtonClasses
+                  ? shouldUseAboutStyles ? aboutPageActiveContactButtonClasses : activeContactButtonClasses
+                  : shouldUseAboutStyles ? aboutPageInactiveContactButtonClasses : inactiveContactButtonClasses
               }`}
             >
               {navItems[navItems.length - 1].label}
@@ -155,7 +212,7 @@ const Navbar = () => {
             <button
               type="button"
               className={`p-2 rounded-full transition-colors duration-200 ${
-                isAboutPage 
+                shouldUseAboutStyles 
                   ? "hover:bg-gray-100 text-[#101B21]" 
                   : "bg-[#00B4E1] hover:bg-[#00B4E1]/90 text-white"
               }`}
@@ -183,7 +240,7 @@ const Navbar = () => {
         <div 
           id="mobile-menu"
           className={`md:hidden fixed top-[60px] left-0 right-0 pt-2 pb-4 z-[100] border-t shadow-lg h-[calc(100vh-60px)] overflow-y-auto ${
-            isAboutPage 
+            shouldUseAboutStyles 
               ? "bg-white border-gray-200" 
               : "bg-[#0F1923]/95 backdrop-blur-lg border-white/10"
           }`}
@@ -196,15 +253,15 @@ const Navbar = () => {
                   href={item.href} 
                   className={`font-satoshi font-medium text-[18px] tracking-wide py-3 px-4 rounded-md flex justify-center items-center uppercase transition-all ${
                     isActive(item.href) 
-                      ? isAboutPage
+                      ? shouldUseAboutStyles
                         ? "text-[#00B4E1] font-semibold bg-gray-50"
                         : "text-white font-semibold bg-white/10" 
-                      : isAboutPage
+                      : shouldUseAboutStyles
                         ? "text-[#101B21] hover:text-[#00B4E1] hover:bg-gray-50"
                         : "text-white/90 hover:text-white hover:bg-white/10"
                   } ${index === navItems.length - 1 
                       ? `mt-2 ${
-                         isAboutPage 
+                         shouldUseAboutStyles 
                            ? "text-white bg-[#00B4E1] hover:bg-[#00B4E1]/90 shadow-sm" 
                            : "text-[#101B21] bg-white hover:bg-white/90 shadow-sm"
                        }` 
