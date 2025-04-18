@@ -84,7 +84,7 @@ const Testimonial = ({ testimonials = defaultTestimonialData }: TestimonialProps
       </div>
       
       {/* Testimonials Grid */}
-      <div className="w-full mt-8 md:mt-[190px] px-5 xl:px-[20px]">
+      <div className="w-full mt-8 md:mt-[190px] px-0">
         <div className="flex flex-col md:flex-row gap-5 md:gap-[20px]">
           {/* Main Testimonial */}
           <motion.div

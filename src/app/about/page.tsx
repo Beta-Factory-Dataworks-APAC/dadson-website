@@ -6,7 +6,6 @@ import Image from 'next/image';
 
 // Client component for carousel will be imported separately
 import CarouselSection from '@/components/about/CarouselSection';
-import Testimonial from '@/components/testimonials/Testimonial';
 
 // SVG components for the Operating Model section
 const RadicalOwnershipIcon = () => (
@@ -45,27 +44,6 @@ const ProblemSolverIcon = () => (
   </svg>
 );
 
-const testimonialData = [
-  {
-    id: 1,
-    quote: "During peak season, they helped us recover a critical shipment that was about to miss delivery. With just two hours' notice, they pulled it off. That's the kind of team you want on your side.",
-    author: {
-      name: "Mike H.",
-      title: "Retail Supply Chain Director",
-      image: "https://placehold.co/64x64" // Using placeholder image
-    }
-  },
-  {
-    id: 2,
-    quote: "They understood the pressure I was under from day one. I never looked back.",
-    author: {
-      name: "Alicia M.",
-      title: "Midwest Logistics Ops Lead",
-      image: "https://placehold.co/64x64" // Using placeholder image
-    }
-  }
-];
-
 const AboutPage = () => {
   return (
     <main className="flex flex-col min-h-screen overflow-x-hidden">
@@ -101,13 +79,6 @@ const AboutPage = () => {
 
       {/* Image Carousel - Now using client component wrapper */}
       <CarouselSection />
-
-      {/* Testimonials Section */}
-      <section className="w-full py-16 bg-white">
-        <div className="container mx-auto px-4 md:px-6">
-          <Testimonial testimonials={testimonialData} />
-        </div>
-      </section>
 
       {/* Mission & Responsibility Section */}
       <section className="w-full py-8 sm:py-12 md:py-20 bg-white">
@@ -173,7 +144,7 @@ const AboutPage = () => {
               <div className="w-10 sm:w-12 md:w-16 h-10 sm:h-12 md:h-16 flex items-center justify-center mb-3 sm:mb-4 md:mb-6 text-[#101B21]">
                 <ProblemSolverIcon />
               </div>
-              <h3 className="font-clash font-semibold text-center text-[14px] sm:text-[16px] md:text-[18px] mb-2">Problem Solvers, Not Order Takers</h3>
+              <h3 className="font-clash font-semibold text-center text-[14px] sm:text-[16px] md:text-[18px] mb-2">Problem Solvers, Not excuse givers.</h3>
             </div>
           </div>
         </div>
