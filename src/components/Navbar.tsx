@@ -211,10 +211,10 @@ const Navbar = () => {
           <div className="md:hidden">
             <button
               type="button"
-              className={`p-2 rounded-full transition-colors duration-200 ${
+              className={`p-2.5 rounded-lg transition-colors duration-200 ${
                 shouldUseAboutStyles 
-                  ? "hover:bg-gray-100 text-[#101B21]" 
-                  : "bg-[#00B4E1] hover:bg-[#00B4E1]/90 text-white"
+                  ? "bg-[#00B4E1] hover:bg-[#00B4E1]/90 text-white" 
+                  : "bg-white hover:bg-white/90 text-[#101B21]"
               }`}
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               aria-label={mobileMenuOpen ? 'Close menu' : 'Open menu'}
@@ -222,12 +222,12 @@ const Navbar = () => {
               aria-controls="mobile-menu"
             >
               {mobileMenuOpen ? (
-                <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5} aria-hidden="true">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
                 </svg>
               ) : (
-                <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+                <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5} aria-hidden="true">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16" />
                 </svg>
               )}
             </button>
@@ -239,31 +239,31 @@ const Navbar = () => {
       {mobileMenuOpen && (
         <div 
           id="mobile-menu"
-          className={`md:hidden fixed top-[60px] left-0 right-0 pt-2 pb-4 z-[100] border-t shadow-lg h-[calc(100vh-60px)] overflow-y-auto ${
+          className={`md:hidden fixed top-[72px] left-0 right-0 pt-4 pb-6 z-[100] border-t shadow-lg h-[calc(100vh-72px)] overflow-y-auto ${
             shouldUseAboutStyles 
               ? "bg-white border-gray-200" 
-              : "bg-[#0F1923]/95 backdrop-blur-lg border-white/10"
+              : "bg-[#101B21] backdrop-blur-sm border-white/10"
           }`}
         >
           <div className="container mx-auto px-4">
-            <div className="flex flex-col space-y-2">
+            <div className="flex flex-col space-y-3">
               {navItems.map((item, index) => (
                 <Link 
                   key={item.href}
                   href={item.href} 
-                  className={`font-satoshi font-medium text-[18px] tracking-wide py-3 px-4 rounded-md flex justify-center items-center uppercase transition-all ${
+                  className={`font-satoshi font-medium text-[18px] tracking-wide py-4 px-5 rounded-lg flex justify-center items-center uppercase transition-all ${
                     isActive(item.href) 
                       ? shouldUseAboutStyles
-                        ? "text-[#00B4E1] font-semibold bg-gray-50"
-                        : "text-white font-semibold bg-white/10" 
+                        ? "text-white bg-[#00B4E1] font-semibold"
+                        : "text-[#00B4E1] font-semibold bg-white/10" 
                       : shouldUseAboutStyles
                         ? "text-[#101B21] hover:text-[#00B4E1] hover:bg-gray-50"
-                        : "text-white/90 hover:text-white hover:bg-white/10"
+                        : "text-white hover:text-[#00B4E1] hover:bg-white/5"
                   } ${index === navItems.length - 1 
-                      ? `mt-2 ${
+                      ? `mt-4 ${
                          shouldUseAboutStyles 
-                           ? "text-white bg-[#00B4E1] hover:bg-[#00B4E1]/90 shadow-sm" 
-                           : "text-[#101B21] bg-white hover:bg-white/90 shadow-sm"
+                           ? "text-white bg-[#00B4E1] hover:bg-[#00B4E1]/90" 
+                           : "text-[#101B21] bg-white hover:bg-white/90"
                        }` 
                       : ""
                     }`}
