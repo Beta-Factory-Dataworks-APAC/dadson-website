@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 
 // Arrow component for the cards
 const ArrowIcon = () => (
@@ -19,7 +19,9 @@ const ServiceCard = ({
   offset, 
   zIndex,
   onHover,
-  onLeave
+  onLeave,
+  animationDelay = 0,
+  isVisible = false
 }: { 
   title: string; 
   image: string; 
@@ -28,6 +30,8 @@ const ServiceCard = ({
   zIndex: number;
   onHover?: (title: string) => void;
   onLeave?: () => void;
+  animationDelay?: number;
+  isVisible?: boolean;
 }) => {
   const [isHovered, setIsHovered] = useState(false);
   const [imgError, setImgError] = useState(false);
@@ -72,10 +76,13 @@ const ServiceCard = ({
   
   return (
     <div 
-      className={`relative w-[280px] h-[500px] rounded-2xl overflow-hidden shadow-2xl ${rotateClass} transition-all duration-500 ${isHovered ? `${hoverRotateClass} scale-105` : ''} ${offset}`}
+      className={`relative w-[280px] h-[500px] rounded-2xl overflow-hidden shadow-2xl ${rotateClass} transition-all duration-500 
+      ${isHovered ? `${hoverRotateClass} scale-105` : ''} ${offset} 
+      ${isVisible ? 'animate-card-in' : 'opacity-0 translate-y-12'}`}
       style={{
         transformStyle: 'preserve-3d',
         zIndex: zIndex,
+        animationDelay: `${animationDelay}ms`,
       }}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
@@ -121,13 +128,17 @@ const MobileServiceCard = ({
   image, 
   rotation,
   onHover,
-  onLeave
+  onLeave,
+  animationDelay = 0,
+  isVisible = false
 }: { 
   title: string; 
   image: string; 
   rotation: 'left' | 'right' | 'none';
   onHover?: (title: string) => void;
   onLeave?: () => void;
+  animationDelay?: number;
+  isVisible?: boolean;
 }) => {
   const [isActive, setIsActive] = useState(false);
   const [imgError, setImgError] = useState(false);
@@ -160,7 +171,10 @@ const MobileServiceCard = ({
   
   return (
     <div 
-      className={`relative w-full max-w-xs h-[380px] rounded-xl overflow-hidden shadow-lg ${rotateClass} transition-all duration-500 ${isActive ? 'scale-[1.02]' : ''} mb-10`}
+      className={`relative w-full max-w-xs h-[380px] rounded-xl overflow-hidden shadow-lg ${rotateClass} transition-all duration-500 
+      ${isActive ? 'scale-[1.02]' : ''} mb-10 
+      ${isVisible ? 'animate-card-in' : 'opacity-0 translate-y-12'}`}
+      style={{ animationDelay: `${animationDelay}ms` }}
       onTouchStart={handleTouch}
       onTouchEnd={handleTouchEnd}
       onMouseEnter={handleMouseEnter}
@@ -199,17 +213,57 @@ const MobileServiceCard = ({
   );
 };
 
+// Text background component with industry terms
+const TextBackground = () => {
+  const terms = [
+    'LOGISTICS', 'SHIPPING', 'TRANSPORT', 'DELIVERY', 'FREIGHT', 
+    'CARRIERS', 'TRUCKING', 'SUPPLY CHAIN', 'DISTRIBUTION', 'DRAYAGE',
+    'INTERMODAL', 'TRUCKLOAD', 'EXPRESS', 'FLEET', 'DISPATCH'
+  ];
+  
+  return (
+    <div className="absolute inset-0 overflow-hidden select-none pointer-events-none opacity-[0.03] z-0">
+      <div className="flex flex-wrap">
+        {Array.from({ length: 100 }).map((_, i) => (
+          <div 
+            key={i} 
+            className="text-black font-clash font-bold text-4xl md:text-6xl transform rotate-[20deg] whitespace-nowrap m-8"
+          >
+            {terms[i % terms.length]}
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+};
+
 const CoreServices = () => {
-  const [animateCards, setAnimateCards] = useState(false);
+  const [sectionVisible, setSectionVisible] = useState(false);
   const [hoveredCard, setHoveredCard] = useState<string | null>(null);
+  const sectionRef = useRef<HTMLElement>(null);
   
   useEffect(() => {
-    // Trigger animation after component mounts
-    const timer = setTimeout(() => {
-      setAnimateCards(true);
-    }, 300);
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setSectionVisible(true);
+          observer.disconnect();
+        }
+      },
+      {
+        root: null,
+        rootMargin: '0px',
+        threshold: 0.1,
+      }
+    );
     
-    return () => clearTimeout(timer);
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+    
+    return () => {
+      observer.disconnect();
+    };
   }, []);
   
   // Using the exact paths that match the design
@@ -259,7 +313,10 @@ const CoreServices = () => {
   };
   
   return (
-    <section className="w-full py-24 md:py-36 bg-white relative overflow-hidden">
+    <section ref={sectionRef} className="w-full py-24 md:py-36 bg-white relative overflow-hidden">
+      {/* Text-based background */}
+      <TextBackground />
+      
       {/* Dynamic background that changes based on hovered card */}
       <div 
         className="absolute inset-0 transition-all duration-700 ease-in-out"
@@ -277,10 +334,10 @@ const CoreServices = () => {
       <div className="max-w-7xl mx-auto px-4 relative z-10">
         {/* Title Section */}
         <div className="text-center mb-8">
-          <h2 className="text-4xl md:text-5xl font-medium uppercase text-gray-900 mb-4 font-clash">
+          <h2 className={`text-4xl md:text-5xl font-medium uppercase text-gray-900 mb-4 font-clash transition-all duration-700 ${sectionVisible ? 'animate-fade-in' : 'opacity-0 translate-y-12'}`}>
             OUR CORE SERVICES
           </h2>
-          <p className="text-base md:text-lg text-gray-500 font-satoshi mb-8 md:mb-12">
+          <p className={`text-base md:text-lg text-gray-500 font-satoshi mb-8 md:mb-12 transition-all duration-700 ${sectionVisible ? 'animate-fade-in' : 'opacity-0 translate-y-12'}`} style={{animationDelay: '200ms'}}>
             Backed by D.I.C.E. — Dedication. Integrity. Commitment. Execution.
           </p>
         </div>
@@ -291,14 +348,14 @@ const CoreServices = () => {
           <div className="hidden md:flex flex-row items-start">
             {/* Description - Positioned higher than cards */}
             <div className="w-1/4 pr-8 self-start mt-20">
-              <p className="text-base text-gray-500 font-medium leading-relaxed font-satoshi">
+              <p className={`text-base text-gray-500 font-medium leading-relaxed font-satoshi transition-all duration-700 ${sectionVisible ? 'animate-fade-in' : 'opacity-0 translate-y-12'}`} style={{animationDelay: '300ms'}}>
                 Reliable, scalable capacity across the U.S. & Canada — powered by a network of 5,000+ trusted carriers.
               </p>
             </div>
             
             {/* Cards Container - exact positioning to match design */}
             <div className="w-3/4 min-h-[500px] relative" style={{ perspective: '2000px' }}>
-              <div className={`flex items-center justify-center transform transition-all duration-1000 ${animateCards ? 'translate-y-0 opacity-100' : 'translate-y-12 opacity-0'}`}>
+              <div className="flex items-center justify-center">
                 {/* Card 1 - Full Truck Load - positioned to match reference */}
                 <ServiceCard 
                   title="FULL TRUCK LOAD" 
@@ -308,6 +365,8 @@ const CoreServices = () => {
                   zIndex={10}
                   onHover={setHoveredCard}
                   onLeave={() => setHoveredCard(null)}
+                  animationDelay={400}
+                  isVisible={sectionVisible}
                 />
                 
                 {/* Card 2 - Load to Ride - positioned to match reference */}
@@ -319,6 +378,8 @@ const CoreServices = () => {
                   zIndex={30}
                   onHover={setHoveredCard}
                   onLeave={() => setHoveredCard(null)}
+                  animationDelay={600}
+                  isVisible={sectionVisible}
                 />
                 
                 {/* Card 3 - Intermodal & Drayage - positioned to match reference */}
@@ -330,6 +391,8 @@ const CoreServices = () => {
                   zIndex={20}
                   onHover={setHoveredCard}
                   onLeave={() => setHoveredCard(null)}
+                  animationDelay={800}
+                  isVisible={sectionVisible}
                 />
               </div>
             </div>
@@ -339,19 +402,21 @@ const CoreServices = () => {
           <div className="md:hidden">
             {/* Description */}
             <div className="mb-12">
-              <p className="text-base text-gray-500 font-medium leading-relaxed text-center font-satoshi">
+              <p className={`text-base text-gray-500 font-medium leading-relaxed text-center font-satoshi transition-all duration-700 ${sectionVisible ? 'animate-fade-in' : 'opacity-0 translate-y-12'}`} style={{animationDelay: '300ms'}}>
                 Reliable, scalable capacity across the U.S. & Canada — powered by a network of 5,000+ trusted carriers.
               </p>
             </div>
             
             {/* Mobile Cards Container */}
-            <div className={`flex flex-col items-center justify-center transform transition-all duration-1000 ${animateCards ? 'translate-y-0 opacity-100' : 'translate-y-12 opacity-0'}`}>
+            <div className="flex flex-col items-center justify-center">
               <MobileServiceCard 
                 title="FULL TRUCK LOAD" 
                 image={truckLoadImage}
                 rotation="left"
                 onHover={setHoveredCard}
                 onLeave={() => setHoveredCard(null)}
+                animationDelay={400}
+                isVisible={sectionVisible}
               />
               
               <MobileServiceCard 
@@ -360,6 +425,8 @@ const CoreServices = () => {
                 rotation="none"
                 onHover={setHoveredCard}
                 onLeave={() => setHoveredCard(null)}
+                animationDelay={600}
+                isVisible={sectionVisible}
               />
               
               <MobileServiceCard 
@@ -368,6 +435,8 @@ const CoreServices = () => {
                 rotation="right"
                 onHover={setHoveredCard}
                 onLeave={() => setHoveredCard(null)}
+                animationDelay={800}
+                isVisible={sectionVisible}
               />
             </div>
           </div>
