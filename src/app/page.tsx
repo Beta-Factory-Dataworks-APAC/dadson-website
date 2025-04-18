@@ -45,7 +45,7 @@ export default function HomePage() {
       {/* Rest of the content */}
       <div className="w-full">
         <section id="uncompromised" data-index="2" className="">
-          <div className="mt-[-10px] xs:mt-[-15px] sm:mt-[-20px] md:mt-[-50px]">
+          <div className="mt-[20px] xs:mt-[30px] sm:mt-[40px] md:mt-[60px]">
             <UncompromisedSection />
           </div>
         </section>

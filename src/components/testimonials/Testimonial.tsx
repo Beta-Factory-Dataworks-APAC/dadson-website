@@ -4,7 +4,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 
-const testimonialData = [
+const defaultTestimonialData = [
   {
     id: 1,
     quote: "Dadson Logistics has transformed our supply chain with their reliable and efficient service. Their commitment to excellence is unmatched in the industry.",
@@ -25,7 +25,19 @@ const testimonialData = [
   }
 ];
 
-const Testimonial = () => {
+type TestimonialProps = {
+  testimonials?: {
+    id: number;
+    quote: string;
+    author: {
+      name: string;
+      title: string;
+      image: string;
+    };
+  }[];
+};
+
+const Testimonial = ({ testimonials = defaultTestimonialData }: TestimonialProps) => {
   return (
     <section id="testimonials" className="w-full relative min-h-screen">
       <div className="max-w-[1880px] mx-auto">
@@ -79,7 +91,7 @@ const Testimonial = () => {
               initial={{ opacity: 0, x: 50 }}
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.6 }}
-              className="w-full md:w-[1405px] py-12 md:py-24 bg-gray-50 flex flex-col justify-start items-center gap-8 md:gap-16 overflow-hidden rounded-lg"
+              className="w-full md:w-[1405px] py-12 md:py-24 bg-gray-50 flex flex-col justify-start items-center gap-8 md:gap-16 overflow-hidden rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300"
             >
               <div className="w-full px-4 md:px-8 max-w-[1280px] flex flex-col justify-start items-center">
                 <div className="self-stretch flex flex-col justify-start items-center gap-8 md:gap-10">
@@ -94,24 +106,24 @@ const Testimonial = () => {
                         />
                       </div>
                     </div>
-                    <div className="self-stretch text-center text-gray-900 text-2xl md:text-5xl font-medium font-['Satoshi'] leading-[36px] md:leading-[56px]">
-                      {testimonialData[0].quote}
+                    <div className="self-stretch text-center text-gray-900 text-2xl md:text-5xl font-medium font-['Satoshi'] leading-[36px] md:leading-[56px] px-4 md:px-8 py-6 md:py-8 bg-white rounded-lg shadow-inner">
+                      {testimonials[0].quote}
                     </div>
-                    <div className="self-stretch flex flex-col justify-start items-center gap-4">
-                      <div className="w-16 h-16 relative rounded-full overflow-hidden">
+                    <div className="self-stretch flex flex-col justify-start items-center gap-4 mt-4">
+                      <div className="w-16 h-16 relative rounded-full overflow-hidden border-2 border-gray-100">
                         <Image 
-                          src={testimonialData[0].author.image} 
-                          alt={`${testimonialData[0].author.name} - ${testimonialData[0].author.title}`}
+                          src={testimonials[0].author.image} 
+                          alt={`${testimonials[0].author.name} - ${testimonials[0].author.title}`}
                           fill
                           className="object-cover"
                         />
                       </div>
                       <div className="self-stretch flex flex-col justify-start items-center gap-1">
                         <div className="self-stretch text-center text-gray-900 text-lg font-medium font-['Satoshi'] leading-7">
-                          {testimonialData[0].author.name}
+                          {testimonials[0].author.name}
                         </div>
                         <div className="self-stretch text-center text-gray-500 text-base font-normal font-['Satoshi'] leading-normal">
-                          {testimonialData[0].author.title}
+                          {testimonials[0].author.title}
                         </div>
                       </div>
                     </div>
@@ -125,7 +137,7 @@ const Testimonial = () => {
               initial={{ opacity: 0, x: 50 }}
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
-              className="w-full md:w-[455px] py-12 md:py-16 bg-gray-50 flex flex-col justify-between items-center overflow-hidden rounded-lg"
+              className="w-full md:w-[455px] py-12 md:py-16 bg-gray-50 flex flex-col justify-between items-center overflow-hidden rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300"
             >
               <div className="w-full px-4 flex-1 flex flex-col justify-between items-center">
                 <div className="self-stretch flex flex-col justify-start items-center gap-8 md:gap-10">
@@ -140,24 +152,24 @@ const Testimonial = () => {
                         />
                       </div>
                     </div>
-                    <div className="self-stretch text-center text-gray-900 text-xl md:text-3xl font-medium font-['Satoshi'] leading-[30px] md:leading-9">
-                      {testimonialData[1].quote}
+                    <div className="self-stretch text-center text-gray-900 text-xl md:text-3xl font-medium font-['Satoshi'] leading-[30px] md:leading-9 px-4 md:px-6 py-6 bg-white rounded-lg shadow-inner">
+                      {testimonials[1]?.quote || testimonials[0].quote}
                     </div>
-                    <div className="self-stretch flex flex-col justify-start items-center gap-4">
-                      <div className="w-16 h-16 relative rounded-full overflow-hidden">
+                    <div className="self-stretch flex flex-col justify-start items-center gap-4 mt-4">
+                      <div className="w-16 h-16 relative rounded-full overflow-hidden border-2 border-gray-100">
                         <Image 
-                          src={testimonialData[1].author.image} 
-                          alt={`${testimonialData[1].author.name} - ${testimonialData[1].author.title}`}
+                          src={testimonials[1]?.author.image || testimonials[0].author.image} 
+                          alt={`${testimonials[1]?.author.name || testimonials[0].author.name} - ${testimonials[1]?.author.title || testimonials[0].author.title}`}
                           fill
                           className="object-cover"
                         />
                       </div>
                       <div className="self-stretch flex flex-col justify-start items-center gap-1">
                         <div className="self-stretch text-center text-gray-900 text-lg font-medium font-['Satoshi'] leading-7">
-                          {testimonialData[1].author.name}
+                          {testimonials[1]?.author.name || testimonials[0].author.name}
                         </div>
                         <div className="self-stretch text-center text-gray-500 text-base font-normal font-['Satoshi'] leading-normal">
-                          {testimonialData[1].author.title}
+                          {testimonials[1]?.author.title || testimonials[0].author.title}
                         </div>
                       </div>
                     </div>
