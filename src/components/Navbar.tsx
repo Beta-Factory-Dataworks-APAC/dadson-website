@@ -153,7 +153,7 @@ const Navbar = () => {
         <div className="flex justify-between items-center py-1 md:py-0">
           {/* Logo */}
           <Link href="/" className="flex items-center">
-            <div className="relative w-40 h-10 md:w-48 md:h-12">
+            <div className="relative w-40 h-10 md:w-48 md:h-12 -ml-2 md:ml-0 flex items-center justify-center">
               <Image 
                 src="/images/dadson-logo.svg"
                 alt="Dadson Logo"
