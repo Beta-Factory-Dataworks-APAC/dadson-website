@@ -8,6 +8,29 @@ import NoBotsBanner from '@/components/home/NoBotsBanner';
 import MetricsSection from '@/components/home/MetricsSection';
 import ShippersCarriersSection from '@/components/home/ShippersCarriersSection';
 import HomeMobileBanner from '@/components/home/HomeMobileBanner';
+import Testimonial from '@/components/testimonials/Testimonial';
+import CoreServices from '@/components/home/CoreServices';
+
+const testimonialData = [
+  {
+    id: 1,
+    quote: "During peak season, they helped us recover a critical shipment that was about to miss delivery. With just two hours' notice, they pulled it off. That's the kind of team you want on your side.",
+    author: {
+      name: "Mike H.",
+      title: "Retail Supply Chain Director",
+      image: "https://placehold.co/64x64"
+    }
+  },
+  {
+    id: 2,
+    quote: "They understood the pressure I was under from day one. I never looked back.",
+    author: {
+      name: "Alicia M.",
+      title: "Midwest Logistics Ops Lead",
+      image: "https://placehold.co/64x64"
+    }
+  }
+];
 
 export default function HomePage() {
   return (
@@ -54,6 +77,20 @@ export default function HomePage() {
         <section id="shippers-carriers" data-index="6" className="min-h-screen">
           <div className="-mt-10 sm:mt-0">
             <ShippersCarriersSection />
+          </div>
+        </section>
+        
+        {/* Core Services Section */}
+        <section id="core-services" data-index="7" className="min-h-screen">
+          <div className="mt-4 sm:mt-8 md:mt-12 lg:mt-16">
+            <CoreServices />
+          </div>
+        </section>
+
+        {/* Testimonials Section */}
+        <section id="testimonials" data-index="8" className="min-h-screen">
+          <div className="mt-4 sm:mt-8 md:mt-12 lg:mt-16">
+            <Testimonial />
           </div>
         </section>
       </div>

@@ -80,7 +80,7 @@ const Navbar = () => {
 
     const checkInactivity = () => {
       const inactiveTime = Date.now() - lastActivityTime;
-      if (inactiveTime > 3000) { // 3 seconds of inactivity
+      if (inactiveTime > 1500) { // 1.5 seconds of inactivity
         setIsVisible(false);
       }
       timeoutId = setTimeout(checkInactivity, 1000);

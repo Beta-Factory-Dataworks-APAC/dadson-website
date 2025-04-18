@@ -1,5 +1,5 @@
 import React from 'react';
-import { motion, useInView } from 'framer-motion';
+import { motion, useInView, useAnimation } from 'framer-motion';
 
 /**
  * AnimationWrapper - A reusable animation component that provides consistent animations
@@ -19,7 +19,7 @@ const AnimationWrapper = ({
   direction = 'up',
   delay = 0,
   duration = 0.8,
-  once = true,
+  once = false,
   className = '',
   ...props
 }: {
@@ -33,7 +33,11 @@ const AnimationWrapper = ({
   [key: string]: any;
 }) => {
   const ref = React.useRef(null);
-  const isInView = useInView(ref, { once });
+  const controls = useAnimation();
+  const isInView = useInView(ref, { 
+    once,
+    amount: 0.3 // Trigger when 30% of element is in view
+  });
 
   // Define animation variants based on type
   const getVariants = () => {
@@ -84,13 +88,28 @@ const AnimationWrapper = ({
 
   const variants = getVariants();
 
+  // Handle animation state based on viewport visibility
+  React.useEffect(() => {
+    if (isInView) {
+      controls.start('visible');
+    } else {
+      controls.start('hidden');
+    }
+  }, [isInView, controls]);
+
   return (
     <motion.div
       ref={ref}
       initial="hidden"
-      animate={isInView ? 'visible' : 'hidden'}
+      animate={controls}
       variants={variants}
-      transition={{ duration, delay, ease: 'easeOut' }}
+      transition={{ 
+        duration, 
+        delay, 
+        ease: 'easeOut',
+        // Ensure immediate reset when hiding
+        hidden: { duration: 0, delay: 0 }
+      }}
       className={className}
       {...props}
     >

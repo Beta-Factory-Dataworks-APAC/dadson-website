@@ -202,7 +202,7 @@ export default function Services() {
             variants={containerVariants}
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true, amount: 0.1 }}
+            viewport={{ once: false, amount: 0.1 }}
           >
             {/* Top Row - 3 service tiles */}
             <div className="w-full flex justify-start items-stretch gap-5">
@@ -344,7 +344,7 @@ export default function Services() {
             variants={containerVariants}
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true, amount: 0.1 }}
+            viewport={{ once: false, amount: 0.1 }}
           >
             {/* Mobile service carousel/scrollable area - Improved scrolling */}
             <div className="overflow-x-auto pb-8 -mx-4 px-4">

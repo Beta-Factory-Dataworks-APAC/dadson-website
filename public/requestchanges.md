@@ -115,3 +115,12 @@ fix dadson logistics
 feature home page 
 
 -- find images on whatsapp
+
+text size of home page banner 
+
+
+become a carrier on new page
+
+repetitive truck photo on about page
+
+ 

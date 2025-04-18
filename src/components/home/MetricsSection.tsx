@@ -19,10 +19,21 @@ const GaugeSpokes = ({ color = "white" }) => (
 const CountUpAnimation = ({ endValue, duration = 1.2, suffix = "", prefix = "" }) => {
   const [count, setCount] = useState(0);
   const countRef = useRef(null);
-  const isInView = useInView(countRef, { once: true });
+  // Change once to false to allow repeated animations
+  const isInView = useInView(countRef, { once: false, amount: 0.5 });
+  const timerRef = useRef<NodeJS.Timeout | null>(null);
   
   useEffect(() => {
-    if (!isInView) return;
+    // Clean up any existing animation
+    if (timerRef.current) {
+      clearInterval(timerRef.current);
+    }
+    
+    // Reset count to 0 when not in view
+    if (!isInView) {
+      setCount(0);
+      return;
+    }
     
     let start = 0;
     let end = parseFloat(endValue);
@@ -50,7 +61,13 @@ const CountUpAnimation = ({ endValue, duration = 1.2, suffix = "", prefix = "" }
       setCount(useIntegers ? Math.floor(currentCount) : currentCount);
     }, 16);
     
-    return () => clearInterval(timer);
+    timerRef.current = timer;
+    
+    return () => {
+      if (timerRef.current) {
+        clearInterval(timerRef.current);
+      }
+    };
   }, [endValue, duration, isInView]);
   
   const displayValue = typeof count === 'number' && !isNaN(count) 
@@ -66,7 +83,8 @@ const CountUpAnimation = ({ endValue, duration = 1.2, suffix = "", prefix = "" }
 const Metric = ({ value, label, bgColor = "from-[#eaeaea]", fillWidth = "35%", showDivider = true }) => {
   const controls = useAnimation();
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true });
+  // Change once to false to allow repeated animations
+  const isInView = useInView(ref, { once: false, amount: 0.5 });
   
   // Parse value into numeric and text parts
   const parseValue = (val) => {
@@ -81,6 +99,8 @@ const Metric = ({ value, label, bgColor = "from-[#eaeaea]", fillWidth = "35%", s
   useEffect(() => {
     if (isInView) {
       controls.start("visible");
+    } else {
+      controls.start("hidden");
     }
   }, [controls, isInView]);
 
@@ -93,6 +113,7 @@ const Metric = ({ value, label, bgColor = "from-[#eaeaea]", fillWidth = "35%", s
             initial={{ opacity: 0, y: 20 }}
             animate={controls}
             variants={{
+              hidden: { opacity: 0, y: 20 },
               visible: { opacity: 1, y: 0, transition: { duration: 0.5 } }
             }}
             className="flex flex-col items-start gap-1"
@@ -112,6 +133,7 @@ const Metric = ({ value, label, bgColor = "from-[#eaeaea]", fillWidth = "35%", s
             initial={{ width: 0 }}
             animate={controls}
             variants={{
+              hidden: { width: 0 },
               visible: { 
                 width: "100%", 
                 transition: { duration: 1.2, ease: "easeOut" } 
@@ -124,6 +146,7 @@ const Metric = ({ value, label, bgColor = "from-[#eaeaea]", fillWidth = "35%", s
               initial={{ x: "100%" }}
               animate={controls}
               variants={{
+                hidden: { x: "100%" },
                 visible: { 
                   x: "0%", 
                   transition: { duration: 1.2, ease: "easeOut" } 
@@ -147,6 +170,11 @@ const Metric = ({ value, label, bgColor = "from-[#eaeaea]", fillWidth = "35%", s
 
 // Mobile version of the Metric component
 const MobileMetric = ({ value, label, showDivider = true }) => {
+  const controls = useAnimation();
+  const ref = useRef(null);
+  // Change once to false to allow repeated animations
+  const isInView = useInView(ref, { once: false, amount: 0.5 });
+  
   // Parse value into numeric and text parts
   const parseValue = (val) => {
     if (val === "24/7") return { prefix: "", numeric: "24", suffix: "/7" };
@@ -157,13 +185,23 @@ const MobileMetric = ({ value, label, showDivider = true }) => {
   
   const { prefix, numeric, suffix } = parseValue(value);
 
+  useEffect(() => {
+    if (isInView) {
+      controls.start("visible");
+    } else {
+      controls.start("hidden");
+    }
+  }, [controls, isInView]);
+
   return (
-    <div className="w-full mb-8">
+    <div className="w-full mb-8" ref={ref}>
       <motion.div
         initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.5 }}
+        animate={controls}
+        variants={{
+          hidden: { opacity: 0, y: 20 },
+          visible: { opacity: 1, y: 0, transition: { duration: 0.5 } }
+        }}
         className="text-center"
       >
         <div className="text-black text-4xl font-medium font-['Satoshi'] uppercase leading-tight mb-1">
@@ -191,7 +229,7 @@ const MetricsSection = () => {
         <motion.h2
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          viewport={{ once: false }}
           transition={{ duration: 0.6 }}
           className="text-4xl md:text-5xl lg:text-6xl font-medium font-['Clash_Display'] uppercase text-black mb-20 md:mb-24 max-w-2xl"
         >

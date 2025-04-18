@@ -1,8 +1,35 @@
 "use client";
 
-import React from 'react';
+import React, { useRef, useEffect } from 'react';
 import Image from 'next/image';
-import { motion } from 'framer-motion';
+import { motion, useAnimation, useInView } from 'framer-motion';
+
+// Animated list item component with reset functionality
+const AnimatedListItem = ({ children, index }) => {
+  const ref = useRef(null);
+  const controls = useAnimation();
+  const isInView = useInView(ref, { once: false, amount: 0.5 });
+  
+  useEffect(() => {
+    if (isInView) {
+      controls.start({ opacity: 1, x: 0 });
+    } else {
+      controls.start({ opacity: 0, x: -10 });
+    }
+  }, [isInView, controls]);
+  
+  return (
+    <motion.li 
+      ref={ref}
+      initial={{ opacity: 0, x: -10 }}
+      animate={controls}
+      transition={{ duration: 0.3, delay: index * 0.1 }}
+      className="flex items-start"
+    >
+      {children}
+    </motion.li>
+  );
+};
 
 const ShippersCarriersSection = () => {
   // Animation variants
@@ -80,17 +107,10 @@ const ShippersCarriersSection = () => {
                 <h3 className="text-gray-900 text-[22px] xs:text-[24px] sm:text-[26px] md:text-[28px] font-medium font-satoshi mb-3 xs:mb-4 sm:mb-5">Shippers</h3>
                 <ul className="text-gray-500 text-[14px] xs:text-[15px] sm:text-[16px] font-medium font-satoshi space-y-2.5 xs:space-y-3 md:space-y-3.5">
                   {shipperBullets.map((bullet, index) => (
-                    <motion.li 
-                      key={index}
-                      initial={{ opacity: 0, x: -10 }}
-                      whileInView={{ opacity: 1, x: 0 }}
-                      transition={{ duration: 0.3, delay: index * 0.1 }}
-                      viewport={{ once: true }}
-                      className="flex items-start"
-                    >
+                    <AnimatedListItem key={index} index={index}>
                       <span className="text-primary-blue mr-2.5 text-lg flex-shrink-0 mt-0.5">•</span>
                       <span className="leading-snug">{bullet}</span>
-                    </motion.li>
+                    </AnimatedListItem>
                   ))}
                 </ul>
               </div>
@@ -107,17 +127,10 @@ const ShippersCarriersSection = () => {
                 <h3 className="text-gray-900 text-[22px] xs:text-[24px] sm:text-[26px] md:text-[28px] font-medium font-satoshi mb-3 xs:mb-4 sm:mb-5">Carriers</h3>
                 <ul className="text-gray-500 text-[14px] xs:text-[15px] sm:text-[16px] font-medium font-satoshi space-y-2.5 xs:space-y-3 md:space-y-3.5">
                   {carrierBullets.map((bullet, index) => (
-                    <motion.li 
-                      key={index}
-                      initial={{ opacity: 0, x: -10 }}
-                      whileInView={{ opacity: 1, x: 0 }}
-                      transition={{ duration: 0.3, delay: index * 0.1 }}
-                      viewport={{ once: true }}
-                      className="flex items-start"
-                    >
+                    <AnimatedListItem key={index} index={index}>
                       <span className="text-primary-blue mr-2.5 text-lg flex-shrink-0 mt-0.5">•</span>
                       <span className="leading-snug">{bullet}</span>
-                    </motion.li>
+                    </AnimatedListItem>
                   ))}
                 </ul>
               </div>

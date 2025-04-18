@@ -11,7 +11,7 @@ const HeroSection = () => {
         {/* Background image with overlay */}
         <div className="absolute inset-0 z-0">
           <Image
-            src="/truck-bg.png"
+            src="/images/truck-bg.png"
             alt="Dadson Logistics truck on highway"
             fill
             priority

@@ -6,10 +6,11 @@
  * - Improved physics parameters for realistic truck movement
  * - Optimized for performance with GPU acceleration
  * - Added accessibility support with reduced motion preference detection
+ * - Added viewport detection to reset and replay animation when in view
  */
 
-import React, { useEffect, useState } from 'react';
-import { motion, useAnimationControls, useReducedMotion } from 'framer-motion';
+import React, { useEffect, useState, useRef } from 'react';
+import { motion, useAnimationControls, useReducedMotion, useInView } from 'framer-motion';
 import Image from 'next/image';
 
 /**
@@ -39,59 +40,59 @@ const TruckAnimation: React.FC<TruckAnimationProps> = ({
   onComplete,
 }) => {
   const controls = useAnimationControls();
-  const [hasAnimated, setHasAnimated] = useState(false);
+  const containerRef = useRef(null);
+  const isInView = useInView(containerRef, { once: false, amount: 0.3 }); // Reduced threshold for mobile
   const prefersReducedMotion = useReducedMotion();
+  const [previouslyInView, setPreviouslyInView] = useState(false);
 
-  // Simplified animation with natural truck movement
-  // Phase 1: Gentle initial appearance with gradual fade-in
-  // Phase 2: Single fluid movement with natural physics-based deceleration
   useEffect(() => {
     const animateSequence = async () => {
-      if (hasAnimated) return;
-
-      // Skip animation if user prefers reduced motion
       if (prefersReducedMotion) {
         controls.set({ x: 0, opacity: 1 });
-        setHasAnimated(true);
         if (onComplete) onComplete();
         return;
       }
 
-      // Wait for initial delay
-      await new Promise(resolve => setTimeout(resolve, delay * 1000));
-      
-      // Initial fade in
-      await controls.start({
-        opacity: 1,
-        transition: { duration: 0.7, ease: 'easeInOut' }
-      });
-      
-      // Single fluid movement with natural physics-based deceleration
-      await controls.start({
-        x: '0%',
-        transition: {
-          type: 'spring',
-          stiffness: 28,      // Lower stiffness for smooth deceleration
-          damping: 30,        // Higher damping for minimal oscillation
-          mass: 3.8,          // Higher mass for realistic truck weight
-          velocity: -2,       // Initial velocity for natural entry
-          duration: 2.5,      // Longer duration for smoother animation
-          restDelta: 0.0001   // High precision at rest position
+      if (isInView) {
+        if (!previouslyInView) {
+          await controls.set({ x: '-120%', opacity: 0 });
+          await new Promise(resolve => setTimeout(resolve, delay * 1000));
+          
+          await controls.start({
+            opacity: 1,
+            transition: { duration: 0.7, ease: 'easeInOut' }
+          });
+          
+          await controls.start({
+            x: '0%',
+            transition: {
+              type: 'spring',
+              stiffness: 28,
+              damping: 30,
+              mass: 3.8,
+              velocity: -2,
+              duration: 2.5,
+              restDelta: 0.0001
+            }
+          });
+          
+          if (onComplete) onComplete();
         }
-      });
-      
-      setHasAnimated(true);
-      if (onComplete) onComplete();
+        setPreviouslyInView(true);
+      } else {
+        setPreviouslyInView(false);
+      }
     };
 
     animateSequence();
-  }, [controls, delay, hasAnimated, onComplete, prefersReducedMotion]);
+  }, [controls, delay, isInView, onComplete, prefersReducedMotion, previouslyInView]);
 
   return (
     <motion.div
+      ref={containerRef}
       initial={{ x: prefersReducedMotion ? 0 : '-120%', opacity: prefersReducedMotion ? 1 : 0 }}
       animate={controls}
-      className={className}
+      className={`${className} relative`}
     >
       <Image
         src={src}
