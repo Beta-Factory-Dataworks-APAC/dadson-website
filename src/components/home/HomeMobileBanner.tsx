@@ -27,7 +27,7 @@ const HomeMobileBanner = () => {
               transition={{ duration: 0.5 }}
               viewport={{ once: false }}
             >
-              <div className="relative h-[200px] rounded-xl shadow-lg mb-4 overflow-hidden">
+              <div className="relative h-[200px] rounded-xl shadow-lg overflow-hidden">
                 <Image
                   src="/images/home/home1.png"
                   alt="Port Logistics"
@@ -35,8 +35,6 @@ const HomeMobileBanner = () => {
                   className="object-cover transition-transform duration-300 hover:scale-105"
                 />
               </div>
-              <h3 className="text-xl font-semibold text-gray-800 mb-2 font-clash">Port Logistics</h3>
-              <p className="text-base text-gray-600 px-4 font-satoshi">Container handling & port operations</p>
             </motion.div>
             <motion.div 
               className="text-center"
@@ -45,7 +43,7 @@ const HomeMobileBanner = () => {
               transition={{ duration: 0.5, delay: 0.2 }}
               viewport={{ once: false }}
             >
-              <div className="relative h-[200px] rounded-xl shadow-lg mb-4 overflow-hidden">
+              <div className="relative h-[200px] rounded-xl shadow-lg overflow-hidden">
                 <Image
                   src="/images/home/zetong-li-mVqTumQH-c0-unsplash.jpg"
                   alt="Rail Transport"
@@ -53,8 +51,6 @@ const HomeMobileBanner = () => {
                   className="object-cover transition-transform duration-300 hover:scale-105"
                 />
               </div>
-              <h3 className="text-xl font-semibold text-gray-800 mb-2 font-clash">Rail Transport</h3>
-              <p className="text-base text-gray-600 px-4 font-satoshi">Efficient rail freight solutions</p>
             </motion.div>
             <motion.div 
               className="text-center"
@@ -63,7 +59,7 @@ const HomeMobileBanner = () => {
               transition={{ duration: 0.5, delay: 0.4 }}
               viewport={{ once: false }}
             >
-              <div className="relative h-[200px] rounded-xl shadow-lg mb-4 overflow-hidden">
+              <div className="relative h-[200px] rounded-xl shadow-lg overflow-hidden">
                 <Image
                   src="/images/home/home3.png"
                   alt="Air Freight"
@@ -71,8 +67,6 @@ const HomeMobileBanner = () => {
                   className="object-cover transition-transform duration-300 hover:scale-105"
                 />
               </div>
-              <h3 className="text-xl font-semibold text-gray-800 mb-2 font-clash">Air Freight</h3>
-              <p className="text-base text-gray-600 px-4 font-satoshi">Expedited air cargo services</p>
             </motion.div>
           </div>
         </div>
