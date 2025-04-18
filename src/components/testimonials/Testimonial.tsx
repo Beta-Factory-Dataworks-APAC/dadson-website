@@ -105,7 +105,7 @@ const Testimonial = ({ testimonials = defaultTestimonialData }: TestimonialProps
                       />
                     </div>
                   </div>
-                  <div className="w-full text-center text-gray-900 text-2xl md:text-5xl font-medium font-['Satoshi'] leading-[36px] md:leading-[56px] px-4 md:px-8 py-6 md:py-8 bg-white rounded-lg shadow-inner">
+                  <div className="w-full text-center text-gray-900 text-2xl md:text-5xl font-medium font-['Satoshi'] leading-[36px] md:leading-[56px] px-4 md:px-8 py-6 md:py-8 bg-gray-50 rounded-lg">
                     {testimonials[0].quote}
                   </div>
                   <div className="w-full flex flex-col justify-start items-center gap-4 mt-4">
@@ -151,7 +151,7 @@ const Testimonial = ({ testimonials = defaultTestimonialData }: TestimonialProps
                       />
                     </div>
                   </div>
-                  <div className="w-full text-center text-gray-900 text-xl md:text-3xl font-medium font-['Satoshi'] leading-[30px] md:leading-9 px-4 md:px-6 py-6 bg-white rounded-lg shadow-inner">
+                  <div className="w-full text-center text-gray-900 text-xl md:text-3xl font-medium font-['Satoshi'] leading-[30px] md:leading-9 px-4 md:px-6 py-6 bg-gray-50 rounded-lg">
                     {testimonials[1]?.quote || testimonials[0].quote}
                   </div>
                   <div className="w-full flex flex-col justify-start items-center gap-4 mt-4">
