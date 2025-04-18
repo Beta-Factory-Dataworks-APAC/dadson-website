@@ -142,129 +142,146 @@ const Navbar = () => {
   const shouldUseAboutStyles = isScrolled || pathname === '/about' || pathname === '/contact';
 
   return (
-    <nav 
-      className={`fixed top-0 left-0 right-0 z-[100] transition-all duration-300 ${
-        !isVisible ? '-translate-y-full' : 'translate-y-0'} ${
-        pathname === '/' ? 'pt-[10px] md:pt-[40px]' : ''} ${
-        shouldUseAboutStyles ? 'bg-white py-2 md:py-3 shadow-sm' : 'bg-transparent py-2 md:py-4'
-      }`}
-    >
-      <div className="container mx-auto px-4 md:px-6">
-        <div className="flex justify-between items-center py-1 md:py-0">
-          {/* Logo */}
-          <Link href="/" className="flex items-center">
-            <div className="relative w-40 h-10 md:w-48 md:h-12 -ml-2 md:ml-0 flex items-center justify-center">
-              <Image 
-                src="/images/dadson-logo.svg"
-                alt="Dadson Logo"
-                fill
-                className="object-contain"
-                priority
-              />
+    <>
+      <nav 
+        className={`fixed top-0 left-0 right-0 z-[100] transition-all duration-300 ${
+          !isVisible ? '-translate-y-full' : 'translate-y-0'} ${
+          pathname === '/' ? 'pt-[10px] md:pt-[40px]' : ''} ${
+          shouldUseAboutStyles ? 'bg-white py-2 md:py-3 shadow-sm' : 'bg-transparent py-2 md:py-4'
+        }`}
+      >
+        <div className="container mx-auto px-4 md:px-6">
+          <div className="flex justify-between items-center">
+            {/* Logo */}
+            <div className="flex-1 flex justify-start">
+              <Link href="/" className="flex items-center">
+                <div className="relative w-36 h-9 md:w-48 md:h-12">
+                  <Image 
+                    src="/images/dadson-logo.svg"
+                    alt="Dadson Logo"
+                    fill
+                    className="object-contain"
+                    priority
+                  />
+                </div>
+              </Link>
             </div>
-          </Link>
-          
-          {/* Desktop Navigation - Centered */}
-          <div className="hidden md:flex flex-1 justify-center items-center">
-            <div className="flex space-x-12">
-              {navItems.slice(0, -1).map((item) => (
-                <Link 
-                  key={item.href}
-                  href={item.href} 
-                  className={`${shouldUseAboutStyles ? aboutPageLinkClasses : linkBaseClasses} ${
-                    isActive(item.href) 
-                      ? shouldUseAboutStyles ? aboutPageActiveLinkClasses : activeLinkClasses
-                      : shouldUseAboutStyles ? aboutPageInactiveLinkClasses : inactiveLinkClasses
-                  }`}
-                  aria-current={isActive(item.href) ? "page" : undefined}
-                  onClick={(e) => handleNavClick(e, item.href, item.sectionId)}
-                >
-                  {item.label}
-                </Link>
-              ))}
+            
+            {/* Desktop Navigation - Centered */}
+            <div className="hidden md:flex flex-1 justify-center">
+              <div className="flex space-x-12">
+                {navItems.slice(0, -1).map((item) => (
+                  <Link 
+                    key={item.href}
+                    href={item.href} 
+                    className={`${shouldUseAboutStyles ? aboutPageLinkClasses : linkBaseClasses} ${
+                      isActive(item.href) 
+                        ? shouldUseAboutStyles ? aboutPageActiveLinkClasses : activeLinkClasses
+                        : shouldUseAboutStyles ? aboutPageInactiveLinkClasses : inactiveLinkClasses
+                    }`}
+                    aria-current={isActive(item.href) ? "page" : undefined}
+                    onClick={(e) => handleNavClick(e, item.href, item.sectionId)}
+                  >
+                    {item.label}
+                  </Link>
+                ))}
+              </div>
             </div>
-          </div>
-          
-          {/* Contact Button */}
-          <div className="hidden md:block">
-            <Link 
-              href={navItems[navItems.length - 1].href}
-              className={`${shouldUseAboutStyles ? aboutPageContactButtonClasses : contactButtonBaseClasses} ${
-                isActive(navItems[navItems.length - 1].href)
-                  ? shouldUseAboutStyles ? aboutPageActiveContactButtonClasses : activeContactButtonClasses
-                  : shouldUseAboutStyles ? aboutPageInactiveContactButtonClasses : inactiveContactButtonClasses
-              }`}
-            >
-              {navItems[navItems.length - 1].label}
-            </Link>
-          </div>
-          
-          {/* Mobile Menu Button - with improved accessibility */}
-          <div className="md:hidden">
-            <button
-              type="button"
-              className={`p-2.5 rounded-lg transition-colors duration-200 ${
-                shouldUseAboutStyles 
-                  ? "text-[#101B21] hover:text-[#00B4E1]" 
-                  : "text-white hover:text-white/80"
-              }`}
-              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              aria-label={mobileMenuOpen ? 'Close menu' : 'Open menu'}
-              aria-expanded={mobileMenuOpen}
-              aria-controls="mobile-menu"
-            >
-              {mobileMenuOpen ? (
-                <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5} aria-hidden="true">
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
-                </svg>
-              ) : (
-                <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5} aria-hidden="true">
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16" />
-                </svg>
-              )}
-            </button>
+            
+            {/* Contact Button */}
+            <div className="hidden md:flex flex-1 justify-end">
+              <Link 
+                href={navItems[navItems.length - 1].href}
+                className={`${shouldUseAboutStyles ? aboutPageContactButtonClasses : contactButtonBaseClasses} ${
+                  isActive(navItems[navItems.length - 1].href)
+                    ? shouldUseAboutStyles ? aboutPageActiveContactButtonClasses : activeContactButtonClasses
+                    : shouldUseAboutStyles ? aboutPageInactiveContactButtonClasses : inactiveContactButtonClasses
+                }`}
+              >
+                {navItems[navItems.length - 1].label}
+              </Link>
+            </div>
+            
+            {/* Mobile Menu Button - with improved accessibility */}
+            <div className="md:hidden flex-1 flex justify-end">
+              <button
+                type="button"
+                className={`p-2.5 rounded-lg transition-colors duration-200 ${
+                  shouldUseAboutStyles 
+                    ? "text-[#101B21] hover:text-[#00B4E1]" 
+                    : "text-white hover:text-white/80"
+                }`}
+                onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                aria-label={mobileMenuOpen ? 'Close menu' : 'Open menu'}
+                aria-expanded={mobileMenuOpen}
+                aria-controls="mobile-menu"
+              >
+                {mobileMenuOpen ? (
+                  <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5} aria-hidden="true">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+                  </svg>
+                ) : (
+                  <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5} aria-hidden="true">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+                  </svg>
+                )}
+              </button>
+            </div>
           </div>
         </div>
-      </div>
+      </nav>
       
-      {/* Mobile Menu - with improved accessibility and styling */}
+      {/* Mobile Menu - Improved full-screen overlay */}
       {mobileMenuOpen && (
         <div 
           id="mobile-menu"
-          className={`md:hidden fixed top-[72px] left-0 right-0 pt-4 pb-6 z-[100] border-t shadow-lg h-[calc(100vh-72px)] overflow-y-auto ${
-            shouldUseAboutStyles 
-              ? "bg-white border-gray-200" 
-              : "bg-[#101B21] backdrop-blur-sm border-white/10"
-          }`}
+          className="md:hidden fixed inset-0 z-[90] pt-[72px] bg-opacity-98" // Full viewport coverage
         >
-          <div className="container mx-auto px-4">
-            <div className="flex flex-col space-y-3">
-              {navItems.map((item) => (
-                <Link 
-                  key={item.href}
-                  href={item.href}
-                  className={`block py-3 px-4 rounded-lg transition-colors duration-200 ${
-                    shouldUseAboutStyles
-                      ? isActive(item.href)
-                        ? "bg-[#00B4E1]/10 text-[#00B4E1]"
-                        : "text-[#101B21] hover:bg-[#00B4E1]/5"
-                      : isActive(item.href)
-                        ? "bg-white/10 text-white"
-                        : "text-white/90 hover:bg-white/5"
-                  }`}
-                  onClick={(e) => {
-                    handleNavClick(e, item.href, item.sectionId);
-                    setMobileMenuOpen(false);
-                  }}
-                >
-                  {item.label}
-                </Link>
-              ))}
+          <div 
+            className={`w-full h-full flex flex-col overflow-y-auto ${
+              shouldUseAboutStyles 
+                ? "bg-white text-[#101B21]" 
+                : "bg-[#101B21] text-white"
+            }`}
+          >
+            <div className="container mx-auto px-4 py-6 flex-1 flex flex-col">
+              <div className="flex flex-col space-y-5">
+                {navItems.map((item) => (
+                  <Link 
+                    key={item.href}
+                    href={item.href}
+                    className={`block py-4 px-5 text-xl font-medium rounded-lg transition-colors duration-200 ${
+                      shouldUseAboutStyles
+                        ? isActive(item.href)
+                          ? "bg-[#00B4E1]/10 text-[#00B4E1] font-semibold"
+                          : "text-[#101B21] hover:bg-[#00B4E1]/5"
+                        : isActive(item.href)
+                          ? "bg-white/10 text-white font-semibold"
+                          : "text-white/90 hover:bg-white/5"
+                    }`}
+                    onClick={(e) => {
+                      handleNavClick(e, item.href, item.sectionId);
+                      setMobileMenuOpen(false);
+                    }}
+                  >
+                    {item.label}
+                  </Link>
+                ))}
+              </div>
+              
+              {/* Additional mobile menu content can go here */}
+              <div className="mt-auto pt-8 border-t border-gray-200 dark:border-gray-800">
+                <div className="flex flex-col space-y-4">
+                  <div className="text-sm opacity-70">
+                    © {new Date().getFullYear()} Dadson Logistics, Inc.
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       )}
-    </nav>
+    </>
   );
 };
 
