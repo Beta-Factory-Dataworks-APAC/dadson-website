@@ -27,8 +27,12 @@ const HeroSection = () => {
           {/* Main headline - pushed down further */}
           <div className="w-full max-w-[1224px] mx-auto pt-[160px] xs:pt-[170px] sm:pt-[80px] md:pt-[120px] lg:pt-[140px] xl:pt-[160px] text-center">
             <h1 className="font-clash font-medium text-[26px] xs:text-[30px] sm:text-[40px] md:text-[48px] lg:text-[60px] xl:text-[70px] leading-[1.1] uppercase tracking-[0.02em]">
-              <div className="mb-0.5 sm:mb-2">Trusted Freight Solutions.</div>
-              <div>Backed by Real People.</div>
+              <div className="mb-0.5 sm:mb-2 animate-fade-in" style={{ animationDelay: '300ms' }}>
+                Trusted Freight Solutions.
+              </div>
+              <div className="animate-fade-in" style={{ animationDelay: '500ms' }}>
+                Backed by Real People.
+              </div>
             </h1>
           </div>
 
@@ -51,7 +55,7 @@ const HeroSection = () => {
             </div>
             
             {/* Tagline */}
-            <p className="font-satoshi font-medium text-[12px] xs:text-[13px] sm:text-[15px] md:text-[16px] leading-[1.3] sm:leading-[1.5] text-white/90 max-w-[240px] xs:max-w-[260px] sm:max-w-[400px] md:max-w-[450px] mx-auto">
+            <p className="font-satoshi font-medium text-[12px] xs:text-[13px] sm:text-[15px] md:text-[16px] leading-[1.3] sm:leading-[1.5] text-white/90 max-w-[240px] xs:max-w-[260px] sm:max-w-[400px] md:max-w-[450px] mx-auto animate-fade-in" style={{ animationDelay: '700ms' }}>
               At Dadson Logistics, every load is managed like it matters—because it does.
             </p>
           </div>
