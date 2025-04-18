@@ -6,13 +6,14 @@
  * - Integrated with improved TruckAnimation for smoother truck movement
  * - Optimized marquee animation performance
  * - Added support for animation reset on viewport visibility change
+ * - Hybrid approach: Uses direct Framer Motion for desktop and static image fallback for mobile
  */
 
 import React, { useRef, useEffect } from 'react';
 import Image from 'next/image';
 import { motion, useInView, useAnimation } from 'framer-motion';
-// Import commented out until animation is fixed
-// import TruckAnimation from '@/lib/react-bits/TruckAnimation';
+// Import TruckAnimation for mobile view
+import TruckAnimation from '@/lib/react-bits/TruckAnimation';
 
 const NoBotsBanner = () => {
   const truckRef = useRef(null);
@@ -39,7 +40,7 @@ const NoBotsBanner = () => {
 
       {/* Content Section with Truck and Benefits */}
       <div className="container mx-auto px-4 md:px-6 lg:px-8 relative pb-8 sm:pb-10 md:pb-12 lg:pb-16">
-        {/* Restructured layout - horizontal alignment for trust content and benefits */}
+        {/* DESKTOP LAYOUT - Using direct Framer Motion (current implementation) */}
         <div className="hidden md:flex flex-row gap-3 sm:gap-4 md:gap-6 lg:gap-8 py-4 sm:py-6 md:py-8 lg:py-10 relative">
           {/* Left Side: Trust Content */}
           <div className="w-1/2 flex flex-col relative pr-4 md:pr-6 lg:pr-8">
@@ -174,7 +175,7 @@ const NoBotsBanner = () => {
           </div>
         </div>
 
-        {/* Mobile version */}
+        {/* MOBILE LAYOUT - Using static image positioned for reliability */}
         <div className="md:hidden flex flex-col py-4 gap-6">
           {/* Mobile header content */}
           <div className="mb-6 px-1">
@@ -191,36 +192,15 @@ const NoBotsBanner = () => {
             </p>
           </div>
 
-          {/* Mobile truck image with optimized container */}
-          <div className="relative h-[160px] sm:h-[180px] w-full overflow-visible mx-auto" ref={mobileTruckRef}>
-            <motion.div 
-              className="absolute left-1/2 -translate-x-1/2 bottom-0 w-[95%] sm:w-[90%] h-auto z-10"
-              initial={{ opacity: 0, x: "-100%" }}
-              animate={mobileInView ? { opacity: 1, x: "-50%" } : { opacity: 0, x: "-100%" }}
-              transition={{ 
-                duration: 2,
-                ease: [0.22, 1, 0.36, 1],
-                delay: 0.3
-              }}
-            >
-              <Image
+          {/* Simple static truck image for mobile - Guaranteed to be visible */}
+          <div className="relative w-full h-[160px] sm:h-[180px] flex justify-center items-center my-2 sm:my-4">
+            <div className="w-[95%] max-w-[350px]">
+              <img
                 src="/images/truck.png"
                 alt="Dadson Logistics Truck"
-                width={350}
-                height={175}
-                className="w-full h-auto object-contain transform scale-90 sm:scale-95"
-                priority
-                quality={90}
-                onError={(e) => {
-                  console.error('Mobile image failed to load');
-                  const target = e.target as HTMLElement;
-                  if (target) {
-                    target.classList.add('bg-red-200');
-                  }
-                }}
-                onLoad={() => console.log('Mobile image loaded successfully')}
+                className="w-full h-auto object-contain"
               />
-            </motion.div>
+            </div>
           </div>
           
           {/* Mobile benefits with improved spacing */}
