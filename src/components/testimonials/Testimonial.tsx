@@ -40,144 +40,143 @@ type TestimonialProps = {
 const Testimonial = ({ testimonials = defaultTestimonialData }: TestimonialProps) => {
   return (
     <section id="testimonials" className="w-full relative min-h-screen">
-      <div className="max-w-[1880px] mx-auto">
-        {/* Mobile Header */}
-        <div className="md:hidden px-5 mb-8">
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="text-gray-500 text-xl font-normal font-['Satoshi'] mb-4"
-          >
-            What our partners say about Dadson.
-          </motion.div>
-          
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="text-black text-4xl font-medium font-['Clash_Display'] uppercase leading-[48px]"
-          >
-            Real Stories<br />Real Impact
-          </motion.div>
-        </div>
-
-        {/* Desktop Header */}
-        <div className="hidden md:block px-5 xl:px-[20px]">
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="absolute right-5 xl:right-[20px] top-[107px] text-gray-500 text-2xl font-normal font-['Satoshi']"
-          >
-            What our partners say about Dadson.
-          </motion.div>
-          
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="w-[475px] text-black text-6xl font-medium font-['Clash_Display'] uppercase leading-[72px]"
-          >
-            Real Stories<br />Real Impact
-          </motion.div>
-        </div>
+      {/* Removed max-width container */}
+      {/* Mobile Header */}
+      <div className="md:hidden px-5 mb-8 ml-[20%]">
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          className="text-gray-500 text-xl font-normal font-['Satoshi'] mb-4"
+        >
+          What our partners say about Dadson.
+        </motion.div>
         
-        {/* Testimonials Grid */}
-        <div className="w-full mt-8 md:mt-[190px] px-5 xl:px-[20px]">
-          <div className="flex flex-col md:flex-row gap-5 md:gap-[20px]">
-            {/* Main Testimonial */}
-            <motion.div
-              initial={{ opacity: 0, x: 50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6 }}
-              className="w-full md:w-[1405px] py-12 md:py-24 bg-gray-50 flex flex-col justify-start items-center gap-8 md:gap-16 overflow-hidden rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300"
-            >
-              <div className="w-full px-4 md:px-8 max-w-[1280px] flex flex-col justify-start items-center">
-                <div className="self-stretch flex flex-col justify-start items-center gap-8 md:gap-10">
-                  <div className="self-stretch flex flex-col justify-start items-center gap-8">
-                    <div className="inline-flex justify-start items-center gap-3">
-                      <div className="w-32 h-8 relative">
-                        <Image 
-                          src="/images/dadson-logo.svg"
-                          alt="Dadson Logo"
-                          fill
-                          className="object-contain"
-                        />
-                      </div>
-                    </div>
-                    <div className="self-stretch text-center text-gray-900 text-2xl md:text-5xl font-medium font-['Satoshi'] leading-[36px] md:leading-[56px] px-4 md:px-8 py-6 md:py-8 bg-white rounded-lg shadow-inner">
-                      {testimonials[0].quote}
-                    </div>
-                    <div className="self-stretch flex flex-col justify-start items-center gap-4 mt-4">
-                      <div className="w-16 h-16 relative rounded-full overflow-hidden border-2 border-gray-100">
-                        <Image 
-                          src={testimonials[0].author.image} 
-                          alt={`${testimonials[0].author.name} - ${testimonials[0].author.title}`}
-                          fill
-                          className="object-cover"
-                        />
-                      </div>
-                      <div className="self-stretch flex flex-col justify-start items-center gap-1">
-                        <div className="self-stretch text-center text-gray-900 text-lg font-medium font-['Satoshi'] leading-7">
-                          {testimonials[0].author.name}
-                        </div>
-                        <div className="self-stretch text-center text-gray-500 text-base font-normal font-['Satoshi'] leading-normal">
-                          {testimonials[0].author.title}
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </motion.div>
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+          className="text-black text-4xl font-medium font-['Clash_Display'] uppercase leading-[48px]"
+        >
+          Real Stories<br />Real Impact
+        </motion.div>
+      </div>
 
-            {/* Secondary Testimonial */}
-            <motion.div
-              initial={{ opacity: 0, x: 50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              className="w-full md:w-[455px] py-12 md:py-16 bg-gray-50 flex flex-col justify-between items-center overflow-hidden rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300"
-            >
-              <div className="w-full px-4 flex-1 flex flex-col justify-between items-center">
-                <div className="self-stretch flex flex-col justify-start items-center gap-8 md:gap-10">
-                  <div className="self-stretch flex flex-col justify-start items-center gap-8">
-                    <div className="inline-flex justify-start items-center gap-3">
-                      <div className="w-32 h-8 relative">
-                        <Image 
-                          src="/images/dadson-logo.svg"
-                          alt="Dadson Logo"
-                          fill
-                          className="object-contain"
-                        />
-                      </div>
+      {/* Desktop Header */}
+      <div className="hidden md:block px-5 xl:px-[20px]">
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          className="absolute ml-[20%] right-5 xl:right-[20%] top-[107px] text-gray-500 text-2xl font-normal font-['Satoshi']"
+        >
+          What our partners say about Dadson.
+        </motion.div>
+        
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+          className="ml-[20%] w-[475px] text-black text-6xl font-medium font-['Clash_Display'] uppercase leading-[72px]"
+        >
+          Real Stories<br />Real Impact
+        </motion.div>
+      </div>
+      
+      {/* Testimonials Grid */}
+      <div className="w-full mt-8 md:mt-[190px] px-5 xl:px-[20px]">
+        <div className="flex flex-col md:flex-row gap-5 md:gap-[20px]">
+          {/* Main Testimonial */}
+          <motion.div
+            initial={{ opacity: 0, x: 50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.6 }}
+            className="w-full md:w-[1405px] py-12 md:py-24 bg-gray-50 flex flex-col justify-start items-center gap-8 md:gap-16 overflow-hidden rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300"
+          >
+            <div className="w-full px-4 md:px-8 max-w-[1280px] flex flex-col justify-start items-center">
+              <div className="self-stretch flex flex-col justify-start items-center gap-8 md:gap-10">
+                <div className="self-stretch flex flex-col justify-start items-center gap-8">
+                  <div className="inline-flex justify-start items-center gap-3">
+                    <div className="w-32 h-8 relative">
+                      <Image 
+                        src="/images/dadson-logo.svg"
+                        alt="Dadson Logo"
+                        fill
+                        className="object-contain"
+                      />
                     </div>
-                    <div className="self-stretch text-center text-gray-900 text-xl md:text-3xl font-medium font-['Satoshi'] leading-[30px] md:leading-9 px-4 md:px-6 py-6 bg-white rounded-lg shadow-inner">
-                      {testimonials[1]?.quote || testimonials[0].quote}
+                  </div>
+                  <div className="self-stretch text-center text-gray-900 text-2xl md:text-5xl font-medium font-['Satoshi'] leading-[36px] md:leading-[56px] px-4 md:px-8 py-6 md:py-8 bg-white rounded-lg shadow-inner">
+                    {testimonials[0].quote}
+                  </div>
+                  <div className="self-stretch flex flex-col justify-start items-center gap-4 mt-4">
+                    <div className="w-16 h-16 relative rounded-full overflow-hidden border-2 border-gray-100">
+                      <Image 
+                        src={testimonials[0].author.image} 
+                        alt={`${testimonials[0].author.name} - ${testimonials[0].author.title}`}
+                        fill
+                        className="object-cover"
+                      />
                     </div>
-                    <div className="self-stretch flex flex-col justify-start items-center gap-4 mt-4">
-                      <div className="w-16 h-16 relative rounded-full overflow-hidden border-2 border-gray-100">
-                        <Image 
-                          src={testimonials[1]?.author.image || testimonials[0].author.image} 
-                          alt={`${testimonials[1]?.author.name || testimonials[0].author.name} - ${testimonials[1]?.author.title || testimonials[0].author.title}`}
-                          fill
-                          className="object-cover"
-                        />
+                    <div className="self-stretch flex flex-col justify-start items-center gap-1">
+                      <div className="self-stretch text-center text-gray-900 text-lg font-medium font-['Satoshi'] leading-7">
+                        {testimonials[0].author.name}
                       </div>
-                      <div className="self-stretch flex flex-col justify-start items-center gap-1">
-                        <div className="self-stretch text-center text-gray-900 text-lg font-medium font-['Satoshi'] leading-7">
-                          {testimonials[1]?.author.name || testimonials[0].author.name}
-                        </div>
-                        <div className="self-stretch text-center text-gray-500 text-base font-normal font-['Satoshi'] leading-normal">
-                          {testimonials[1]?.author.title || testimonials[0].author.title}
-                        </div>
+                      <div className="self-stretch text-center text-gray-500 text-base font-normal font-['Satoshi'] leading-normal">
+                        {testimonials[0].author.title}
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
-            </motion.div>
-          </div>
+            </div>
+          </motion.div>
+
+          {/* Secondary Testimonial */}
+          <motion.div
+            initial={{ opacity: 0, x: 50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="w-full md:w-[455px] py-12 md:py-16 bg-gray-50 flex flex-col justify-between items-center overflow-hidden rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300"
+          >
+            <div className="w-full px-4 flex-1 flex flex-col justify-between items-center">
+              <div className="self-stretch flex flex-col justify-start items-center gap-8 md:gap-10">
+                <div className="self-stretch flex flex-col justify-start items-center gap-8">
+                  <div className="inline-flex justify-start items-center gap-3">
+                    <div className="w-32 h-8 relative">
+                      <Image 
+                        src="/images/dadson-logo.svg"
+                        alt="Dadson Logo"
+                        fill
+                        className="object-contain"
+                      />
+                    </div>
+                  </div>
+                  <div className="self-stretch text-center text-gray-900 text-xl md:text-3xl font-medium font-['Satoshi'] leading-[30px] md:leading-9 px-4 md:px-6 py-6 bg-white rounded-lg shadow-inner">
+                    {testimonials[1]?.quote || testimonials[0].quote}
+                  </div>
+                  <div className="self-stretch flex flex-col justify-start items-center gap-4 mt-4">
+                    <div className="w-16 h-16 relative rounded-full overflow-hidden border-2 border-gray-100">
+                      <Image 
+                        src={testimonials[1]?.author.image || testimonials[0].author.image} 
+                        alt={`${testimonials[1]?.author.name || testimonials[0].author.name} - ${testimonials[1]?.author.title || testimonials[0].author.title}`}
+                        fill
+                        className="object-cover"
+                      />
+                    </div>
+                    <div className="self-stretch flex flex-col justify-start items-center gap-1">
+                      <div className="self-stretch text-center text-gray-900 text-lg font-medium font-['Satoshi'] leading-7">
+                        {testimonials[1]?.author.name || testimonials[0].author.name}
+                      </div>
+                      <div className="self-stretch text-center text-gray-500 text-base font-normal font-['Satoshi'] leading-normal">
+                        {testimonials[1]?.author.title || testimonials[0].author.title}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </motion.div>
         </div>
       </div>
     </section>
