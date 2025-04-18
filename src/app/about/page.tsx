@@ -144,7 +144,8 @@ const AboutPage = () => {
               <div className="w-10 sm:w-12 md:w-16 h-10 sm:h-12 md:h-16 flex items-center justify-center mb-3 sm:mb-4 md:mb-6 text-[#101B21]">
                 <ProblemSolverIcon />
               </div>
-              <h3 className="font-clash font-semibold text-center text-[14px] sm:text-[16px] md:text-[18px] mb-2">Problem Solvers, Not excuse givers.</h3>
+              <h3 className="font-clash font-semibold text-center text-[14px] sm:text-[16px] md:text-[18px] mb-2">
+                Solution Oriented</h3>
             </div>
           </div>
         </div>

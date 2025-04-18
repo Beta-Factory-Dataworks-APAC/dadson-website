@@ -150,7 +150,7 @@ const Navbar = () => {
           shouldUseAboutStyles ? 'bg-white py-2 md:py-3 shadow-sm' : 'bg-transparent py-2 md:py-4'
         }`}
       >
-        <div className="container mx-auto px-4 md:px-6 xs:mt-10 sm:mt-10">
+        <div className="container mx-auto px-4 md:px-6 ">
           <div className="flex justify-between items-center">
             {/* Logo */}
             <div className="flex justify-start">
