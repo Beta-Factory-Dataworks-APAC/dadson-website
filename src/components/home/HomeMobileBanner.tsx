@@ -3,7 +3,6 @@
 import React from 'react';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
-import TruckAnimation from '@/lib/react-bits/TruckAnimation';
 import Link from 'next/link';
 
 /**
@@ -131,23 +130,14 @@ const HomeMobileBanner = () => {
                 We're proud members of the Transportation Intermediaries Association (TIA) and the Better Business Bureau (BBB)—proof of our commitment to service, safety, and integrity.
               </motion.p>
               
-              <motion.div 
-                className="relative h-[160px] w-full overflow-visible"
-                initial={{ opacity: 0, x: -50 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.8, type: "spring", bounce: 0.4 }}
-                viewport={{ once: false, amount: 0.3 }}
-              >
-                <TruckAnimation
+              {/* Static truck image for improved reliability */}
+              <div className="relative h-[160px] w-full flex justify-center items-end">
+                <img
                   src="/images/truck.png"
                   alt="Dadson Logistics Truck"
-                  width={450}
-                  height={225}
-                  className="absolute left-0 bottom-0 w-[100%] h-auto"
-                  priority
-                  delay={0}
+                  className="w-[95%] h-auto object-contain max-w-[320px]"
                 />
-              </motion.div>
+              </div>
             </div>
 
             {/* Right column: Benefits list */}
