@@ -150,12 +150,12 @@ const Navbar = () => {
           shouldUseAboutStyles ? 'bg-white py-2 md:py-3 shadow-sm' : 'bg-transparent py-2 md:py-4'
         }`}
       >
-        <div className="container mx-auto px-4 md:px-6">
+        <div className="container mx-auto px-4 md:px-6 xs:mt-10 sm:mt-10">
           <div className="flex justify-between items-center">
             {/* Logo */}
-            <div className="flex-1 flex justify-start">
+            <div className="flex justify-start">
               <Link href="/" className="flex items-center">
-                <div className="relative w-36 h-9 md:w-48 md:h-12">
+                <div className="relative h-9 w-8 sm:w-8 xs:w-8 md:w-48 md:h-12">
                   <Image 
                     src="/images/dadson-logo.svg"
                     alt="Dadson Logo"
