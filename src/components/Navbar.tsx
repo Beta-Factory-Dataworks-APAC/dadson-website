@@ -153,24 +153,14 @@ const Navbar = () => {
         <div className="flex justify-between items-center py-1 md:py-0">
           {/* Logo */}
           <Link href="/" className="flex items-center">
-            <div className="relative w-32 h-8">
-              {shouldUseAboutStyles ? (
-                <Image 
-                  src="/images/dadson-logo.svg"
-                  alt="Dadson Logo"
-                  fill
-                  className="object-contain"
-                  priority
-                />
-              ) : (
-                <Image 
-                  src="/images/dadson-logo-white.svg" 
-                  alt="Dadson Logo"
-                  fill
-                  className="object-contain"
-                  priority
-                />
-              )}
+            <div className="relative w-40 h-10 md:w-48 md:h-12">
+              <Image 
+                src="/images/dadson-logo.svg"
+                alt="Dadson Logo"
+                fill
+                className="object-contain"
+                priority
+              />
             </div>
           </Link>
           
