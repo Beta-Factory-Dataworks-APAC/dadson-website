@@ -1,7 +1,7 @@
 import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { formatDate, truncateText } from '@/lib/utils';
+import { formatDate, truncateString } from '@/lib/utils';
 
 interface BlogCardProps {
   post: {
@@ -58,7 +58,7 @@ export default function BlogCard({ post }: BlogCardProps) {
           
           {post.excerpt && (
             <p className="text-gray-600 mb-3">
-              {truncateText(post.excerpt, 120)}
+              {truncateString(post.excerpt, 120)}
             </p>
           )}
           
