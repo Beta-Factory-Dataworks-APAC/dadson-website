@@ -205,16 +205,23 @@ const Footer = () => {
           </div>
           
           {/* Copyright and social media links */}
-          <div className="flex flex-col md:flex-row justify-between items-center gap-4 md:gap-6 mt-6 md:mt-10">
-            <p className="text-xs md:text-sm text-gray-400">
-              {currentYear} Dadson Logistics. All rights reserved.
-            </p>
-            
-            {/* Social media links */}
-            <div className="flex gap-6 md:gap-8">
-              <a href="https://www.linkedin.com/search/results/all/?fetchDeterministicClustersOnly=true&heroEntityKey=urn%3Ali%3Aorganization%3A105942595&keywords=dadson%20logistics%20inc&origin=RICH_QUERY_TYPEAHEAD_HISTORY&position=0&searchId=e085d5ae-0002-4044-929b-09b112fce9d2&sid=7SB&spellCorrectionEnabled=true" className="text-sm md:text-base text-gray-400 hover:text-white transition-colors duration-300">
-                LinkedIn
-              </a>
+          <div className="grid grid-cols-1 md:grid-cols-3 items-center gap-2 md:gap-6 mt-6 md:mt-10 text-center">
+            <div className="flex justify-center md:justify-start">
+              <p className="text-xs md:text-sm text-gray-400">
+                19414 N Hwy 99, Acampo, CA 95220, United States
+              </p>
+            </div>
+            <div className="flex justify-center">
+              <p className="text-xs md:text-sm text-gray-400">
+                {currentYear} Dadson Logistics. All rights reserved.
+              </p>
+            </div>
+            <div className="flex justify-center md:justify-end">
+              <div className="flex gap-6 md:gap-8">
+                <a href="https://www.linkedin.com/search/results/all/?fetchDeterministicClustersOnly=true&heroEntityKey=urn%3Ali%3Aorganization%3A105942595&keywords=dadson%20logistics%20inc&origin=RICH_QUERY_TYPEAHEAD_HISTORY&position=0&searchId=e085d5ae-0002-4044-929b-09b112fce9d2&sid=7SB&spellCorrectionEnabled=true" className="text-sm md:text-base text-gray-400 hover:text-white transition-colors duration-300">
+                  LinkedIn
+                </a>
+              </div>
             </div>
           </div>
         </div>

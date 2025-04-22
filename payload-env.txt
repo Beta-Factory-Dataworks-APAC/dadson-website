@@ -1,0 +1,5 @@
+MONGODB_URI=mongodb://localhost:27017/dadson-blog
+PAYLOAD_SECRET=dadson-blog-secret-key-change-me-in-production
+PAYLOAD_PORT=3001
+PAYLOAD_PUBLIC_SERVER_URL=http://localhost:3001
+NEXT_PUBLIC_PAYLOAD_URL=http://localhost:3001 

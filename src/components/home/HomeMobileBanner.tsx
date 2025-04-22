@@ -16,8 +16,22 @@ const HomeMobileBanner = () => {
       <section className="bg-white py-6">
         <div className="max-w-[100vw] mx-auto">
           <div className="text-center mb-6 px-4">
-            <h2 className="text-2xl font-bold text-gray-900 mb-3 font-clash">FREIGHT SOLUTIONS</h2>
-            <p className="text-base text-gray-600 font-satoshi">Full-service logistics solutions</p>
+            <motion.h2
+              className="text-2xl font-bold text-gray-900 mb-3 font-clash"
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+            >
+              FREIGHT SOLUTIONS
+            </motion.h2>
+            <motion.p
+              className="text-base text-gray-600 font-satoshi"
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+            >
+              Full-service logistics solutions
+            </motion.p>
           </div>
           <div className="grid grid-cols-1 gap-8 px-6">
             <motion.div 

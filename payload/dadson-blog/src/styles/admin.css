@@ -1,0 +1,188 @@
+/* payload/dadson-blog/src/styles/admin.css */
+:root {
+  --theme-primary: #00B4E1; /* Use theme variables for consistency */
+  --theme-secondary: #03033D;
+  --theme-background: #FFFFFF;
+  --theme-text: #101B21;
+  
+  /* Payload specific variables - Map Dadson colors to Payload theme */
+  --theme-elevation-100: var(--theme-background); /* Base background */
+  --theme-elevation-200: #f8f9fa; /* Slightly off-white for cards/inputs */
+  --theme-elevation-300: #e9ecef; /* Borders, dividers */
+  
+  --theme-text-color: var(--theme-text);
+  --theme-text-muted-color: #707C83;
+  
+  --theme-primary-500: var(--theme-primary);
+  --theme-primary-600: #0096BD; /* Darker primary for hover */
+  --theme-primary-100: #E0F7FC; /* Lighter primary for backgrounds */
+  
+  --theme-secondary-500: var(--theme-secondary);
+
+  /* Payload UI Colors */
+  --theme-success-500: #4CAF50;
+  --theme-error-500: #FF3B30;
+  --theme-warning-500: #FF9500;
+  
+  /* Shadows */
+  --theme-box-shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --theme-box-shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  
+  /* Fonts - Ensure these fonts are loaded */
+  --theme-font-family-sans: 'Satoshi', sans-serif;
+  /* Optionally use Clash Display for specific elements if desired */
+  /* --theme-font-family-heading: 'Clash Display', sans-serif; */
+  
+  /* Rounded corners */
+  --theme-border-radius: 6px; /* Default border radius */
+
+  /* Custom admin styles for Payload CMS */
+  --theme-success: #00B4E1; /* Primary blue */
+  --theme-error: #e52207;
+  --theme-warning: #ffbe2e;
+  --theme-elevation-0: #ffffff;
+  --theme-elevation-50: #f9f9f9;
+  --theme-elevation-100: #f3f3f3;
+  --theme-elevation-150: #f0f0f0;
+  --theme-elevation-200: #eaeaea;
+  --theme-elevation-250: #e6e6e6;
+  --theme-elevation-300: #e0e0e0;
+  --theme-elevation-350: #d6d6d6;
+  --theme-elevation-400: #c2c2c2;
+  --theme-elevation-450: #b0b0b0;
+  --theme-elevation-500: #969696;
+  --theme-elevation-550: #7c7c7c;
+  --theme-elevation-600: #646464;
+  --theme-elevation-650: #4c4c4c;
+  --theme-elevation-700: #333333;
+  --theme-elevation-750: #191919;
+  --theme-elevation-800: #0f0f0f;
+  --theme-elevation-850: #080808;
+  --theme-elevation-900: #000000;
+  --theme-elevation-950: #000000;
+  --theme-elevation-1000: #000000;
+  --theme-bg: var(--theme-elevation-0);
+  --theme-input-bg: var(--theme-elevation-50);
+  --theme-border-color: var(--theme-elevation-250);
+  --theme-field-border-color: var(--theme-elevation-150);
+  --theme-outline: var(--theme-success);
+  --theme-baseline: 0.5rem;
+  --theme-font-family: 'Roboto', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+}
+
+/* Inject custom fonts if they are not globally available */
+/* Ensure font files are accessible, e.g., in a /public/fonts directory */
+/*
+@font-face {
+  font-family: 'Clash Display';
+  src: url('/fonts/ClashDisplay-Medium.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Clash Display';
+  src: url('/fonts/ClashDisplay-Semibold.woff2') format('woff2');
+  font-weight: 600;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Satoshi';
+  src: url('/fonts/Satoshi-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Satoshi';
+  src: url('/fonts/Satoshi-Medium.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+}
+*/
+
+/* Specific Overrides for Dadson Branding */
+
+/* Use Clash Display for main headings if desired */
+.collection-list__header h1,
+.doc-header__title,
+.dashboard__card-header h2 {
+  /* font-family: var(--theme-font-family-heading, 'Clash Display', sans-serif); */
+  /* text-transform: uppercase; */ /* If headings should be uppercase */
+}
+
+/* Style primary buttons */
+.btn--style-primary {
+  background-color: var(--theme-primary-500);
+  border: none;
+  border-radius: var(--theme-border-radius);
+  transition: background-color 0.2s ease;
+}
+
+.btn--style-primary:hover {
+  background-color: var(--theme-primary-600);
+}
+
+/* Style the sidebar */
+.nav {
+  background-color: var(--theme-secondary-500); /* Use Navy for sidebar */
+}
+
+.nav .nav__link,
+.nav .nav-group__toggle,
+.nav .log-out,
+.nav .nav__label {
+  color: var(--theme-background); /* White text on navy */
+}
+
+.nav .nav__link--active,
+.nav .nav-group__toggle--active {
+  background-color: rgba(255, 255, 255, 0.1); /* Subtle active state */
+  color: var(--theme-primary-500); /* Primary blue for active text */
+}
+
+.nav .nav__link:hover,
+.nav .nav-group__toggle:hover {
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+/* Login Page Customization */
+.payload-login {
+  /* Add background image or color if needed */
+}
+
+.payload-login .form-wrapper {
+  border-radius: var(--theme-border-radius);
+  box-shadow: var(--theme-box-shadow-md);
+}
+
+/* Customize rich text editor toolbar */
+.rich-text__toolbar {
+  border-radius: var(--theme-border-radius) var(--theme-border-radius) 0 0;
+}
+
+/* Ensure input fields have appropriate styling */
+.field-type input[type="text"],
+.field-type input[type="email"],
+.field-type input[type="number"],
+.field-type input[type="password"],
+.field-type textarea,
+.field-type select,
+.react-select__control {
+  border-radius: var(--theme-border-radius);
+  border-color: var(--theme-elevation-300);
+}
+
+.field-type input:focus,
+.field-type textarea:focus,
+.react-select__control--is-focused {
+  border-color: var(--theme-primary-500);
+  box-shadow: 0 0 0 1px var(--theme-primary-500);
+}
+
+/* Dadson Logistics brand color overrides */
+:root {
+  --theme-success: #00B4E1; /* Primary blue */
+  --theme-text: #101B21; /* Dark text color */
+} 

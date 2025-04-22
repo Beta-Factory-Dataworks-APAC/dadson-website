@@ -30,7 +30,6 @@ const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isVisible, setIsVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
-  const [lastActivityTime, setLastActivityTime] = useState(Date.now());
   const pathname = usePathname();
   
   // Close mobile menu when route changes
@@ -52,55 +51,27 @@ const Navbar = () => {
 
   // Handle scroll and activity tracking
   useEffect(() => {
-    let timeoutId: NodeJS.Timeout;
-    
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
-      const bannerHeight = pathname === '/' ? 580 : 400; // Adjust based on banner heights
-      
-      // Update scroll direction and visibility
-      if (currentScrollY > lastScrollY) {
-        setIsVisible(false); // Scrolling down
+      const bannerHeight = pathname === '/' ? 580 : 400;
+
+      // Only hide navbar if not at the very top and scrolling down
+      if (currentScrollY > 0 && currentScrollY > lastScrollY) {
+        setIsVisible(false);
       } else {
-        setIsVisible(true); // Scrolling up
+        setIsVisible(true);
       }
-      
-      // Update scrolled state based on banner height
+
       setIsScrolled(currentScrollY > bannerHeight);
       setLastScrollY(currentScrollY);
-      
-      // Reset activity timer
-      setLastActivityTime(Date.now());
     };
 
-    const handleActivity = () => {
-      setIsVisible(true);
-      setLastActivityTime(Date.now());
-    };
-
-    const checkInactivity = () => {
-      const inactiveTime = Date.now() - lastActivityTime;
-      if (inactiveTime > 1500) { // 1.5 seconds of inactivity
-        setIsVisible(false);
-      }
-      timeoutId = setTimeout(checkInactivity, 1000);
-    };
-
-    // Add event listeners
     window.addEventListener('scroll', handleScroll);
-    window.addEventListener('mousemove', handleActivity);
-    window.addEventListener('click', handleActivity);
-    window.addEventListener('keypress', handleActivity);
-    timeoutId = setTimeout(checkInactivity, 1000);
-
     return () => {
       window.removeEventListener('scroll', handleScroll);
-      window.removeEventListener('mousemove', handleActivity);
-      window.removeEventListener('click', handleActivity);
-      window.removeEventListener('keypress', handleActivity);
-      clearTimeout(timeoutId);
     };
-  }, [lastScrollY, lastActivityTime, pathname]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [lastScrollY, pathname]);
   
   // Function to determine if a navigation item should be highlighted
   const isActive = (path: string): boolean => {
@@ -155,7 +126,7 @@ const Navbar = () => {
             {/* Logo */}
             <div className="flex justify-start">
               <Link href="/" className="flex items-center">
-                <div className="relative h-9 w-8 sm:w-8 xs:w-8 md:w-48 md:h-12">
+                <div className="relative h-14 w-32 sm:w-36 xs:w-32 md:w-56 md:h-16">
                   <Image 
                     src="/images/dadson-logo.svg"
                     alt="Dadson Logo"
