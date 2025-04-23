@@ -40,12 +40,12 @@ const HeroSection = () => {
           <div className="w-full max-w-[92%] xs:max-w-[90%] sm:max-w-[600px] mx-auto mt-auto pb-8 text-center">
             {/* CTA Buttons */}
             <div className="flex flex-col sm:flex-row justify-center gap-2 sm:gap-4 mb-3">
-              <Link 
-                href="/quote" 
+              <a 
+                href="mailto:support@dadson.us?subject=Request%20for%20Quote" 
                 className="w-full sm:w-[280px] h-[44px] xs:h-[46px] sm:h-[52px] md:h-[56px] flex justify-center items-center py-2 sm:py-3 md:py-3.5 px-5 md:px-6 rounded-[6px] bg-[rgba(0,180,225,0.9)] hover:bg-[rgba(0,180,225,1)] text-white font-clash font-semibold text-[14px] xs:text-[15px] sm:text-[16px] md:text-[17px] leading-[1.2] shadow-[0px_4px_34px_rgba(0,180,225,0.15)] shadow-[inset_0px_-5px_12px_0px_rgba(255,255,255,0.15)] backdrop-blur-[22px] transition-colors duration-300"
               >
                 GET A QUOTE
-              </Link>
+              </a>
               <Link 
                 href="https://mycarrierpackets.com/a3d4024a-30a7-41f2-8173-f0adc5b9abc5/Carrier/Intellivite/Dadson%20logistics%20inc" 
                 className="w-full sm:w-[280px] h-[44px] xs:h-[46px] sm:h-[52px] md:h-[56px] flex justify-center items-center py-2 sm:py-3 md:py-3.5 px-5 md:px-6 rounded-[6px] bg-white/10 hover:bg-white/15 text-white font-clash font-semibold text-[14px] xs:text-[15px] sm:text-[16px] md:text-[17px] leading-[1.2] outline outline-1 outline-stone-50/10 backdrop-blur-[22px] transition-colors duration-300"
