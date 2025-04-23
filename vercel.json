@@ -4,7 +4,7 @@
       "SKIP_INSTALL_DEPS": "1"
     }
   },
-  "installCommand": "npm install --legacy-peer-deps",
+  "installCommand": "pnpm install --no-frozen-lockfile",
   "builds": [
     {
       "src": "package.json",
