@@ -160,7 +160,7 @@ const Navbar = () => {
             </div>
             
             {/* Contact Button */}
-            <div className="hidden md:flex flex-1 justify-end mr-6">
+            <div className="hidden md:flex flex-1 justify-end mr-12">
               <Link 
                 href={navItems[navItems.length - 1].href}
                 className={`${shouldUseAboutStyles ? aboutPageContactButtonClasses : contactButtonBaseClasses} ${
