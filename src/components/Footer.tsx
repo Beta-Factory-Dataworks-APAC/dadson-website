@@ -155,9 +155,9 @@ const Footer = () => {
             
             {/* CTA Buttons */}
             <div className="mt-6 md:mt-8 lg:mt-12 flex flex-col sm:flex-row gap-3 md:gap-4 w-full sm:w-auto">
-              <Link href="/quote" className="px-4 md:px-6 py-3 bg-[#00B4E1] hover:bg-[#00a0cc] text-white font-medium rounded transition-colors duration-300 text-center min-w-[180px]">
+              <a href="mailto:support@dadson.us?subject=Request%20for%20Quote" className="px-4 md:px-6 py-3 bg-[#00B4E1] hover:bg-[#00a0cc] text-white font-medium rounded transition-colors duration-300 text-center min-w-[180px]">
                 Request A Quote
-              </Link>
+              </a>
             </div>
           </div>
         </div>
