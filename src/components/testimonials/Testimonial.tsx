@@ -9,8 +9,8 @@ const defaultTestimonialData = [
     id: 1,
     quote: "Dadson Logistics has transformed our supply chain with their reliable and efficient service. Their commitment to excellence is unmatched in the industry.",
     author: {
-      name: "Michael Chen",
-      title: "Supply Chain Director",
+      name: "Sarah Johnson",
+      title: "Operations Manager",
       image: "/images/avatars/Avatar-1.png"
     }
   },
@@ -18,8 +18,8 @@ const defaultTestimonialData = [
     id: 2,
     quote: "Working with Dadson has been a game-changer for our business. Their freight solutions are innovative and cost-effective.",
     author: {
-      name: "Sarah Johnson",
-      title: "Operations Manager",
+      name: "Michael Chen",
+      title: "Supply Chain Director",
       image: "/images/avatars/Avatar.png"
     }
   }

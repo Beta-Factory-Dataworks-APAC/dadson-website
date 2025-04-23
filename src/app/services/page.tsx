@@ -168,7 +168,7 @@ export default function Services() {
                 </p>
                 
                 <div className="flex flex-col sm:flex-row space-y-3 sm:space-y-0 sm:space-x-4 mb-4 w-full sm:w-auto mt-4 sm:mt-auto">
-                  <a href="/contact" className="w-full sm:w-52 px-5 py-2 sm:py-3 bg-cyan-500/90 hover:bg-cyan-500 rounded-md shadow-[0px_4px_34px_0px_rgba(0,180,225,0.15)] text-white text-sm sm:text-lg font-semibold font-['Clash_Display'] uppercase text-center">
+                  <a href="mailto:support@dadson.us?subject=Request%20for%20Quote" className="w-full sm:w-52 px-5 py-2 sm:py-3 bg-cyan-500/90 hover:bg-cyan-500 rounded-md shadow-[0px_4px_34px_0px_rgba(0,180,225,0.15)] text-white text-sm sm:text-lg font-semibold font-['Clash_Display'] uppercase text-center">
                     GET A QUOTE
                   </a>
                 </div>

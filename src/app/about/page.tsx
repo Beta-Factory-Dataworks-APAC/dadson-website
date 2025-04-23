@@ -51,14 +51,6 @@ const AboutPage = () => {
       <section className="relative w-full bg-white pt-[80px] sm:pt-[100px] md:pt-32 lg:pt-36 pb-6 sm:pb-8 md:pb-16">
         <div className="container mx-auto px-4 md:px-6">
           <div className="flex flex-col gap-3 md:gap-4">
-            <Link 
-              href="/" 
-              className="flex items-center gap-2 text-[#00B4E1] font-satoshi font-medium text-sm md:text-base"
-            >
-              <span>←</span>
-              <span>About us</span>
-            </Link>
-            
             <div className="flex items-center gap-3 mb-2">
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-5 h-5 md:w-6 md:h-6">
                 <rect x="2" y="2" width="8" height="8" rx="1" fill="#00B4E1"></rect>
@@ -66,12 +58,12 @@ const AboutPage = () => {
                 <rect x="2" y="14" width="8" height="8" rx="1" fill="#00B4E1"></rect>
                 <rect x="14" y="14" width="8" height="8" rx="1" fill="#00B4E1"></rect>
               </svg>
-              <h2 className="font-clash font-semibold text-[#101B21] text-xl md:text-2xl">ABOUT US</h2>
+              <span className="font-clash font-medium text-[#00B4E1] text-base md:text-lg">About us</span>
             </div>
             
-            <div className="font-clash font-semibold text-[28px] xs:text-[32px] sm:text-[42px] md:text-[60px] lg:text-[80px] leading-[1.125] uppercase max-w-4xl">
-              <div className="text-[#101B21]">WE&apos;RE NOT JUST MOVING FREIGHT.</div>
-              <div className="text-[#A9A9A9]">WE&apos;RE BUILDING TRUST.</div>
+            <div className="font-clash font-medium text-[28px] xs:text-[32px] sm:text-[42px] md:text-[60px] lg:text-[80px] leading-[1.125] uppercase w-full text-center flex flex-wrap justify-center items-center gap-x-4 gap-y-2">
+              <span className="text-[#101B21]">WE&apos;RE NOT JUST MOVING FREIGHT.</span>
+              <span className="text-[#A9A9A9]">WE&apos;RE BUILDING TRUST.</span>
             </div>
           </div>
         </div>

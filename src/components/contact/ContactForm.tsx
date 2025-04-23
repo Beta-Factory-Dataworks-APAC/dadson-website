@@ -88,28 +88,16 @@ const ContactForm = () => {
   
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
-    try {
-      // Here we would use SendGrid to send the form data
-      console.log('Form submitted:', formData);
-      
-      // Display success message (in a real app, would use a proper toast/notification)
-      alert('Thank you for contacting us! We will get back to you soon.');
-      
-      // Reset form
-      setFormData({
-        firstName: '',
-        lastName: '',
-        email: '',
-        phone: '',
-        countryCode: '+1',
-        message: ''
-      });
-      setMessageCount(0);
-    } catch (error) {
-      console.error('Error submitting form:', error);
-      alert('There was an error submitting your message. Please try again.');
-    }
+    // Compose mailto link with form data
+    const subject = encodeURIComponent('Contact Us Form Submission');
+    const body = encodeURIComponent(
+      `First Name: ${formData.firstName}\n` +
+      `Last Name: ${formData.lastName}\n` +
+      `Email: ${formData.email}\n` +
+      `Phone: ${formData.countryCode} ${formData.phone}\n` +
+      `Message: ${formData.message}`
+    );
+    window.location.href = `mailto:support@dadson.us?subject=${subject}&body=${body}`;
   };
 
   return (
@@ -130,7 +118,6 @@ const ContactForm = () => {
               value={formData.firstName}
               onChange={handleChange}
               placeholder="First Name"
-              required
               className="w-full px-4 md:px-[32px] py-3 md:py-[16px] border border-[#E3E3E3] rounded-[4px] md:rounded-[6px] text-[16px] md:text-[18px] font-satoshi font-medium text-[#101B21] leading-[1.33] placeholder:text-[#8B8991] focus:outline-none focus:ring-1 focus:ring-[#00B4E1] focus:border-[#00B4E1]"
             />
             <input
@@ -139,7 +126,6 @@ const ContactForm = () => {
               value={formData.lastName}
               onChange={handleChange}
               placeholder="Last Name"
-              required
               className="w-full px-4 md:px-[32px] py-3 md:py-[16px] border border-[#E3E3E3] rounded-[4px] md:rounded-[6px] text-[16px] md:text-[18px] font-satoshi font-medium text-[#101B21] leading-[1.33] placeholder:text-[#8B8991] focus:outline-none focus:ring-1 focus:ring-[#00B4E1] focus:border-[#00B4E1]"
             />
           </div>
@@ -154,7 +140,6 @@ const ContactForm = () => {
               value={formData.email}
               onChange={handleChange}
               placeholder="Email"
-              required
               className="w-full pl-10 md:pl-[66px] pr-4 md:pr-[32px] py-3 md:py-[16px] border border-[#E3E3E3] rounded-[4px] md:rounded-[6px] text-[16px] md:text-[18px] font-satoshi font-medium text-[#101B21] leading-[1.33] placeholder:text-[#8B8991] focus:outline-none focus:ring-1 focus:ring-[#00B4E1] focus:border-[#00B4E1]"
             />
           </div>
@@ -201,7 +186,6 @@ const ContactForm = () => {
               placeholder="How can we help?"
               rows={4}
               maxLength={MAX_MESSAGE_LENGTH}
-              required
               className="w-full px-4 md:px-[32px] py-4 md:py-[32px] border border-[#E3E3E3] rounded-[4px] md:rounded-[6px] text-[16px] md:text-[18px] font-satoshi font-medium text-[#101B21] leading-[1.33] placeholder:text-[#8B8991] focus:outline-none focus:ring-1 focus:ring-[#00B4E1] focus:border-[#00B4E1] resize-none"
             ></textarea>
             <div className="absolute bottom-2 md:bottom-3 right-3 md:right-4">
@@ -213,8 +197,7 @@ const ContactForm = () => {
           
           <button
             type="submit"
-            disabled={true}
-            className="w-full bg-[rgba(0,180,225,0.5)] text-white font-satoshi font-semibold text-[16px] md:text-[18px] leading-[1.78] py-3 md:py-[12px] rounded-[4px] md:rounded-[6px] transition-colors cursor-not-allowed shadow-[0px_4px_34px_0px_rgba(0,180,225,0.10)]"
+            className="w-full bg-[rgba(0,180,225,0.9)] hover:bg-[rgba(0,180,225,1)] text-white font-satoshi font-semibold text-[16px] md:text-[18px] leading-[1.78] py-3 md:py-[12px] rounded-[4px] md:rounded-[6px] transition-colors cursor-pointer shadow-[0px_4px_34px_0px_rgba(0,180,225,0.10)]"
           >
             Submit
           </button>
