@@ -1,14 +1,6 @@
 {
-  "build": {
-    "env": {
-      "SKIP_INSTALL_DEPS": "1"
-    }
-  },
-  "installCommand": "pnpm install --no-frozen-lockfile",
-  "builds": [
-    {
-      "src": "package.json",
-      "use": "@vercel/next"
-    }
-  ]
+  "version": 2,
+  "buildCommand": "npm run build",
+  "installCommand": "npm install --legacy-peer-deps",
+  "framework": "nextjs"
 } 
