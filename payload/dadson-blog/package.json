@@ -3,10 +3,10 @@
   "description": "Payload CMS backend for Dadson Logistics blog",
   "version": "1.0.0",
   "main": "dist/server.js",
-  "type": "module",
   "license": "MIT",
   "scripts": {
     "dev": "cross-env PAYLOAD_CONFIG_PATH=src/payload.config.ts nodemon",
+    "dev:simple": "node ./start-payload.js",
     "build:payload": "cross-env PAYLOAD_CONFIG_PATH=src/payload.config.ts payload build",
     "build:server": "tsc",
     "build": "npm run build:payload && npm run build:server",

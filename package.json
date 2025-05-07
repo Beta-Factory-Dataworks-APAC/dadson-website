@@ -4,8 +4,13 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
+    "dev:check-ports": "node check-ports.js",
     "dev:clean": "killall node || true && npm run dev:all",
     "dev:all": "concurrently \"npm run dev\"",
+    "dev:blog": "./start-blog-stack.sh",
+    "dev:cms-check": "node ./payload/dadson-blog/check-cms-environment.js",
+    "dev:cms": "cd ./payload/dadson-blog && npm run dev:simple",
+    "test:blog": "node --experimental-modules blog-test.js",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
@@ -32,6 +37,8 @@
     "concurrently": "^8.2.2",
     "eslint": "^8.57.0",
     "eslint-config-next": "14.2.10",
+    "mongodb": "6.16.0",
+    "node-fetch": "3.3.2",
     "puppeteer": "^24.6.1",
     "sharp": "^0.34.1",
     "typescript": "^5"
