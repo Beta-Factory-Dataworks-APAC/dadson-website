@@ -72,7 +72,7 @@ const ShippersCarriersSection = () => {
   ];
 
   return (
-    <section className="w-full py-[30px] xs:py-[35px] sm:py-[40px] md:py-[50px] lg:py-[60px] bg-white overflow-hidden">
+    <section className="w-full py-[30px] xs:py-[35px] sm:py-[40px] md:py-[50px] lg:py-[60px] 2xl:py-[50px] 3xl:py-[45px] 4xl:py-[40px] bg-white overflow-hidden">
       {/* Section Headers */}
       <div className="w-full text-center mb-[30px] xs:mb-[35px] sm:mb-[40px] md:mb-[50px]">
         <p className="text-gray-500 text-[12px] xs:text-[13px] sm:text-[14px] md:text-[15px] font-medium font-clash uppercase tracking-[3px] xs:tracking-[4px] sm:tracking-[6px] md:tracking-[8px] mb-2 sm:mb-3">

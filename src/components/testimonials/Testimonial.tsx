@@ -39,7 +39,7 @@ type TestimonialProps = {
 
 const Testimonial = ({ testimonials = defaultTestimonialData }: TestimonialProps) => {
   return (
-    <section id="testimonials" className="w-full relative min-h-screen">
+    <section id="testimonials" className="w-full relative min-h-screen 2xl:min-h-fit py-12 md:py-20 2xl:py-16 3xl:py-14 4xl:py-12">
       {/* Mobile Header */}
       <div className="md:hidden px-5 mb-8 ml-[20%]">
         <motion.div 
