@@ -140,3 +140,51 @@ html {
     animation-duration: 30s;
   }
 }
+
+/* Ultra-high resolution styles */
+@media (min-width: 2560px) {
+  h1 {
+    font-size: 85px;
+    line-height: 1.15;
+  }
+  
+  h2 {
+    font-size: 46px;
+    line-height: 1.2;
+  }
+  
+  button, .button {
+    font-size: 19px;
+  }
+  
+  body {
+    font-size: 19px;
+  }
+}
+
+@media (min-width: 3840px) {
+  h1 {
+    font-size: 95px;
+    line-height: 1.15;
+  }
+  
+  h2 {
+    font-size: 52px;
+    line-height: 1.2;
+  }
+  
+  button, .button {
+    font-size: 21px;
+  }
+  
+  body {
+    font-size: 21px;
+  }
+  
+  /* Slight padding increase at ultra-high resolutions */
+  section {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    max-height: 1200px;
+  }
+}
