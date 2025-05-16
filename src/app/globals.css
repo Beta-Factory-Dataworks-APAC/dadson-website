@@ -61,7 +61,7 @@ html {
 }
 
 body {
-  background: var(--background);
+  background: #e8f7fc; /* Light hue of primary color #00B4E1 */
   color: var(--foreground);
   font-family: var(--font-body);
   font-weight: 500;
@@ -160,6 +160,13 @@ html {
   body {
     font-size: 19px;
   }
+  
+  /* Rounded corners for sections at ultra-high resolutions */
+  section {
+    border-radius: 12px;
+    margin: 8px 0;
+    box-shadow: 0 2px 4px rgba(0, 180, 225, 0.08);
+  }
 }
 
 @media (min-width: 3840px) {
@@ -181,9 +188,12 @@ html {
     font-size: 21px;
   }
   
-  /* Slight padding increase at ultra-high resolutions */
+  /* Rounded corners and padding for sections at ultra-high resolutions */
   section {
     padding-top: 1rem;
     padding-bottom: 1rem;
+    border-radius: 16px;
+    margin: 12px 0;
+    box-shadow: 0 4px 8px rgba(0, 180, 225, 0.1);
   }
 }
