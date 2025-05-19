@@ -1,9 +1,13 @@
 #!/usr/bin/env node
 
 /**
- * Script to check for port conflicts before starting the development environment
- * This helps prevent common port conflicts between Next.js (3000) and PayloadCMS (3001)
+ * Check Ports Script
+ * 
+ * This script checks if ports 3003 and 3004 are available for Next.js and PayloadCMS
+ * It will prompt the user to close any applications using these ports.
  */
+
+const net = require('net');
 const { execSync } = require('child_process');
 const readline = require('readline');
 const fs = require('fs');
@@ -17,107 +21,116 @@ const rl = readline.createInterface({
   output: process.stdout
 });
 
-console.log('\n📋 Dadson Website Development Environment\n');
+// ANSI Colors for terminal output
+const colors = {
+  reset: '\x1b[0m',
+  red: '\x1b[31m',
+  green: '\x1b[32m',
+  yellow: '\x1b[33m',
+  blue: '\x1b[34m'
+};
 
-// Check if ports are in use
-function checkPort(port) {
-  try {
-    const result = execSync(`lsof -i :${port} -P -n -t`).toString().trim();
-    if (result) {
-      return { inUse: true, pid: result };
-    }
-    return { inUse: false };
-  } catch (error) {
-    return { inUse: false };
-  }
-}
+console.log(`\n${colors.blue}Checking ports for Dadson website...${colors.reset}\n`);
 
-// Function to suggest alternative ports
-function suggestPorts() {
-  const suggestions = [];
-  for (let port = 3002; port < 3010; port++) {
-    const portCheck = checkPort(port);
-    if (!portCheck.inUse) {
-      suggestions.push(port);
-      if (suggestions.length >= 2) break;
-    }
-  }
-  return suggestions;
-}
-
-// Main check function
-async function checkPorts() {
-  const nextJsPort = checkPort(NEXTJS_PORT);
-  const payloadPort = checkPort(PAYLOAD_PORT);
-  
-  if (!nextJsPort.inUse && !payloadPort.inUse) {
-    console.log('✅ Ports check passed! Both required ports are available:');
-    console.log(`  - Next.js:    Port ${NEXTJS_PORT}`);
-    console.log(`  - PayloadCMS: Port ${PAYLOAD_PORT}`);
-    process.exit(0);
-  }
-  
-  console.log('⚠️ Port conflict detected:');
-  
-  if (nextJsPort.inUse) {
-    console.log(`  - Port ${NEXTJS_PORT} (Next.js) is already in use by process ${nextJsPort.pid}`);
-  }
-  
-  if (payloadPort.inUse) {
-    console.log(`  - Port ${PAYLOAD_PORT} (PayloadCMS) is already in use by process ${payloadPort.pid}`);
-  }
-  
-  const availablePorts = suggestPorts();
-  console.log('\nSuggested available ports:');
-  availablePorts.forEach(port => console.log(`  - ${port}`));
-  
-  console.log('\nOptions:');
-  console.log('  1. Kill the processes using these ports');
-  console.log('  2. Use alternative ports (requires updating .env files)');
-  
-  rl.question('\nWhat would you like to do? (Enter 1 or 2): ', (answer) => {
-    if (answer === '1') {
-      if (nextJsPort.inUse) {
-        try {
-          execSync(`kill -9 ${nextJsPort.pid}`);
-          console.log(`✅ Process using port ${NEXTJS_PORT} has been terminated.`);
-        } catch (error) {
-          console.log(`❌ Failed to terminate process. You may need admin privileges.`);
-        }
-      }
-      
-      if (payloadPort.inUse) {
-        try {
-          execSync(`kill -9 ${payloadPort.pid}`);
-          console.log(`✅ Process using port ${PAYLOAD_PORT} has been terminated.`);
-        } catch (error) {
-          console.log(`❌ Failed to terminate process. You may need admin privileges.`);
-        }
-      }
-      
-      console.log('\n✅ Port check complete. Restart your development environment.');
-    } else if (answer === '2') {
-      const [nextJsAlt, payloadAlt] = availablePorts;
-      console.log('\nTo use alternative ports:');
-      console.log('\n1. For Next.js, start with:');
-      console.log(`   npm run dev -- -p ${nextJsAlt}`);
-      
-      console.log('\n2. For PayloadCMS, update the .env file in payload/dadson-blog:');
-      console.log(`   PAYLOAD_PORT=${payloadAlt}`);
-      console.log(`   PAYLOAD_PUBLIC_SERVER_URL=http://localhost:${payloadAlt}`);
-      console.log(`   NEXT_PUBLIC_PAYLOAD_URL=http://localhost:${payloadAlt}`);
-      
-      console.log('\n3. Update .env.local in the project root:');
-      console.log(`   NEXT_PUBLIC_PAYLOAD_URL=http://localhost:${payloadAlt}`);
-      
-      console.log('\n✅ Once you\'ve made these changes, you can start your development environment.');
-    } else {
-      console.log('Invalid option. Please try again.');
-    }
+/**
+ * Check if a port is in use
+ * @param {number} port - The port to check
+ * @returns {Promise<boolean>} - True if port is in use, false otherwise
+ */
+function isPortInUse(port) {
+  return new Promise((resolve) => {
+    const server = net.createServer();
     
-    rl.close();
+    server.once('error', (err) => {
+      if (err.code === 'EADDRINUSE') {
+        resolve(true);
+      } else {
+        resolve(false);
+      }
+    });
+    
+    server.once('listening', () => {
+      server.close();
+      resolve(false);
+    });
+    
+    server.listen(port);
   });
 }
 
-// Run the check
+/**
+ * Get the process ID using a port
+ * @param {number} port - The port to check
+ * @returns {string|null} - Process ID or null if not found
+ */
+function getProcessUsingPort(port) {
+  try {
+    const command = process.platform === 'win32' 
+      ? `netstat -ano | findstr :${port}`
+      : `lsof -i :${port} -P -n -t`;
+    
+    const result = execSync(command).toString().trim();
+    return result || null;
+  } catch (error) {
+    return null;
+  }
+}
+
+/**
+ * Kill process using a port
+ * @param {number} port - The port to check
+ * @returns {boolean} - True if process was killed, false otherwise
+ */
+function killProcessUsingPort(port) {
+  const pid = getProcessUsingPort(port);
+  
+  if (!pid) return false;
+  
+  try {
+    const command = process.platform === 'win32' 
+      ? `taskkill /PID ${pid} /F`
+      : `kill -9 ${pid}`;
+    
+    execSync(command);
+    return true;
+  } catch (error) {
+    return false;
+  }
+}
+
+/**
+ * Check a specific port and provide feedback
+ * @param {number} port - The port to check
+ * @param {string} service - The service name using this port
+ */
+async function checkPort(port, service) {
+  console.log(`${colors.yellow}Checking port ${port} for ${service}...${colors.reset}`);
+  
+  const inUse = await isPortInUse(port);
+  
+  if (inUse) {
+    console.log(`${colors.red}Port ${port} is already in use!${colors.reset}`);
+    
+    // Try to identify the process
+    const pid = getProcessUsingPort(port);
+    if (pid) {
+      console.log(`${colors.yellow}Process ID using port ${port}: ${pid}${colors.reset}`);
+      
+      // Ask to kill the process
+      console.log(`${colors.yellow}To free up port ${port}, run:${colors.reset}`);
+      console.log(`${colors.blue}${process.platform === 'win32' ? `taskkill /PID ${pid} /F` : `kill -9 ${pid}`}${colors.reset}`);
+    }
+  } else {
+    console.log(`${colors.green}Port ${port} is available for ${service}${colors.reset}`);
+  }
+}
+
+// Check each port
+async function checkPorts() {
+  await checkPort(3003, 'Next.js');
+  await checkPort(3004, 'PayloadCMS');
+  
+  console.log(`\n${colors.blue}Port check complete!${colors.reset}`);
+}
+
 checkPorts(); 

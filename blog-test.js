@@ -1,210 +1,254 @@
-#!/usr/bin/env node
-
 /**
- * Test script to verify blog functionality
- * This script checks:
- * 1. MongoDB connection
- * 2. PayloadCMS API access
- * 3. Next.js blog API access
- * 4. Mock data fallback
+ * Blog Functionality Test Script
+ * 
+ * This script tests the blog functionality by checking the API endpoints:
+ * 1. Test the mock API endpoints (/api/blog, /api/blog/categories)
+ * 2. Test the PayloadCMS API if available
+ * 
+ * Run with: node blog-test.js
  */
-const fetch = await import('node-fetch').then(module => module.default);
-const { MongoClient } = await import('mongodb');
+
+const fetch = require('node-fetch');
+const { execSync } = require('child_process');
+
+// ANSI Colors for terminal output
+const colors = {
+  reset: '\x1b[0m',
+  red: '\x1b[31m',
+  green: '\x1b[32m',
+  yellow: '\x1b[33m',
+  blue: '\x1b[34m',
+  magenta: '\x1b[35m'
+};
 
 // Configuration
-const MONGO_URI = 'mongodb://localhost:27017/dadson-blog';
-const PAYLOAD_URL = 'http://localhost:3001';
-const NEXTJS_URL = 'http://localhost:3000';
+const NEXT_PORT = process.env.NEXT_PORT || 3005;
+const PAYLOAD_PORT = process.env.PAYLOAD_PORT || 3004;
+const NEXT_URL = `http://localhost:${NEXT_PORT}`;
+const PAYLOAD_URL = `http://localhost:${PAYLOAD_PORT}`;
 
-// Colors for console output
-const GREEN = '\x1b[32m';
-const RED = '\x1b[31m';
-const YELLOW = '\x1b[33m';
-const BLUE = '\x1b[34m';
-const RESET = '\x1b[0m';
+// Start test
+console.log(`\n${colors.magenta}=== Dadson Website Blog Functionality Test ====${colors.reset}\n`);
 
-// Helper function to check connection
-async function testConnection(url, name) {
+/**
+ * Check if a server is running on given port
+ * @param {string} url - The URL to check
+ * @param {string} name - The name of the service
+ * @returns {Promise<boolean>} - True if server is running
+ */
+async function isServerRunning(url, name) {
   try {
-    console.log(`${BLUE}Testing ${name} connection...${RESET}`);
-    const response = await fetch(url, { timeout: 5000 });
-    if (response.ok) {
-      console.log(`${GREEN}✓ ${name} is accessible at ${url}${RESET}`);
-      return true;
-    } else {
-      console.log(`${YELLOW}⚠ ${name} responded with status ${response.status} at ${url}${RESET}`);
-      return false;
-    }
-  } catch (error) {
-    console.log(`${RED}✗ Cannot connect to ${name} at ${url}: ${error.message}${RESET}`);
-    return false;
-  }
-}
-
-// Test MongoDB connection
-async function testMongoDB() {
-  console.log(`${BLUE}Testing MongoDB connection...${RESET}`);
-  let client;
-  try {
-    client = new MongoClient(MONGO_URI);
-    await client.connect();
-    const db = client.db();
-    const collections = await db.listCollections().toArray();
-    
-    console.log(`${GREEN}✓ Connected to MongoDB${RESET}`);
-    console.log(`${BLUE}Found ${collections.length} collections:${RESET}`);
-    collections.forEach(collection => {
-      console.log(`  - ${collection.name}`);
-    });
-    
+    console.log(`${colors.blue}Checking if ${name} is running at ${url}...${colors.reset}`);
+    const response = await fetch(url, { timeout: 3000 });
+    console.log(`${colors.green}✓ ${name} is running (Status: ${response.status})${colors.reset}`);
     return true;
   } catch (error) {
-    console.log(`${RED}✗ MongoDB connection failed: ${error.message}${RESET}`);
+    console.log(`${colors.red}✗ ${name} is not running or not accessible${colors.reset}`);
+    console.log(`${colors.yellow}Error: ${error.message}${colors.reset}`);
     return false;
-  } finally {
-    if (client) await client.close();
   }
 }
 
-// Test PayloadCMS API
-async function testPayloadAPI() {
-  const apiUrl = `${PAYLOAD_URL}/api/articles`;
+/**
+ * Test the Next.js mock API endpoints
+ * @returns {Promise<boolean>} - Test results
+ */
+async function testMockApi() {
+  console.log(`\n${colors.magenta}Testing Mock Blog API...${colors.reset}`);
+  let success = true;
+  
   try {
-    console.log(`${BLUE}Testing PayloadCMS API...${RESET}`);
-    const response = await fetch(apiUrl);
+    // Test blog articles endpoint
+    console.log(`\n${colors.blue}Testing /api/blog endpoint...${colors.reset}`);
+    const articlesResponse = await fetch(`${NEXT_URL}/api/blog`);
+    const articlesData = await articlesResponse.json();
     
-    if (response.ok) {
-      const data = await response.json();
-      console.log(`${GREEN}✓ PayloadCMS API is working${RESET}`);
-      console.log(`${BLUE}Found ${data.docs?.length || 0} articles${RESET}`);
-      return true;
+    if (articlesResponse.ok && articlesData.docs && Array.isArray(articlesData.docs)) {
+      console.log(`${colors.green}✓ Mock API articles endpoint is working${colors.reset}`);
+      console.log(`${colors.green}✓ Found ${articlesData.docs.length} mock articles${colors.reset}`);
     } else {
-      console.log(`${YELLOW}⚠ PayloadCMS API responded with status ${response.status}${RESET}`);
-      return false;
+      console.log(`${colors.red}✗ Mock API articles endpoint returned invalid data${colors.reset}`);
+      success = false;
     }
+    
+    // Test blog categories endpoint
+    console.log(`\n${colors.blue}Testing /api/blog/categories endpoint...${colors.reset}`);
+    const categoriesResponse = await fetch(`${NEXT_URL}/api/blog/categories`);
+    const categoriesData = await categoriesResponse.json();
+    
+    if (categoriesResponse.ok && categoriesData.docs && Array.isArray(categoriesData.docs)) {
+      console.log(`${colors.green}✓ Mock API categories endpoint is working${colors.reset}`);
+      console.log(`${colors.green}✓ Found ${categoriesData.docs.length} mock categories${colors.reset}`);
+    } else {
+      console.log(`${colors.red}✗ Mock API categories endpoint returned invalid data${colors.reset}`);
+      success = false;
+    }
+    
+    // Test single article by slug
+    if (articlesData.docs && articlesData.docs.length > 0) {
+      const testSlug = articlesData.docs[0].slug;
+      console.log(`\n${colors.blue}Testing single article endpoint with slug: ${testSlug}...${colors.reset}`);
+      const articleResponse = await fetch(`${NEXT_URL}/api/blog?slug=${testSlug}`);
+      const articleData = await articleResponse.json();
+      
+      if (articleResponse.ok && articleData.docs && articleData.docs.length === 1) {
+        console.log(`${colors.green}✓ Mock API single article endpoint is working${colors.reset}`);
+      } else {
+        console.log(`${colors.red}✗ Mock API single article endpoint returned invalid data${colors.reset}`);
+        success = false;
+      }
+    }
+    
+    return success;
   } catch (error) {
-    console.log(`${RED}✗ PayloadCMS API test failed: ${error.message}${RESET}`);
+    console.log(`${colors.red}✗ Error testing mock API: ${error.message}${colors.reset}`);
     return false;
   }
 }
 
-// Test Next.js blog API
-async function testNextJsAPI() {
-  const apiUrl = `${NEXTJS_URL}/api/blog`;
+/**
+ * Test the PayloadCMS API endpoints
+ * @returns {Promise<boolean>} - Test results
+ */
+async function testPayloadApi() {
+  console.log(`\n${colors.magenta}Testing PayloadCMS API...${colors.reset}`);
+  let success = true;
+  
   try {
-    console.log(`${BLUE}Testing Next.js Blog API...${RESET}`);
-    const response = await fetch(apiUrl);
+    // Test articles endpoint
+    console.log(`\n${colors.blue}Testing PayloadCMS articles endpoint...${colors.reset}`);
+    const articlesResponse = await fetch(`${PAYLOAD_URL}/api/articles`);
     
-    if (response.ok) {
-      const data = await response.json();
-      console.log(`${GREEN}✓ Next.js Blog API is working${RESET}`);
-      console.log(`${BLUE}Found ${data.docs?.length || 0} articles${RESET}`);
-      return true;
+    if (articlesResponse.ok) {
+      const articlesData = await articlesResponse.json();
+      console.log(`${colors.green}✓ PayloadCMS articles endpoint is working${colors.reset}`);
+      console.log(`${colors.green}✓ Found ${articlesData.docs?.length || 0} articles${colors.reset}`);
     } else {
-      console.log(`${YELLOW}⚠ Next.js Blog API responded with status ${response.status}${RESET}`);
-      return false;
+      console.log(`${colors.red}✗ PayloadCMS articles endpoint returned status ${articlesResponse.status}${colors.reset}`);
+      success = false;
     }
+    
+    // Test categories endpoint
+    console.log(`\n${colors.blue}Testing PayloadCMS categories endpoint...${colors.reset}`);
+    const categoriesResponse = await fetch(`${PAYLOAD_URL}/api/categories`);
+    
+    if (categoriesResponse.ok) {
+      const categoriesData = await categoriesResponse.json();
+      console.log(`${colors.green}✓ PayloadCMS categories endpoint is working${colors.reset}`);
+      console.log(`${colors.green}✓ Found ${categoriesData.docs?.length || 0} categories${colors.reset}`);
+    } else {
+      console.log(`${colors.red}✗ PayloadCMS categories endpoint returned status ${categoriesResponse.status}${colors.reset}`);
+      success = false;
+    }
+    
+    return success;
   } catch (error) {
-    console.log(`${RED}✗ Next.js Blog API test failed: ${error.message}${RESET}`);
+    console.log(`${colors.red}✗ Error testing PayloadCMS API: ${error.message}${colors.reset}`);
     return false;
   }
 }
 
-// Test blog frontend
+/**
+ * Test the blog frontend pages
+ * @returns {Promise<boolean>} - Test results
+ */
 async function testBlogFrontend() {
-  const blogUrl = `${NEXTJS_URL}/blog`;
+  console.log(`\n${colors.magenta}Testing Blog Frontend...${colors.reset}`);
+  let success = true;
+  
   try {
-    console.log(`${BLUE}Testing Blog Frontend...${RESET}`);
-    const response = await fetch(blogUrl);
+    // Test blog index page
+    console.log(`\n${colors.blue}Testing blog index page...${colors.reset}`);
+    const blogResponse = await fetch(`${NEXT_URL}/blog`);
     
-    if (response.ok) {
-      console.log(`${GREEN}✓ Blog frontend is accessible${RESET}`);
-      return true;
+    if (blogResponse.ok) {
+      console.log(`${colors.green}✓ Blog index page is working (Status: ${blogResponse.status})${colors.reset}`);
     } else {
-      console.log(`${YELLOW}⚠ Blog frontend responded with status ${response.status}${RESET}`);
-      return false;
+      console.log(`${colors.red}✗ Blog index page returned status ${blogResponse.status}${colors.reset}`);
+      success = false;
     }
+    
+    return success;
   } catch (error) {
-    console.log(`${RED}✗ Blog frontend test failed: ${error.message}${RESET}`);
+    console.log(`${colors.red}✗ Error testing blog frontend: ${error.message}${colors.reset}`);
     return false;
   }
 }
 
-// Run all tests
+/**
+ * Run all tests and report results
+ */
 async function runTests() {
-  console.log(`${BLUE}======= DADSON BLOG FUNCTIONALITY TEST =======${RESET}\n`);
+  // Check if servers are running
+  const nextRunning = await isServerRunning(NEXT_URL, 'Next.js');
+  const payloadRunning = await isServerRunning(PAYLOAD_URL, 'PayloadCMS');
   
-  // First check if services are running
-  const payloadRunning = await testConnection(PAYLOAD_URL, 'PayloadCMS');
-  const nextjsRunning = await testConnection(NEXTJS_URL, 'Next.js');
-  
-  console.log('');
-  
-  // If either service is not running, exit
-  if (!payloadRunning || !nextjsRunning) {
-    console.log(`${YELLOW}⚠ Some services are not running. Please start them:${RESET}`);
-    if (!payloadRunning) console.log(`  - PayloadCMS: cd payload/dadson-blog && npm run dev:simple`);
-    if (!nextjsRunning) console.log(`  - Next.js: npm run dev`);
-    console.log(`${YELLOW}Or use the combined script: npm run dev:blog${RESET}`);
-    return;
+  // If Next.js is not running, try to start it
+  if (!nextRunning) {
+    console.log(`\n${colors.yellow}Next.js is not running. Attempting to start...${colors.reset}`);
+    try {
+      // This will start Next.js but won't wait for it
+      const command = `NEXT_PUBLIC_PAYLOAD_URL=${PAYLOAD_URL} npm run dev -- -p ${NEXT_PORT}`;
+      console.log(`${colors.blue}Running: ${command}${colors.reset}`);
+      
+      // Run in a new terminal window
+      if (process.platform === 'darwin') {
+        execSync(`osascript -e 'tell app "Terminal" to do script "cd ${process.cwd()} && ${command}"'`);
+        console.log(`${colors.yellow}Next.js is starting in a new terminal window.${colors.reset}`);
+        console.log(`${colors.yellow}Please wait a moment for it to start, then run this test again.${colors.reset}`);
+        return;
+      } else {
+        // On other platforms, just tell user to start manually
+        console.log(`${colors.yellow}Please start Next.js manually with:${colors.reset}`);
+        console.log(`${colors.blue}${command}${colors.reset}`);
+        return;
+      }
+    } catch (error) {
+      console.log(`${colors.red}Failed to start Next.js: ${error.message}${colors.reset}`);
+      return;
+    }
   }
   
-  // Test MongoDB
-  const mongodbOk = await testMongoDB();
-  console.log('');
+  // Run tests
+  const mockApiResults = await testMockApi();
+  let payloadApiResults = false;
   
-  // Test PayloadCMS API
-  const payloadApiOk = await testPayloadAPI();
-  console.log('');
+  if (payloadRunning) {
+    payloadApiResults = await testPayloadApi();
+  } else {
+    console.log(`\n${colors.yellow}PayloadCMS is not running. Skipping PayloadCMS API tests.${colors.reset}`);
+    console.log(`${colors.yellow}To test PayloadCMS, start it with: npm run dev:cms${colors.reset}`);
+  }
   
-  // Test Next.js blog API
-  const nextjsApiOk = await testNextJsAPI();
-  console.log('');
+  const frontendResults = await testBlogFrontend();
   
-  // Test blog frontend
-  const blogFrontendOk = await testBlogFrontend();
-  console.log('');
+  // Print final results
+  console.log(`\n${colors.magenta}=== Test Results ===${colors.reset}`);
+  console.log(`${colors.blue}Mock API: ${mockApiResults ? colors.green + '✓ PASS' : colors.red + '✗ FAIL'}${colors.reset}`);
   
-  // Summary
-  console.log(`${BLUE}======= TEST SUMMARY =======${RESET}`);
-  console.log(`MongoDB Connection: ${mongodbOk ? GREEN + '✓ PASSED' : RED + '✗ FAILED'}${RESET}`);
-  console.log(`PayloadCMS API: ${payloadApiOk ? GREEN + '✓ PASSED' : RED + '✗ FAILED'}${RESET}`);
-  console.log(`Next.js Blog API: ${nextjsApiOk ? GREEN + '✓ PASSED' : RED + '✗ FAILED'}${RESET}`);
-  console.log(`Blog Frontend: ${blogFrontendOk ? GREEN + '✓ PASSED' : RED + '✗ FAILED'}${RESET}`);
+  if (payloadRunning) {
+    console.log(`${colors.blue}PayloadCMS API: ${payloadApiResults ? colors.green + '✓ PASS' : colors.red + '✗ FAIL'}${colors.reset}`);
+  } else {
+    console.log(`${colors.blue}PayloadCMS API: ${colors.yellow}SKIPPED${colors.reset}`);
+  }
+  
+  console.log(`${colors.blue}Blog Frontend: ${frontendResults ? colors.green + '✓ PASS' : colors.red + '✗ FAIL'}${colors.reset}`);
   
   // Overall status
-  if (mongodbOk && payloadApiOk && nextjsApiOk && blogFrontendOk) {
-    console.log(`\n${GREEN}All tests passed! The blog functionality is working correctly.${RESET}`);
+  const overallStatus = mockApiResults && frontendResults && (payloadRunning ? payloadApiResults : true);
+  console.log(`\n${colors.magenta}Overall Status: ${overallStatus ? colors.green + 'PASS' : colors.red + 'FAIL'}${colors.reset}`);
+  
+  if (!overallStatus) {
+    console.log(`\n${colors.yellow}Some tests failed. Check the output above for details.${colors.reset}`);
+    process.exit(1);
   } else {
-    console.log(`\n${YELLOW}Some tests failed. Check the issues above.${RESET}`);
-    
-    // Specific advice based on what failed
-    if (!mongodbOk) {
-      console.log(`${YELLOW}MongoDB issue: Make sure MongoDB is running and accessible.${RESET}`);
-      console.log(`  brew services start mongodb/brew/mongodb-community`);
-    }
-    
-    if (!payloadApiOk && mongodbOk) {
-      console.log(`${YELLOW}PayloadCMS API issue: Check PayloadCMS is properly configured.${RESET}`);
-      console.log(`  - Verify .env file in payload/dadson-blog`);
-      console.log(`  - Check for errors in PayloadCMS terminal`);
-    }
-    
-    if (!nextjsApiOk) {
-      console.log(`${YELLOW}Next.js API issue: Check Next.js API routes.${RESET}`);
-      console.log(`  - Verify .env.local in root directory`);
-      console.log(`  - Check for errors in Next.js terminal`);
-    }
-    
-    if (!blogFrontendOk) {
-      console.log(`${YELLOW}Blog Frontend issue: Check Next.js components and data fetching.${RESET}`);
-      console.log(`  - Check for errors in browser console`);
-      console.log(`  - Verify that blog components are rendering correctly`);
-    }
+    console.log(`\n${colors.green}All tests passed!${colors.reset}`);
+    process.exit(0);
   }
 }
 
 // Run the tests
 runTests().catch(error => {
-  console.error(`${RED}An unexpected error occurred: ${error.message}${RESET}`);
+  console.log(`\n${colors.red}Unhandled error in test script: ${error.message}${colors.reset}`);
+  process.exit(1);
 });

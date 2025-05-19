@@ -16,7 +16,7 @@ cd "$(dirname "$0")"
 
 # First check for port conflicts and MongoDB
 echo -e "\n${YELLOW}Checking environment...${NC}"
-node check-ports.js
+npm run dev:cms-check
 
 # Check if MongoDB is running
 if ! brew services list | grep -q "mongodb.*started"; then
@@ -40,23 +40,22 @@ if [ -t 1 ]; then
   
   # Start PayloadCMS in one window
   echo -e "\n${YELLOW}Starting PayloadCMS...${NC}"
-  osascript -e 'tell app "Terminal" to do script "cd '$PWD'/payload/dadson-blog && npm run dev:simple"'
+  osascript -e 'tell app "Terminal" to do script "cd '$PWD'/payload/dadson-blog && npm run dev:simple -- --port 3004"'
   
   # Start Next.js in another window
   echo -e "\n${YELLOW}Starting Next.js...${NC}"
-  osascript -e 'tell app "Terminal" to do script "cd '$PWD' && npm run dev"'
+  osascript -e 'tell app "Terminal" to do script "cd '$PWD' && NEXT_PUBLIC_PAYLOAD_URL=http://localhost:3004 npm run dev -- -p 3003"'
   
   echo -e "\n${GREEN}Services are starting in separate Terminal windows${NC}"
-  echo -e "PayloadCMS will be available at: ${YELLOW}http://localhost:3001/admin${NC}"
-  echo -e "Next.js will be available at: ${YELLOW}http://localhost:3000${NC}"
+  echo -e "PayloadCMS will be available at: ${YELLOW}http://localhost:3004/admin${NC}"
+  echo -e "Next.js will be available at: ${YELLOW}http://localhost:3003${NC}"
 else
   # Fallback to concurrent execution in the same terminal
   echo -e "\n${YELLOW}Starting services concurrently...${NC}"
   echo -e "You can access:"
-  echo -e "PayloadCMS: ${YELLOW}http://localhost:3001/admin${NC}"
-  echo -e "Next.js: ${YELLOW}http://localhost:3000${NC}"
+  echo -e "PayloadCMS: ${YELLOW}http://localhost:3004/admin${NC}"
+  echo -e "Next.js: ${YELLOW}http://localhost:3003${NC}"
   
-  # Start both services
-  cd payload/dadson-blog && npm run dev:simple & 
-  cd "$PWD" && npm run dev
+  # Start both services using the defined npm scripts
+  npm run dev:all
 fi

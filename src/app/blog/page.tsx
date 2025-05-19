@@ -9,9 +9,12 @@ export const metadata: Metadata = {
 };
 
 export default async function BlogPage({ searchParams }: { searchParams: { [key: string]: string | string[] | undefined } }) {
-  // Using searchParams properly with destructuring and type safety
-  const pageParam = searchParams?.page;
-  const categoryParam = searchParams?.category;
+  // Wait for searchParams to be available before destructuring
+  const params = await Promise.resolve(searchParams);
+  
+  // Now it's safe to access the params properties
+  const pageParam = params?.page;
+  const categoryParam = params?.category;
   
   // Parse and validate the parameters
   const page = typeof pageParam === 'string' ? parseInt(pageParam, 10) || 1 : 1;

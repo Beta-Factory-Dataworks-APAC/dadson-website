@@ -12,7 +12,8 @@ interface ArticlePageParams {
 
 export async function generateMetadata({ params }: ArticlePageParams): Promise<Metadata> {
   try {
-    const article = await fetchArticleBySlug(params.slug);
+    const resolvedParams = await Promise.resolve(params);
+    const article = await fetchArticleBySlug(resolvedParams.slug);
     
     if (!article) {
       return {
@@ -33,7 +34,8 @@ export async function generateMetadata({ params }: ArticlePageParams): Promise<M
 
 export default async function ArticleSlugPage({ params }: ArticlePageParams) {
   try {
-    const article = await fetchArticleBySlug(params.slug);
+    const resolvedParams = await Promise.resolve(params);
+    const article = await fetchArticleBySlug(resolvedParams.slug);
     
     if (!article) {
       notFound();

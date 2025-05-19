@@ -1,8 +1,8 @@
 /**
  * Base URL for the PayloadCMS API
- * Falls back to http://localhost:3001 if NEXT_PUBLIC_PAYLOAD_URL is not set
+ * Falls back to http://localhost:3004 if NEXT_PUBLIC_PAYLOAD_URL is not set
  */
-const API_URL = process.env.NEXT_PUBLIC_PAYLOAD_URL || 'http://localhost:3001';
+const API_URL = process.env.NEXT_PUBLIC_PAYLOAD_URL || 'http://localhost:3004';
 
 /**
  * Parameters for fetching articles from the API
