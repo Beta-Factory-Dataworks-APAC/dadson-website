@@ -58,6 +58,8 @@ interface Article {
 interface BlogIndexPageProps {
   articles: Article[];
   categories: Category[];
+  usingMockData?: boolean;
+  errorMessage?: string;
 }
 
 /**
@@ -68,7 +70,12 @@ interface BlogIndexPageProps {
  * @param {BlogIndexPageProps} props - Component props
  * @returns {JSX.Element} Rendered component
  */
-export default function BlogIndexPage({ articles, categories }: BlogIndexPageProps) {
+export default function BlogIndexPage({ 
+  articles, 
+  categories, 
+  usingMockData = false, 
+  errorMessage = '' 
+}: BlogIndexPageProps) {
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const [currentPage, setCurrentPage] = useState(1);
   const articlesPerPage = 9;
@@ -104,6 +111,26 @@ export default function BlogIndexPage({ articles, categories }: BlogIndexPagePro
         title="Dadson Logistics Blog"
         description="Latest news, insights and updates from the logistics industry"
       />
+      
+      {/* Mock Data Notification */}
+      {usingMockData && (
+        <div className="mb-8 p-4 bg-yellow-50 border border-yellow-100 rounded-md">
+          <div className="flex items-start">
+            <div className="flex-shrink-0">
+              <svg className="h-5 w-5 text-yellow-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                <path fillRule="evenodd" d="M8.485 2.495c.673-1.167 2.357-1.167 3.03 0l6.28 10.875c.673 1.167-.17 2.625-1.516 2.625H3.72c-1.347 0-2.189-1.458-1.515-2.625L8.485 2.495zM10 5a.75.75 0 01.75.75v4.5a.75.75 0 01-1.5 0v-4.5A.75.75 0 0110 5zm0 10a1 1 0 100-2 1 1 0 000 2z" clipRule="evenodd" />
+              </svg>
+            </div>
+            <div className="ml-3">
+              <h3 className="text-sm font-medium text-yellow-800">Using Mock Data</h3>
+              <div className="mt-2 text-sm text-yellow-700">
+                <p>The blog is currently displaying mock data. The connection to the content management system failed.</p>
+                {errorMessage && <p className="mt-1 text-xs font-mono">{errorMessage}</p>}
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
       
       <div className="mb-12">
         <CategoryFilter

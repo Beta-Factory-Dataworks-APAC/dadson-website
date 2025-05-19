@@ -11,7 +11,7 @@ const navItems = [
   { href: '/services', label: 'SERVICES' },
   { href: '/about', label: 'ABOUT US' },
   { href: '/contact', label: 'CONTACT US' },
-  // { href: '/blog', label: 'BLOG' }, // Uncomment when blog is ready
+  { href: '/blog', label: 'BLOG' },
 ];
 
 // Add scroll handler for home page sections

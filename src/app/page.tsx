@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import HeroSection from '@/components/home/HeroSection';
 import UncompromisedSection from '@/components/home/UncompromisedSection';
 import ThreeImageSection from '@/components/home/ThreeImageSection';
@@ -10,6 +10,7 @@ import ShippersCarriersSection from '@/components/home/ShippersCarriersSection';
 import HomeMobileBanner from '@/components/home/HomeMobileBanner';
 import Testimonial from '@/components/testimonials/Testimonial';
 import CoreServices from '@/components/home/CoreServices';
+import BlogPreviewSection from '@/components/home/BlogPreviewSection';
 
 const testimonialData = [
   {
@@ -33,6 +34,28 @@ const testimonialData = [
 ];
 
 export default function HomePage() {
+  const [blogArticles, setBlogArticles] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+
+  // Fetch blog articles for the homepage preview
+  useEffect(() => {
+    async function fetchBlogPosts() {
+      try {
+        const response = await fetch('/api/blog');
+        if (response.ok) {
+          const data = await response.json();
+          setBlogArticles(data.docs || []);
+        }
+      } catch (error) {
+        console.error('Error fetching blog posts:', error);
+      } finally {
+        setIsLoading(false);
+      }
+    }
+
+    fetchBlogPosts();
+  }, []);
+
   return (
     <main className="min-h-screen w-full">
       {/* Hero section with its own margin container */}
@@ -91,6 +114,13 @@ export default function HomePage() {
         <section id="testimonials" data-index="8" className="min-h-screen 2xl:min-h-fit 3xl:min-h-fit 4xl:min-h-fit bg-white">
           <div className="mt-4 sm:mt-8 md:mt-12 lg:mt-16 2xl:mt-18 3xl:mt-20 4xl:mt-22">
             <Testimonial />
+          </div>
+        </section>
+        
+        {/* Blog Preview Section */}
+        <section id="blog-preview" data-index="9" className="min-h-screen 2xl:min-h-fit 3xl:min-h-fit 4xl:min-h-fit">
+          <div className="mt-4 sm:mt-8 md:mt-12 lg:mt-16 2xl:mt-18 3xl:mt-20 4xl:mt-22">
+            {!isLoading && <BlogPreviewSection articles={blogArticles} />}
           </div>
         </section>
       </div>

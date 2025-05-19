@@ -23,18 +23,37 @@ export default async function BlogPage({ searchParams }: { searchParams: { [key:
   // Fetch data with error handling
   let articles = [];
   let categories = [];
+  let usingMockData = false;
+  let errorMessage = '';
   
   try {
-    const articlesData = await fetchArticles({
+    // Fetch articles
+    const articlesResponse = await fetchArticles({
       page,
       limit: 9,
       category,
     });
-    articles = articlesData.docs || [];
     
-    categories = await fetchCategories();
+    articles = articlesResponse.data.docs || [];
+    usingMockData = articlesResponse.usingMockData;
+    
+    if (articlesResponse.error) {
+      errorMessage = articlesResponse.error;
+    }
+    
+    // Fetch categories
+    const categoriesResponse = await fetchCategories();
+    categories = categoriesResponse.data || [];
+    
+    // Use the most strict status - if either is using mock data, we're in mock mode
+    usingMockData = usingMockData || categoriesResponse.usingMockData;
+    
+    if (!errorMessage && categoriesResponse.error) {
+      errorMessage = categoriesResponse.error;
+    }
   } catch (error) {
     console.error('Error fetching blog data:', error);
+    errorMessage = error instanceof Error ? error.message : 'Unknown error occurred';
     // Continue with empty arrays - UI will handle this state
   }
   
@@ -42,6 +61,8 @@ export default async function BlogPage({ searchParams }: { searchParams: { [key:
     <BlogIndexPage 
       articles={articles}
       categories={categories}
+      usingMockData={usingMockData}
+      errorMessage={errorMessage}
     />
   );
 } 

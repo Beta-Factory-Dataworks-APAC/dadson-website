@@ -13,7 +13,8 @@ interface ArticlePageParams {
 export async function generateMetadata({ params }: ArticlePageParams): Promise<Metadata> {
   try {
     const resolvedParams = await Promise.resolve(params);
-    const article = await fetchArticleBySlug(resolvedParams.slug);
+    const articleResponse = await fetchArticleBySlug(resolvedParams.slug);
+    const article = articleResponse.data;
     
     if (!article) {
       return {
@@ -35,13 +36,23 @@ export async function generateMetadata({ params }: ArticlePageParams): Promise<M
 export default async function ArticleSlugPage({ params }: ArticlePageParams) {
   try {
     const resolvedParams = await Promise.resolve(params);
-    const article = await fetchArticleBySlug(resolvedParams.slug);
+    const articleResponse = await fetchArticleBySlug(resolvedParams.slug);
+    const article = articleResponse.data;
+    const usingMockData = articleResponse.usingMockData;
+    const errorMessage = articleResponse.error;
     
     if (!article) {
       notFound();
     }
     
-    return <ArticlePage article={article} relatedPosts={[]} />;
+    return (
+      <ArticlePage 
+        article={article} 
+        relatedPosts={[]} 
+        usingMockData={usingMockData}
+        errorMessage={errorMessage}
+      />
+    );
   } catch (error) {
     console.error('Error fetching article:', error);
     notFound();
