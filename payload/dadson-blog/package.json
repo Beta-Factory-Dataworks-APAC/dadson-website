@@ -3,6 +3,7 @@
   "description": "Payload CMS backend for Dadson Logistics blog",
   "version": "1.0.0",
   "main": "dist/server.js",
+  "type": "module",
   "license": "MIT",
   "scripts": {
     "dev": "cross-env PAYLOAD_CONFIG_PATH=src/payload.config.ts nodemon",

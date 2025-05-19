@@ -8,10 +8,14 @@ export const metadata: Metadata = {
   description: 'Latest news, insights and updates from Dadson Logistics',
 };
 
-export default async function BlogPage({ searchParams }: any) {
-  // Get search params synchronously
-  const page = typeof searchParams.page === 'string' ? parseInt(searchParams.page) : 1;
-  const category = typeof searchParams.category === 'string' ? searchParams.category : undefined;
+export default async function BlogPage({ searchParams }: { searchParams: { [key: string]: string | string[] | undefined } }) {
+  // Using searchParams properly with destructuring and type safety
+  const pageParam = searchParams?.page;
+  const categoryParam = searchParams?.category;
+  
+  // Parse and validate the parameters
+  const page = typeof pageParam === 'string' ? parseInt(pageParam, 10) || 1 : 1;
+  const category = typeof categoryParam === 'string' ? categoryParam : undefined;
   
   // Fetch data with error handling
   let articles = [];

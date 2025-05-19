@@ -4,7 +4,13 @@ import { notFound } from 'next/navigation';
 import { fetchArticleBySlug } from '@/lib/payload/api';
 import ArticlePage from '@/components/blog/ArticlePage';
 
-export async function generateMetadata({ params }: any): Promise<Metadata> {
+interface ArticlePageParams {
+  params: {
+    slug: string;
+  };
+}
+
+export async function generateMetadata({ params }: ArticlePageParams): Promise<Metadata> {
   try {
     const article = await fetchArticleBySlug(params.slug);
     
@@ -25,7 +31,7 @@ export async function generateMetadata({ params }: any): Promise<Metadata> {
   }
 }
 
-export default async function ArticleSlugPage({ params }: any) {
+export default async function ArticleSlugPage({ params }: ArticlePageParams) {
   try {
     const article = await fetchArticleBySlug(params.slug);
     
