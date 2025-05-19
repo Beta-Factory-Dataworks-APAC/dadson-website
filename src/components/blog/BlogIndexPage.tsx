@@ -5,6 +5,10 @@ import ArticleCard from './ArticleCard';
 import CategoryFilter from './CategoryFilter';
 import PageHeader from './PageHeader';
 
+/**
+ * Represents a blog category
+ * @interface Category
+ */
 interface Category {
   id: string;
   name: string;
@@ -12,18 +16,30 @@ interface Category {
   description?: string;
 }
 
+/**
+ * Represents a blog article author
+ * @interface Author
+ */
 interface Author {
   id: string;
   name: string;
   avatar?: any;
 }
 
+/**
+ * Represents a media item (image, video, etc.)
+ * @interface Media
+ */
 interface Media {
   id: string;
   url: string;
   alt?: string;
 }
 
+/**
+ * Represents a blog article
+ * @interface Article
+ */
 interface Article {
   id: string;
   title: string;
@@ -35,11 +51,23 @@ interface Article {
   author: Author;
 }
 
+/**
+ * Props for the BlogIndexPage component
+ * @interface BlogIndexPageProps
+ */
 interface BlogIndexPageProps {
   articles: Article[];
   categories: Category[];
 }
 
+/**
+ * BlogIndexPage Component
+ * 
+ * Displays a grid of blog articles with category filtering and pagination
+ * 
+ * @param {BlogIndexPageProps} props - Component props
+ * @returns {JSX.Element} Rendered component
+ */
 export default function BlogIndexPage({ articles, categories }: BlogIndexPageProps) {
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const [currentPage, setCurrentPage] = useState(1);

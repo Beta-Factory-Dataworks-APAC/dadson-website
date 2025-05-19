@@ -4,7 +4,12 @@ import { mongooseAdapter } from '@payloadcms/db-mongodb';
 import { slateEditor } from '@payloadcms/richtext-slate';
 import type { CollectionConfig } from 'payload/types';
 
-// Define collection configs
+/**
+ * Users Collection Configuration
+ * 
+ * Defines the structure and access control for user accounts in the CMS
+ * Includes role-based access control (Admin, Editor, Contributor)
+ */
 const Users: CollectionConfig = {
   slug: 'users',
   auth: true,
@@ -34,6 +39,12 @@ const Users: CollectionConfig = {
   ],
 };
 
+/**
+ * Categories Collection Configuration
+ * 
+ * Defines the structure for blog post categories
+ * Categories are used to organize and filter blog posts
+ */
 const Categories: CollectionConfig = {
   slug: 'categories',
   admin: {
@@ -61,6 +72,12 @@ const Categories: CollectionConfig = {
   ],
 };
 
+/**
+ * Media Collection Configuration
+ * 
+ * Defines the structure for media uploads (images, files)
+ * Handles file storage and metadata
+ */
 const Media: CollectionConfig = {
   slug: 'media',
   upload: {
@@ -81,6 +98,12 @@ const Media: CollectionConfig = {
   ],
 };
 
+/**
+ * Articles Collection Configuration
+ * 
+ * Defines the structure for blog posts
+ * Includes fields for content, metadata, and relationships
+ */
 const Articles: CollectionConfig = {
   slug: 'articles',
   admin: {
@@ -141,7 +164,12 @@ const Articles: CollectionConfig = {
   ],
 };
 
-// Export the config
+/**
+ * PayloadCMS Configuration
+ * 
+ * Main configuration for the PayloadCMS instance
+ * Sets up database connection, admin panel, and collections
+ */
 export default buildConfig({
   serverURL: process.env.PAYLOAD_PUBLIC_SERVER_URL || 'http://localhost:3001',
   admin: {

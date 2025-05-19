@@ -5,12 +5,20 @@ import Link from 'next/link';
 import { formatDate } from '@/lib/utils';
 import ArticleCard from './ArticleCard';
 
+/**
+ * Represents a blog category
+ * @interface Category
+ */
 interface Category {
   id: string;
   name: string;
   slug: string;
 }
 
+/**
+ * Represents a blog article author
+ * @interface Author
+ */
 interface Author {
   id: string;
   name: string;
@@ -18,6 +26,10 @@ interface Author {
   bio?: string;
 }
 
+/**
+ * Represents a media item (image, video, etc.)
+ * @interface Media
+ */
 interface Media {
   id: string;
   url: string;
@@ -25,6 +37,10 @@ interface Media {
   caption?: string;
 }
 
+/**
+ * Represents a blog article with SEO metadata
+ * @interface Article
+ */
 interface Article {
   id: string;
   title: string;
@@ -42,11 +58,23 @@ interface Article {
   };
 }
 
+/**
+ * Props for the ArticlePage component
+ * @interface ArticlePageProps
+ */
 interface ArticlePageProps {
   article: Article;
   relatedPosts?: Article[];
 }
 
+/**
+ * ArticlePage Component
+ * 
+ * Displays a single blog article with its content, metadata, and related posts
+ * 
+ * @param {ArticlePageProps} props - Component props
+ * @returns {JSX.Element} Rendered component
+ */
 export default function ArticlePage({ article, relatedPosts = [] }: ArticlePageProps) {
   // Image fallback if no image is available
   const imageUrl = article.featuredImage?.url || '/blog-placeholder.jpg';

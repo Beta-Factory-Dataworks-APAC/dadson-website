@@ -1,5 +1,18 @@
+/**
+ * Base URL for the PayloadCMS API
+ * Falls back to http://localhost:3001 if NEXT_PUBLIC_PAYLOAD_URL is not set
+ */
 const API_URL = process.env.NEXT_PUBLIC_PAYLOAD_URL || 'http://localhost:3001';
 
+/**
+ * Parameters for fetching articles from the API
+ * @interface FetchArticlesParams
+ * @property {number} [page=1] - Page number for pagination
+ * @property {number} [limit=10] - Number of articles per page
+ * @property {string} [category] - Category slug to filter articles
+ * @property {string} [sortBy='publishedDate'] - Field to sort articles by
+ * @property {'asc'|'desc'} [sortOrder='desc'] - Sort order (ascending or descending)
+ */
 interface FetchArticlesParams {
   page?: number;
   limit?: number;
@@ -8,6 +21,13 @@ interface FetchArticlesParams {
   sortOrder?: 'asc' | 'desc';
 }
 
+/**
+ * Fetches articles from PayloadCMS API with optional filtering and pagination
+ * Falls back to mock API if PayloadCMS is unavailable
+ * 
+ * @param {FetchArticlesParams} params - Parameters for fetching articles
+ * @returns {Promise<{docs: any[], totalPages: number, page: number}>} Articles data with pagination info
+ */
 export async function fetchArticles({
   page = 1,
   limit = 10,
@@ -55,6 +75,13 @@ export async function fetchArticles({
   }
 }
 
+/**
+ * Fetches a single article by its slug from PayloadCMS API
+ * Falls back to mock API if PayloadCMS is unavailable
+ * 
+ * @param {string} slug - The slug of the article to fetch
+ * @returns {Promise<any|null>} The article data or null if not found
+ */
 export async function fetchArticleBySlug(slug: string) {
   try {
     const res = await fetch(`${API_URL}/api/articles?where[slug][equals]=${slug}&depth=2`, { 
@@ -90,6 +117,13 @@ export async function fetchArticleBySlug(slug: string) {
   }
 }
 
+/**
+ * Fetches all categories from PayloadCMS API
+ * Falls back to mock API if PayloadCMS is unavailable
+ * Categories are cached for 1 hour
+ * 
+ * @returns {Promise<any[]>} Array of category data
+ */
 export async function fetchCategories() {
   try {
     const res = await fetch(`${API_URL}/api/categories?limit=100`, { 
