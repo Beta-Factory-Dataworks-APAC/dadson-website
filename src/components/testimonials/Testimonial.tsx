@@ -39,7 +39,7 @@ type TestimonialProps = {
 
 const Testimonial = ({ testimonials = defaultTestimonialData }: TestimonialProps) => {
   return (
-    <section id="testimonials" className="w-full relative min-h-screen">
+    <section id="testimonials" className="w-full min-h-screen 2xl:min-h-fit py-12 md:py-20 2xl:py-16 3xl:py-14 4xl:py-12">
       {/* Mobile Header */}
       <div className="md:hidden px-5 mb-8 ml-[20%]">
         <motion.div 
@@ -62,12 +62,12 @@ const Testimonial = ({ testimonials = defaultTestimonialData }: TestimonialProps
       </div>
 
       {/* Desktop Header */}
-      <div className="hidden md:block px-5 xl:px-[20px]">
+      <div className="hidden md:block px-5 xl:px-[20px] relative pt-8 md:pt-12">
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="absolute ml-[20%] right-5 xl:right-[20%] top-[107px] text-gray-500 text-2xl font-normal font-['Satoshi']"
+          className="ml-[20%] text-gray-500 text-lg md:text-xl lg:text-2xl font-normal font-['Satoshi'] mb-4"
         >
           What our partners say about Dadson.
         </motion.div>
@@ -76,14 +76,14 @@ const Testimonial = ({ testimonials = defaultTestimonialData }: TestimonialProps
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="ml-[20%] w-[475px] text-black text-6xl font-medium font-['Clash_Display'] uppercase leading-[72px]"
+          className="ml-[20%] max-w-[475px] text-black text-4xl md:text-5xl lg:text-6xl font-medium font-['Clash_Display'] uppercase leading-tight md:leading-[56px] lg:leading-[72px]"
         >
           Real Stories<br />Real Impact
         </motion.div>
       </div>
       
       {/* Testimonials Grid */}
-      <div className="w-full mt-8 md:mt-[190px]">
+      <div className="w-full mt-8 md:mt-16 lg:mt-24">
         <div className="flex flex-col md:flex-row md:justify-between w-full">
           {/* Main Testimonial */}
           <motion.div

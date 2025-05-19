@@ -313,7 +313,7 @@ const CoreServices = () => {
   };
   
   return (
-    <section ref={sectionRef} className="w-full py-24 md:py-36 bg-white relative overflow-hidden">
+    <section ref={sectionRef} className="w-full py-24 md:py-36 2xl:py-28 3xl:py-24 4xl:py-20 bg-white relative overflow-hidden">
       {/* Text-based background */}
       <TextBackground />
       

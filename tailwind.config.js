@@ -7,6 +7,14 @@ module.exports = {
   ],
   theme: {
     extend: {
+      screens: {
+        '2xl': '1920px',
+        '3xl': '2560px',
+        '4xl': '3840px',
+      },
+      maxWidth: {
+        '8xl': '1920px',
+      },
       colors: {
         'primary-blue': '#00B4E1',
         'primary-navy': '#03033D',

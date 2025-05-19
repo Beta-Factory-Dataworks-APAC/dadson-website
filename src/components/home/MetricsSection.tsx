@@ -223,7 +223,7 @@ const MetricsSection = () => {
   const isMobile = typeof window !== 'undefined' ? window.innerWidth < 768 : false;
 
   return (
-    <section className="w-full py-20 px-6 overflow-hidden bg-white">
+    <section className="w-full py-20 2xl:py-16 3xl:py-14 4xl:py-12 px-6 overflow-hidden bg-white">
       <div className="max-w-7xl mx-auto">
         {/* Section heading */}
         <motion.h2

@@ -118,10 +118,10 @@ const Navbar = () => {
         className={`fixed top-0 left-0 right-0 z-[100] transition-all duration-300 ${
           !isVisible ? '-translate-y-full' : 'translate-y-0'} ${
           pathname === '/' ? 'pt-[10px] md:pt-[40px]' : ''} ${
-          shouldUseAboutStyles ? 'bg-white py-2 md:py-3 shadow-sm' : 'bg-transparent py-2 md:py-4'
+          shouldUseAboutStyles ? 'bg-white py-2 md:py-3 shadow-sm' : 'bg-[#e8f7fc] py-2 md:py-4'
         }`}
       >
-        <div className="container mx-auto px-4 md:px-6 ">
+        <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8 2xl:px-10 3xl:px-12 4xl:px-14">
           <div className="flex justify-between items-center">
             {/* Logo */}
             <div className="flex justify-start">
