@@ -109,8 +109,8 @@ const Navbar = () => {
   const aboutPageActiveContactButtonClasses = "bg-[#00B4E1] text-white"; // Cyan button with white text
   const aboutPageInactiveContactButtonClasses = "bg-[#00B4E1] text-white hover:bg-[#00B4E1]/90"; // Cyan button with white text
 
-  // Determine if we're on the about page or if we've scrolled past banner
-  const shouldUseAboutStyles = isScrolled || pathname === '/about' || pathname === '/contact';
+  // Only use about styles on specific pages, not based on scroll
+  const shouldUseAboutStyles = pathname === '/about' || pathname === '/contact';
 
   return (
     <>
@@ -118,7 +118,7 @@ const Navbar = () => {
         className={`fixed top-0 left-0 right-0 z-[100] transition-all duration-300 ${
           !isVisible ? '-translate-y-full' : 'translate-y-0'} ${
           pathname === '/' ? 'pt-[10px] md:pt-[40px]' : ''} ${
-          shouldUseAboutStyles ? 'bg-white py-2 md:py-3 shadow-sm' : 'bg-[#e8f7fc] py-2 md:py-4'
+          shouldUseAboutStyles ? 'bg-white py-2 md:py-3 shadow-sm' : 'py-2 md:py-4'
         }`}
       >
         <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8 2xl:px-10 3xl:px-12 4xl:px-14">
