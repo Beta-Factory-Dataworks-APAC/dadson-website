@@ -149,6 +149,7 @@ For proper functionality, ensure:
 - [Next.js Documentation](https://nextjs.org/docs)
 - [PayloadCMS Documentation](https://payloadcms.com/docs)
 - [Project Wiki](https://link-to-project-wiki)
+- [PayloadCMS Fix Documentation](./docs/payload-cms-fix.md)
 
 ## 🧩 Blog Features
 

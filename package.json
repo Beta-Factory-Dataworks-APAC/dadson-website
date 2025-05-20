@@ -9,7 +9,7 @@
     "dev:all": "concurrently \"npm run dev\" \"npm run dev:cms\"",
     "dev:blog": "./start-blog-stack.sh",
     "dev:cms-check": "node ./payload/dadson-blog/check-cms-environment.js",
-    "dev:cms": "cd ./payload/dadson-blog && npm run dev:simple -- --port 3004",
+    "dev:cms": "node ./payload/dadson-blog/start-payload.mjs",
     "dev:frontend": "NEXT_PUBLIC_PAYLOAD_URL=http://localhost:3004 npm run dev -- -p 3003",
     "test:blog": "node --experimental-modules blog-test.js",
     "build": "next build",
@@ -40,7 +40,7 @@
     "eslint-config-next": "14.2.10",
     "mongodb": "6.16.0",
     "node-fetch": "3.3.2",
-    "puppeteer": "^24.6.1",
+    "puppeteer": "24.8.2",
     "sharp": "^0.34.1",
     "typescript": "^5"
   },

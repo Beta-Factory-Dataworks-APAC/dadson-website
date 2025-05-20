@@ -40,7 +40,7 @@ if [ -t 1 ]; then
   
   # Start PayloadCMS in one window
   echo -e "\n${YELLOW}Starting PayloadCMS...${NC}"
-  osascript -e 'tell app "Terminal" to do script "cd '$PWD'/payload/dadson-blog && npm run dev:simple -- --port 3004"'
+  osascript -e 'tell app "Terminal" to do script "cd '$PWD' && node ./payload/dadson-blog/start-payload.mjs"'
   
   # Start Next.js in another window
   echo -e "\n${YELLOW}Starting Next.js...${NC}"
