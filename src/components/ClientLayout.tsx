@@ -7,9 +7,10 @@ export default function ClientLayout({ children }: { children: React.ReactNode }
   const pathname = usePathname();
   const isHomePage = pathname === '/';
   const isServicesPage = pathname === '/services';
+  const isBlogPage = pathname === '/blog';
   
   return (
-    <div className={`w-full ${isHomePage || isServicesPage ? '' : 'pt-[92px]'}`}>
+    <div className={`w-full ${isHomePage || isServicesPage || isBlogPage ? '' : 'pt-[92px]'}`}>
       {children}
     </div>
   );
