@@ -23,19 +23,17 @@ export default async function BlogPage({ searchParams }: { searchParams: { [key:
   // Fetch data with error handling
   let articles = [];
   let categories = [];
-  let usingMockData = false;
   let errorMessage = '';
   
   try {
-    // Fetch articles
+    // Fetch articles - get all articles for client-side pagination
     const articlesResponse = await fetchArticles({
-      page,
-      limit: 9,
+      page: 1,
+      limit: 100, // Fetch more articles to enable client-side pagination
       category,
     });
     
     articles = articlesResponse.data.docs || [];
-    usingMockData = articlesResponse.usingMockData;
     
     if (articlesResponse.error) {
       errorMessage = articlesResponse.error;
@@ -44,9 +42,6 @@ export default async function BlogPage({ searchParams }: { searchParams: { [key:
     // Fetch categories
     const categoriesResponse = await fetchCategories();
     categories = categoriesResponse.data || [];
-    
-    // Use the most strict status - if either is using mock data, we're in mock mode
-    usingMockData = usingMockData || categoriesResponse.usingMockData;
     
     if (!errorMessage && categoriesResponse.error) {
       errorMessage = categoriesResponse.error;
@@ -61,7 +56,6 @@ export default async function BlogPage({ searchParams }: { searchParams: { [key:
     <BlogIndexPage 
       articles={articles}
       categories={categories}
-      usingMockData={usingMockData}
       errorMessage={errorMessage}
     />
   );

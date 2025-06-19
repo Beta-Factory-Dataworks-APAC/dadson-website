@@ -109,7 +109,11 @@ export default function BlogIndexPage({
   // Handle pagination
   const handlePageChange = (page: number) => {
     setCurrentPage(page);
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    // Scroll to the articles section instead of top of page
+    const blogContentElement = document.getElementById('blog-content');
+    if (blogContentElement) {
+      blogContentElement.scrollIntoView({ behavior: 'smooth' });
+    }
   };
   
   return (

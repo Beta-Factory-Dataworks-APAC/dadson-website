@@ -65,7 +65,6 @@ interface Article {
 interface ArticlePageProps {
   article: Article;
   relatedPosts?: Article[];
-  usingMockData?: boolean;
   errorMessage?: string;
 }
 
@@ -78,7 +77,6 @@ interface ArticlePageProps {
 export default function ArticlePage({ 
   article, 
   relatedPosts = [],
-  usingMockData = false,
   errorMessage = ''
 }: ArticlePageProps) {
   // Format date for display
@@ -91,20 +89,19 @@ export default function ArticlePage({
   
   return (
     <article className="container mx-auto px-4 py-16 max-w-4xl">
-      {/* Mock Data Notification */}
-      {usingMockData && (
-        <div className="mb-8 p-4 bg-yellow-50 border border-yellow-100 rounded-md">
+      {/* Error Message */}
+      {errorMessage && (
+        <div className="mb-8 p-4 bg-red-50 border border-red-100 rounded-md">
           <div className="flex items-start">
             <div className="flex-shrink-0">
-              <svg className="h-5 w-5 text-yellow-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+              <svg className="h-5 w-5 text-red-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
                 <path fillRule="evenodd" d="M8.485 2.495c.673-1.167 2.357-1.167 3.03 0l6.28 10.875c.673 1.167-.17 2.625-1.516 2.625H3.72c-1.347 0-2.189-1.458-1.515-2.625L8.485 2.495zM10 5a.75.75 0 01.75.75v4.5a.75.75 0 01-1.5 0v-4.5A.75.75 0 0110 5zm0 10a1 1 0 100-2 1 1 0 000 2z" clipRule="evenodd" />
               </svg>
             </div>
             <div className="ml-3">
-              <h3 className="text-sm font-medium text-yellow-800">Using Mock Data</h3>
-              <div className="mt-2 text-sm text-yellow-700">
-                <p>This article is from mock data. The connection to the content management system failed.</p>
-                {errorMessage && <p className="mt-1 text-xs font-mono">{errorMessage}</p>}
+              <h3 className="text-sm font-medium text-red-800">Error Loading Content</h3>
+              <div className="mt-2 text-sm text-red-700">
+                <p className="mt-1 text-xs font-mono">{errorMessage}</p>
               </div>
             </div>
           </div>
@@ -185,25 +182,8 @@ export default function ArticlePage({
       
       {/* Content */}
       <div className="prose prose-lg max-w-none">
-        <RichText content={article.content} />
+        <div dangerouslySetInnerHTML={{ __html: article.content || '' }} />
       </div>
-      
-      {/* Tags */}
-      {article.tags && article.tags.length > 0 && (
-        <div className="mt-12 pt-8 border-t border-[#E5E5E5]">
-          <h3 className="font-medium text-lg mb-4">Tags</h3>
-          <div className="flex flex-wrap gap-2">
-            {article.tags.map(tag => (
-              <span 
-                key={tag}
-                className="px-3 py-1 bg-[#F5F5F5] text-[#707C83] text-sm rounded-md"
-              >
-                {tag}
-              </span>
-            ))}
-          </div>
-        </div>
-      )}
       
       {/* Related Posts */}
       {relatedPosts.length > 0 && (

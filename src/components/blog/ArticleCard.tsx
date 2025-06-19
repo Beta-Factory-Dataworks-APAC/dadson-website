@@ -29,6 +29,7 @@ interface Article {
   publishedDate: string;
   excerpt?: string;
   featuredImage: Media;
+  category?: Category;
   categories?: Category[];
   author: Author;
 }
@@ -43,7 +44,7 @@ export default function ArticleCard({ article }: ArticleCardProps) {
   const altText = article.featuredImage?.alt || article.title;
   
   return (
-    <div className="bg-white rounded-lg overflow-hidden shadow-sm transition-shadow duration-300 hover:shadow-md">
+    <article className="bg-white rounded-lg overflow-hidden shadow-sm transition-all duration-300 hover:shadow-lg hover:-translate-y-1 border border-gray-100">
       <Link href={`/blog/${article.slug}`} className="block">
         <div className="relative h-48 w-full overflow-hidden">
           <Image
@@ -58,9 +59,10 @@ export default function ArticleCard({ article }: ArticleCardProps) {
       
       <div className="p-6">
         {/* Categories */}
-        {article.categories && article.categories.length > 0 && (
+        {((article.categories && article.categories.length > 0) || article.category) && (
           <div className="flex flex-wrap gap-2 mb-3">
-            {article.categories.map((category) => (
+            {/* Render categories array if available */}
+            {article.categories && article.categories.map((category) => (
               <Link
                 key={category.id}
                 href={`/blog?category=${category.slug}`}
@@ -69,6 +71,16 @@ export default function ArticleCard({ article }: ArticleCardProps) {
                 {category.name}
               </Link>
             ))}
+            {/* Render single category if no categories array */}
+            {!article.categories && article.category && (
+              <Link
+                key={article.category.id}
+                href={`/blog?category=${article.category.slug}`}
+                className="inline-block px-3 py-1 text-xs rounded-full font-medium bg-[#00B4E1]/10 text-[#00B4E1]"
+              >
+                {article.category.name}
+              </Link>
+            )}
           </div>
         )}
         
@@ -86,33 +98,35 @@ export default function ArticleCard({ article }: ArticleCardProps) {
         
         {/* Excerpt */}
         {article.excerpt && (
-          <p className="text-[#101B21] mb-4 line-clamp-3">
+          <p className="text-[#707C83] mb-6 line-clamp-3 leading-relaxed flex-grow">
             {article.excerpt}
           </p>
         )}
         
         {/* Read More Link */}
-        <Link
-          href={`/blog/${article.slug}`}
-          className="text-[#00B4E1] font-medium inline-flex items-center hover:underline"
-        >
-          Read More
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            className="h-4 w-4 ml-1"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
+        <div className="mt-auto">
+          <Link
+            href={`/blog/${article.slug}`}
+            className="text-[#00B4E1] font-semibold inline-flex items-center hover:text-[#0091B8] transition-colors group"
           >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M14 5l7 7m0 0l-7 7m7-7H3"
-            />
-          </svg>
-        </Link>
+            Read More
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="h-4 w-4 ml-1 transform group-hover:translate-x-1 transition-transform"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M14 5l7 7m0 0l-7 7m7-7H3"
+              />
+            </svg>
+          </Link>
+        </div>
       </div>
-    </div>
+    </article>
   );
 } 

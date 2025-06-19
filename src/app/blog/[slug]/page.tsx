@@ -38,7 +38,6 @@ export default async function ArticleSlugPage({ params }: ArticlePageParams) {
     const resolvedParams = await Promise.resolve(params);
     const articleResponse = await fetchArticleBySlug(resolvedParams.slug);
     const article = articleResponse.data;
-    const usingMockData = articleResponse.usingMockData;
     const errorMessage = articleResponse.error;
     
     if (!article) {
@@ -49,7 +48,6 @@ export default async function ArticleSlugPage({ params }: ArticlePageParams) {
       <ArticlePage 
         article={article} 
         relatedPosts={[]} 
-        usingMockData={usingMockData}
         errorMessage={errorMessage}
       />
     );
